@@ -22,4 +22,5 @@ inline bool esp_show_box= false;
 inline bool esp_show_bones = false;
 inline bool esp_show_distance = false;
 inline float fov_size = 150.0f;
-inline float smoothMultiplier = 1; // ±âº» ½º¹«µù ¹èÀ²
+inline float smoothMultiplier = 1; // ê¸°ë³¸ ìŠ¤ë¬´ë”© ë°°ìœ¨
+inline bool toggePF = false;
