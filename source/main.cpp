@@ -7,28 +7,6 @@ void debug_print(str text, i32 lev) {
 	str log = (lev == 0) ? "[+]" : (lev == 1) ? "[-]" : "[?]";
 	std::cout << std::format("{} {}\n", log, text) << std::endl;
 }
-//auto main(i32 argc, i8** argv) -> i32 {
-	//ShowWindow(GetConsoleWindow(), SW_HIDE);
-bool checkGameState() {
-	// DataModel이 유효한지 확인
-	if (!dataModel || !dataModel->getAddress()) {
-		return false;
-	}
-	
-	// 간단한 메모리 읽기 테스트
-	u64 testRead = comms->read<u64>(dataModel->getAddress());
-	if (testRead == 0) {
-		return false;
-	}
-
-	// Players 서비스가 유효한지 확인
-	RBX::Instance playerService = dataModel->findFirstChild("Players");
-	if (!playerService.getAddress()) {
-		return false;
-	}
-	//debug_print("Game state is valid", 0);
-	return true;
-}
 void inject() {
 	debug_print("Starting", 0);
 	if (!comms->is_connected()) {
@@ -62,29 +40,8 @@ auto main(i32 argc, i8** argv) -> i32 {
 	render->setupOverlay("Untitled_External");
 
 	std::thread(updatePlayers).detach();
-
-	u64 lastDataModelAddr = dataModel ? dataModel->getAddress() : 0;
-	u64 lastVisualEngineAddr = visualEngine ? visualEngine->getAddress() : 0;
-
+	
 	while (render->isRunning) {
-		u64 currentDataModelAddr = dataModel ? dataModel->getAddress() : 0;
-		u64 currentVisualEngineAddr = visualEngine ? visualEngine->getAddress() : 0;
-		bool needReinject = false;
-		if (currentDataModelAddr == 0 || currentVisualEngineAddr == 0)
-			needReinject = true;
-		else if (currentDataModelAddr != lastDataModelAddr || currentVisualEngineAddr != lastVisualEngineAddr)
-			needReinject = true;
-		else {
-			RBX::Instance playerService = dataModel->findFirstChild("Players");
-			if (!playerService.getAddress())
-				needReinject = true;
-		}
-
-		if (needReinject) {
-			inject();
-			lastDataModelAddr = dataModel ? dataModel->getAddress() : 0;
-			lastVisualEngineAddr = visualEngine ? visualEngine->getAddress() : 0;
-		}
 
 		render->startRender();
 		if (Esp_Enabled) espLoop();
