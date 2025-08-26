@@ -39,9 +39,14 @@ str RBX::Instance::getClassName() {
 
 	return "Unknown";
 }
+str RBX::Instance::getVaue() {
+	u64 valuePtr = comms->read<u64>(address + 0xD8);
+	str value = comms->readstr(valuePtr);
+	return value.c_str();
 
+}
 
-std::vector<RBX::Instance> RBX::Instance::getChildern() {
+std::vector<RBX::Instance> RBX::Instance::getChildren() {
 	std::vector<RBX::Instance> children;
 	u64 start = comms->read<u64>(address + Offsets::Childern);
 	u64 end = comms->read<u64>(start + 0x8);
@@ -54,7 +59,7 @@ std::vector<RBX::Instance> RBX::Instance::getChildern() {
 }
 
 RBX::Instance RBX::Instance::findFirstChild(const str& name) {
-	std::vector<RBX::Instance> children = getChildern();
+	std::vector<RBX::Instance> children = getChildren();
 
 	for (RBX::Instance& child : children) {
 		if (child.getName() == name) {
@@ -65,7 +70,7 @@ RBX::Instance RBX::Instance::findFirstChild(const str& name) {
 }
 
 RBX::Instance RBX::Instance::findFristChildByClass(const str& name) {
-	std::vector<RBX::Instance> children = getChildern();
+	std::vector<RBX::Instance> children = getChildren();
 
 	for (RBX::Instance& child : children) {
 		if (child.getClassName() == name) {
@@ -74,6 +79,8 @@ RBX::Instance RBX::Instance::findFristChildByClass(const str& name) {
 	}
 	return RBX::Instance();
 }
+
+
 RBX::Primitive RBX::Instance::getPrimitive() {
 	return RBX::Primitive(comms->read<u64>(address + Offsets::Primitive));
 }
