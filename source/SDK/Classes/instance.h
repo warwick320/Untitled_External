@@ -19,11 +19,10 @@ namespace RBX {
 
 		u64 getTeam();
 		str getTeamName();
-		std::vector<RBX::Instance> getChildern();
+		std::vector<RBX::Instance> getChildren();
 		RBX::Instance findFirstChild(const str& name);
 		RBX::Instance findFristChildByClass(const str& className);
-
-	
+		str getVaue();
 
 		RBX::Primitive getPrimitive();
 		u64 getAddress();
