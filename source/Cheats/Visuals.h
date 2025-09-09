@@ -78,7 +78,7 @@ inline void drawAngleBoundingBox(ImDrawList* drawList, const std::array<Vector2,
     if (bonePositions.empty()) return;
 
     float minX = 99999.0f, maxX = -99999.0f;
-    float minY = 99999.0f, maxY = -99999.0f;
+    float minY = 99999.0f, maxY = -99999.0f;    
 
     const auto& boneMap = isR15 ? boneMapR15 : boneMapR6;
     const int boneCount = isR15 ? R15_BoneCount : R6_BoneCount;
@@ -112,7 +112,7 @@ inline void pf_Esp() {
         RBX::Primitive prim = part.getPrimitive();
         Vector3 PartPos3D = prim.getPartPosition();
         Vector2 PartPos2D = visualEngine->worldToScreen(PartPos3D);
-        drawList->AddCircleFilled(ImVec2(PartPos2D.x, PartPos2D.y), 5.0f, IM_COL32(0, 255, 0, 150));
+        drawList->AddCircleFilled(ImVec2(PartPos2D.x, PartPos2D.y), 5.0f, IM_COL32(0, 255, 0, 255));
     }
 }
 
@@ -152,16 +152,16 @@ inline void pf_Aimbot() {
     }
     if (found) {
         int smooth = 3;
-        int moveX = static_cast<int>(bestDeltaX / smooth);
-        int moveY = static_cast<int>(bestDeltaY / smooth);
+        float moveX = bestDeltaX / smooth;
+        float moveY = bestDeltaY / smooth;
         if (abs(moveX) < 1 && abs(moveY) < 1) {
             if (moveX != 0) moveX = (moveX > 0) ? 1 : -1;
             if (moveY != 0) moveY = (moveY > 0) ? 1 : -1;
         }
         INPUT input = { 0 };
         input.type = INPUT_MOUSE;
-        input.mi.dx = moveX;
-        input.mi.dy = moveY;
+        input.mi.dx = static_cast<int>(moveX);
+        input.mi.dy = static_cast<int>(moveY);
         input.mi.dwFlags = MOUSEEVENTF_MOVE;
         SendInput(1, &input, sizeof(INPUT));
     }
@@ -229,10 +229,10 @@ inline void espLoop() {
                 float normalizedDist = ((distance3D / 200.0f) < 1.0f ? (distance3D / 200.0f) : 1.0f);
                 int red = static_cast<int>(255 * normalizedDist);
                 int green = static_cast<int>(255 * (1.0f - normalizedDist));
-                lineColor = IM_COL32(red, green, 0, 1000); // 반투명
+                lineColor = IM_COL32(red, green, 0, 255); // 반투명
             }
             else {
-                lineColor = IM_COL32(255, 255, 255, 200); // 흰색 기본
+                lineColor = IM_COL32(255, 255, 255, 255); // 흰색 기본
             }
 
             // 이름 표시 (머리 위)
@@ -301,6 +301,9 @@ inline void espLoop() {
 
 inline void aimbotLoop()
 {
+    static DWORD lastTargetDeathTime = 0;
+    static bool waitAfterDeath = false;
+
     if (toggePF) {
         pf_Aimbot();
     }
@@ -328,10 +331,11 @@ inline void aimbotLoop()
             }
         }
 
-        static RBX::Player* lastTarget = nullptr;
+        static std::string lastTargetName = "";
         Vector2 bestTarget2D{ 0, 0 };
         float minDist2D = FLT_MAX;
         float minDist3D = FLT_MAX;
+        RBX::Player* currentTarget = nullptr;
 
         for (RBX::Player& player : g_PlayerList) {
             RBX::ModelInstance character = player.getModelInstance();
@@ -359,55 +363,67 @@ inline void aimbotLoop()
             float dist2D = sqrtf(dx * dx + dy * dy);
             if (dist2D > fov_size) continue;
 
-            // 2D 거리 차이가 56px 이상이면 2D 거리 우선, 아니면 3D 거리 우선
             if (dist2D < minDist2D - 56.0f) {
                 minDist2D = dist2D;
                 minDist3D = dist3D;
                 bestTarget2D = headPos2D;
-                lastTarget = &player;
+                currentTarget = &player;
             }
             else if (fabs(dist2D - minDist2D) <= 70.0f) {
                 if (dist3D < minDist3D) {
                     minDist2D = dist2D;
                     minDist3D = dist3D;
                     bestTarget2D = headPos2D;
-                    lastTarget = &player;
+                    currentTarget = &player;
                 }
             }
+        }
+
+        if (currentTarget) {
+            std::string currentTargetName = currentTarget->getName();
+            if (!lastTargetName.empty() && lastTargetName != currentTargetName) {
+                lastTargetDeathTime = GetTickCount();
+                waitAfterDeath = true;
+            }
+            lastTargetName = currentTargetName;
+        }
+        else {
+            if (!lastTargetName.empty()) {
+                lastTargetDeathTime = GetTickCount();
+                waitAfterDeath = true;
+            }
+            lastTargetName = "";
+        }
+
+        if (waitAfterDeath) {
+            if (GetTickCount() - lastTargetDeathTime < 200) {
+                return;
+            }
+            waitAfterDeath = false;
         }
 
         if (bestTarget2D.x != 0 && bestTarget2D.y != 0) {
             int deltaX = static_cast<int>(bestTarget2D.x - mouseImGui.x);
             int deltaY = static_cast<int>(bestTarget2D.y - mouseImGui.y);
             float dist = sqrtf(deltaX * deltaX + deltaY * deltaY);
+            float smooth = 2.4f;
+            
+			if (dist < 10.0f) smooth = 1.1f;
+            if (dist < 20.0f) smooth = 1.4f;
+            if (dist < 40.0f) smooth = 1.8f;
+            if (dist < 60.0f) smooth = 2.2f;
 
-            float smooth;
+            float t = 1.0f / smooth;
+            float easedX = easeInOutCubic(0.0f, static_cast<float>(deltaX), t);
+            float easedY = easeInOutCubic(0.0f, static_cast<float>(deltaY), t);
 
-            if (dist <= 20.0f) {
-                smooth = 1.2f * smoothMultiplier;
-            }
-            else if (dist <= 50.0f) {
-                smooth = 1.8f * smoothMultiplier;
-            }
-            else if (dist <= 100.0f) {
-                smooth = 2.5f * smoothMultiplier;
-            }
-            else {
-                smooth = 3.5f * smoothMultiplier;
-            }
-
-            deltaX = static_cast<int>(deltaX / smooth);
-            deltaY = static_cast<int>(deltaY / smooth);
-
-            if (abs(deltaX) < 1 && abs(deltaY) < 1) {
-                if (deltaX != 0) deltaX = (deltaX > 0) ? 1 : -1;
-                if (deltaY != 0) deltaY = (deltaY > 0) ? 1 : -1;
-            }
+            int moveX = static_cast<int>(easedX);
+            int moveY = static_cast<int>(easedY);
 
             INPUT input = { 0 };
             input.type = INPUT_MOUSE;
-            input.mi.dx = deltaX;
-            input.mi.dy = deltaY;
+            input.mi.dx = moveX;
+            input.mi.dy = moveY;
             input.mi.dwFlags = MOUSEEVENTF_MOVE;
             SendInput(1, &input, sizeof(INPUT));
         }

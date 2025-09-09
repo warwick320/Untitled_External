@@ -1,7 +1,7 @@
-
 #include <SDK/Cache.h>
 #include <Cheats/Players.h>
 #include <Cheats/Visuals.h>
+#include <ImGui/imgui_impl_win32.h>
 inline RBX::Instance g_Team;
 void debug_print(str text, i32 lev) {
 	str log = (lev == 0) ? "[+]" : (lev == 1) ? "[-]" : "[?]";
@@ -16,9 +16,23 @@ void inject() {
 	}
 	debug_print("Connected to driver successfully", 0);
 	debug_print("Looking for roblox", 0);
+
 	while (comms->find_process("RobloxPlayerBeta.exe") == 0) sleep_ms(100);
 	printf("[+] Found roblox with process id: %d\n", comms->process_id);
-	if (comms->find_image() == 0) debug_print("Failed to get the base address", 1);
+
+	debug_print("Attaching to process...", 0);
+	if (!comms->v_attach(comms->process_id)) {
+		debug_print("Failed to attach to process", 1);
+		sleep_ms(5000);
+		exit(0);
+	}
+	debug_print("Successfully attached to process", 0);
+
+	if (comms->find_image() == 0) {
+		debug_print("Failed to get the base address", 1);
+		sleep_ms(5000);
+		exit(0);
+	}
 
 	printf("Found Roblox with base address: %llx\n", comms->image_address);
 
@@ -34,17 +48,21 @@ void inject() {
 	//printf("Team -> %llx\n", g_LocalPlayer.getTeam());
 }
 auto main(i32 argc, i8** argv) -> i32 {
+	ImGui_ImplWin32_EnableDpiAwareness();
 	inject();
 
 	render = std::make_unique<Render>();
 	render->setupOverlay("Untitled_External");
 
 	std::thread(updatePlayers).detach();
-	
+
 	while (render->isRunning) {
 
 		render->startRender();
-		if (Esp_Enabled) espLoop();
+		if (Esp_Enabled) {
+			//printf("ESP LOOP\n");
+			espLoop();
+		}
 		if (Aimbot_Enabled) aimbotLoop();
 		if (render->isVisible) render->renderMenu();
 		render->endRender();

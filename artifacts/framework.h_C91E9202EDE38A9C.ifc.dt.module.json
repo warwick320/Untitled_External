@@ -1,0 +1,22 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "C:\\Users\\warwick\\source\\repos\\Untitled_External\\artifacts\\framework.obj",
+            "outputs": [
+                "C:\\Users\\warwick\\source\\repos\\Untitled_External\\artifacts\\framework.h_C91E9202EDE38A9C.ifc.dt.module.json",
+                "C:\\Users\\warwick\\source\\repos\\Untitled_External\\artifacts\\framework.h_C91E9202EDE38A9C.ifc.dt.d.json",
+                "C:\\Users\\warwick\\source\\repos\\Untitled_External\\artifacts\\framework.h.ifc"
+            ],
+            "provides": [
+                {
+                    "logical-name": "C:\\Users\\warwick\\source\\repos\\Untitled_External\\source\\framework.h",
+                    "source-path": "c:\\users\\warwick\\source\\repos\\untitled_external\\source\\framework.h",
+                    "lookup-method": "absolute"
+                }
+            ],
+            "requires": []
+        }
+    ]
+}

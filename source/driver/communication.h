@@ -3,14 +3,33 @@
 #include <tlhelp32.h>
 #include <cstdint>
 #include <string>
+#include <winternl.h>
 
+// NtDll 함수 타입 정의
+typedef NTSTATUS(NTAPI* _NtReadVirtualMemory)(
+	HANDLE ProcessHandle,
+	PVOID BaseAddress,
+	PVOID Buffer,
+	SIZE_T BufferSize,
+	PSIZE_T NumberOfBytesRead
+	);
 
+typedef NTSTATUS(NTAPI* _NtWriteVirtualMemory)(
+	HANDLE ProcessHandle,
+	PVOID BaseAddress,
+	PVOID Buffer,
+	SIZE_T BufferSize,
+	PSIZE_T NumberOfBytesWritten
+	);
+
+// 기존 코드는 유지
 #define PRW_CODE CTL_CODE(FILE_DEVICE_UNKNOWN, 0x2ec33, METHOD_BUFFERED, FILE_SPECIAL_ACCESS)
 #define VRW_ATTACH_CODE CTL_CODE(FILE_DEVICE_UNKNOWN, 0x2ec34, METHOD_BUFFERED, FILE_SPECIAL_ACCESS)
 #define VRW_CODE CTL_CODE(FILE_DEVICE_UNKNOWN, 0x2ec35, METHOD_BUFFERED, FILE_SPECIAL_ACCESS)
 #define BA_CODE CTL_CODE(FILE_DEVICE_UNKNOWN, 0x2ec36, METHOD_BUFFERED, FILE_SPECIAL_ACCESS)  
 #define SECURITY_CODE 0x94c9e4bc3
 
+// 기존 구조체 정의 유지
 struct _PRW {
 	u64 security_code;
 
@@ -53,7 +72,7 @@ public:
 
 	bool v_attach(i32 process_id);
 
-	i32 find_process(const i8* ProcessName); // UM
+	i32 find_process(const i8* ProcessName);
 	u64 find_image();
 
 	template <typename T>
@@ -71,62 +90,46 @@ public:
 	u64 image_address = 0;
 	i32 process_id = 0;
 private:
-	HANDLE driver_handle = INVALID_HANDLE_VALUE;
+	HANDLE process_handle = INVALID_HANDLE_VALUE;
+	_NtReadVirtualMemory NtReadVirtualMemory = nullptr;
+	_NtWriteVirtualMemory NtWriteVirtualMemory = nullptr;
 };
 
 template <typename T>
-T communication::v_read(u64 address) {
+T communication::read(u64 address) {
 	T temp = {};
+	SIZE_T bytes_read = 0;
 
-	_VRW arguments;
-	arguments.security_code = SECURITY_CODE;
-	arguments.address = reinterpret_cast<void*>(address);
-	arguments.buffer = &temp;
-	arguments.size = sizeof(T);
-	arguments.Type = false;
+	if (process_handle != INVALID_HANDLE_VALUE && NtReadVirtualMemory) {
+		NTSTATUS status = NtReadVirtualMemory(process_handle, reinterpret_cast<PVOID>(address), &temp, sizeof(T), &bytes_read);
+		if (status != 0 || bytes_read != sizeof(T)) {
+			printf("Memory read failed at address 0x%llx (Status: 0x%lx, Read: %zu bytes)\n", address, status, bytes_read);
+			// 실패한 경우 0으로 초기화
+			memset(&temp, 0, sizeof(T));
+		}
+	}
+	else {
+		printf("Cannot read memory: process handle invalid or NtReadVirtualMemory not available\n");
+	}
 
-	DeviceIoControl(driver_handle, VRW_CODE, &arguments, sizeof(arguments), &arguments, sizeof(arguments), nullptr, nullptr);
 	return temp;
 }
 
 template <typename T>
 void communication::v_write(u64 address, T& value) {
-	_VRW arguments;
-	arguments.security_code = SECURITY_CODE;
-	arguments.address = reinterpret_cast<void*>(address);
-	arguments.buffer = (void*)&value;
-	arguments.size = sizeof(T);
-	arguments.Type = true;
+	SIZE_T bytes_written = 0;
 
-	DeviceIoControl(driver_handle, VRW_CODE, &arguments, sizeof(arguments), &arguments, sizeof(arguments), nullptr, nullptr);
+	if (process_handle != INVALID_HANDLE_VALUE && NtWriteVirtualMemory) {
+		NtWriteVirtualMemory(process_handle, reinterpret_cast<PVOID>(address), &value, sizeof(T), &bytes_written);
+	}
 }
 
 template <typename T>
-T communication::read(u64 address) {
-	T temp = {};
-
-	_PRW arguments = {};
-	arguments.security_code = SECURITY_CODE;
-	arguments.address = reinterpret_cast<void*>(address);
-	arguments.buffer = &temp;
-	arguments.size = sizeof(T);
-	arguments.process_id = process_id;
-	arguments.Type = false;
-
-	DeviceIoControl(driver_handle, PRW_CODE, &arguments, sizeof(arguments), nullptr, NULL, NULL, NULL);
-
-	return temp;
+T communication::v_read(u64 address) {
+	return read<T>(address);
 }
 
 template <typename T>
 void communication::write(u64 address, T& value) {
-	_PRW arguments = {};
-	arguments.security_code = SECURITY_CODE;
-	arguments.address = reinterpret_cast<void*>(address);
-	arguments.buffer = (void*)&value;
-	arguments.size = sizeof(T);
-	arguments.process_id = process_id;
-	arguments.Type = true;
-
-	DeviceIoControl(driver_handle, PRW_CODE, &arguments, sizeof(arguments), nullptr, NULL, NULL, NULL);
+	v_write(address, value);
 }

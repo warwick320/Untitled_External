@@ -1,0 +1,17 @@
+C:\Users\warwick\source\repos\Untitled_External\source\driver\communication.cpp;C:\Users\warwick\source\repos\Untitled_External\artifacts\communication.obj
+C:\Users\warwick\source\repos\Untitled_External\source\framework.h;C:\Users\warwick\source\repos\Untitled_External\artifacts\framework.h.obj
+C:\Users\warwick\source\repos\Untitled_External\source\main.cpp;C:\Users\warwick\source\repos\Untitled_External\artifacts\main.obj
+C:\Users\warwick\source\repos\Untitled_External\source\Render\Render.cpp;C:\Users\warwick\source\repos\Untitled_External\artifacts\Render.obj
+C:\Users\warwick\source\repos\Untitled_External\source\SDK\Classes\DataModel\DataModel.cpp;C:\Users\warwick\source\repos\Untitled_External\artifacts\DataModel.obj
+C:\Users\warwick\source\repos\Untitled_External\source\SDK\Classes\DataModel\ModelInstance.cpp;C:\Users\warwick\source\repos\Untitled_External\artifacts\ModelInstance.obj
+C:\Users\warwick\source\repos\Untitled_External\source\SDK\Classes\DataModel\Player.cpp;C:\Users\warwick\source\repos\Untitled_External\artifacts\Player.obj
+C:\Users\warwick\source\repos\Untitled_External\source\SDK\Classes\instance.cpp;C:\Users\warwick\source\repos\Untitled_External\artifacts\instance.obj
+C:\Users\warwick\source\repos\Untitled_External\source\SDK\Classes\VisualEngine\VisualEngine.cpp;C:\Users\warwick\source\repos\Untitled_External\artifacts\VisualEngine.obj
+C:\Users\warwick\source\repos\Untitled_External\source\SDK\Classes\World\Primtive.cpp;C:\Users\warwick\source\repos\Untitled_External\artifacts\Primtive.obj
+C:\Users\warwick\source\repos\Untitled_External\vender\ImGui\imgui.cpp;C:\Users\warwick\source\repos\Untitled_External\artifacts\imgui.obj
+C:\Users\warwick\source\repos\Untitled_External\vender\ImGui\imgui_demo.cpp;C:\Users\warwick\source\repos\Untitled_External\artifacts\imgui_demo.obj
+C:\Users\warwick\source\repos\Untitled_External\vender\ImGui\imgui_draw.cpp;C:\Users\warwick\source\repos\Untitled_External\artifacts\imgui_draw.obj
+C:\Users\warwick\source\repos\Untitled_External\vender\ImGui\imgui_impl_dx11.cpp;C:\Users\warwick\source\repos\Untitled_External\artifacts\imgui_impl_dx11.obj
+C:\Users\warwick\source\repos\Untitled_External\vender\ImGui\imgui_impl_win32.cpp;C:\Users\warwick\source\repos\Untitled_External\artifacts\imgui_impl_win32.obj
+C:\Users\warwick\source\repos\Untitled_External\vender\ImGui\imgui_tables.cpp;C:\Users\warwick\source\repos\Untitled_External\artifacts\imgui_tables.obj
+C:\Users\warwick\source\repos\Untitled_External\vender\ImGui\imgui_widgets.cpp;C:\Users\warwick\source\repos\Untitled_External\artifacts\imgui_widgets.obj

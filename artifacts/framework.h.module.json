@@ -1,0 +1,22 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "C:\\Users\\warwick\\source\\repos\\Untitled_External\\artifacts\\framework.h.obj",
+            "outputs": [
+                "C:\\Users\\warwick\\source\\repos\\Untitled_External\\artifacts\\vc143.pdb",
+                "C:\\Users\\warwick\\source\\repos\\Untitled_External\\artifacts\\",
+                "C:\\Users\\warwick\\source\\repos\\Untitled_External\\artifacts\\framework.h.ifc"
+            ],
+            "provides": [
+                {
+                    "logical-name": "source\\framework.h",
+                    "source-path": "c:\\users\\warwick\\source\\repos\\untitled_external\\source\\framework.h",
+                    "lookup-method": "absolute"
+                }
+            ],
+            "requires": []
+        }
+    ]
+}
