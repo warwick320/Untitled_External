@@ -72,13 +72,13 @@ static const auto boneMapR6 = [] {
     }();
 
 
- 
+
 inline void drawAngleBoundingBox(ImDrawList* drawList, const std::array<Vector2, R15_BoneCount>& bonePositions,
-    bool isR15, ImU32 color) {
+    bool isR15, ImU32 color, float thickness = 3.0f) {
     if (bonePositions.empty()) return;
 
     float minX = 99999.0f, maxX = -99999.0f;
-    float minY = 99999.0f, maxY = -99999.0f;    
+    float minY = 99999.0f, maxY = -99999.0f;
 
     const auto& boneMap = isR15 ? boneMapR15 : boneMapR6;
     const int boneCount = isR15 ? R15_BoneCount : R6_BoneCount;
@@ -102,7 +102,7 @@ inline void drawAngleBoundingBox(ImDrawList* drawList, const std::array<Vector2,
         minY -= padding;
         maxY += padding;
 
-        drawList->AddRect(ImVec2(minX, minY), ImVec2(maxX, maxY), color, 0.0f, 0, 2.0f);
+        drawList->AddRect(ImVec2(minX, minY), ImVec2(maxX, maxY), color, 0.0f, 0, thickness);
     }
 }
 
@@ -168,7 +168,7 @@ inline void pf_Aimbot() {
 }
 inline void espLoop() {
     if (toggePF) {
-		pf_Esp();
+        pf_Esp();
     }
     else {
 
@@ -196,6 +196,10 @@ inline void espLoop() {
             }
         }
 
+        // ESP 선 두께 설정
+        constexpr float ESP_LINE_THICKNESS = 1.5f;
+        constexpr float ESP_BOX_THICKNESS = 2.0f;
+
         for (RBX::Player& player : g_PlayerList) {
             RBX::ModelInstance character = player.getModelInstance();
 
@@ -204,10 +208,8 @@ inline void espLoop() {
                 continue;
             }
 
-
             auto headPart = character.findFirstChild("Head");
             if (!headPart.getAddress()) {
-                //printf("Player %s has no head part\n", player.getName().c_str());
                 continue;
             }
             Vector3 headPos3D = headPart.getPrimitive().getPartPosition();
@@ -224,18 +226,42 @@ inline void espLoop() {
                 distance3D = sqrtf(dx * dx + dy * dy + dz * dz);
             }
 
+            // 색상: 가까움=밝은 빨강, 멀수록 어두운 빨강
             ImU32 lineColor;
             if (hasValidMyPos) {
-                float normalizedDist = ((distance3D / 200.0f) < 1.0f ? (distance3D / 200.0f) : 1.0f);
-                int red = static_cast<int>(255 * normalizedDist);
-                int green = static_cast<int>(255 * (1.0f - normalizedDist));
-                lineColor = IM_COL32(red, green, 0, 255); // 반투명
+                float normalizedDist = distance3D / 200.0f;
+                if (normalizedDist > 1.0f) normalizedDist = 1.0f;
+
+                const int nearRed = 255;
+                const int farRed = 90;
+                int red = static_cast<int>(nearRed + (farRed - nearRed) * normalizedDist);
+                lineColor = IM_COL32(red, 0, 0, 255);
+
+                // 트레이서(반투명) 선
+                if (esp_show_tracer) {
+                    ImU32 tracerColor = IM_COL32(red, 0, 0, 150);
+                    drawList->AddLine(
+                        screenBottomCenter,
+                        ImVec2(headPos2D.x, headPos2D.y),
+                        tracerColor,
+                        ESP_LINE_THICKNESS
+                    );
+                }
             }
             else {
-                lineColor = IM_COL32(255, 255, 255, 255); // 흰색 기본
+                lineColor = IM_COL32(255, 0, 0, 255);
+                if (esp_show_tracer) {
+                    ImU32 tracerColor = IM_COL32(255, 0, 0, 150);
+                    drawList->AddLine(
+                        screenBottomCenter,
+                        ImVec2(headPos2D.x, headPos2D.y),
+                        tracerColor,
+                        ESP_LINE_THICKNESS
+                    );
+                }
             }
 
-            // 이름 표시 (머리 위)
+            // 이름 표시
             std::string name = player.getName();
             ImVec2 textSize = ImGui::CalcTextSize(name.c_str());
             float nameY = headPos2D.y - textSize.y - 5;
@@ -243,7 +269,7 @@ inline void espLoop() {
                 drawList->AddText(ImVec2(headPos2D.x - textSize.x / 2, nameY), IM_COL32(255, 255, 255, 255), name.c_str());
             }
 
-            // 거리 표시 (이름 위)
+            // 거리 표시
             char distText[32];
             if (hasValidMyPos) {
                 snprintf(distText, sizeof(distText), "%.1fm", distance3D / 10.0f);
@@ -254,10 +280,10 @@ inline void espLoop() {
             ImVec2 distTextSize = ImGui::CalcTextSize(distText);
             float distY = headPos2D.y - 35;
             if (esp_show_distance) {
-                drawList->AddText(ImVec2(headPos2D.x - distTextSize.x / 2, distY), IM_COL32(0, 255, 0, 255), distText);
+                drawList->AddText(ImVec2(headPos2D.x - distTextSize.x / 2, distY), IM_COL32(0, 0, 255, 255), distText);
             }
 
-            // 스켈레톤 그리기 (색상 동기화)
+            // 스켈레톤 그리기
             const bool isR15 = character.findFirstChild("UpperTorso").getAddress() != 0;
             const auto& boneMap = isR15 ? boneMapR15 : boneMapR6;
             const BoneLine* lines = isR15 ? linesR15 : linesR6;
@@ -280,21 +306,18 @@ inline void espLoop() {
                     const Vector2& a = bonePos2D[lines[i].a];
                     const Vector2& b = bonePos2D[lines[i].b];
                     if ((a.x != 0 || a.y != 0) && (b.x != 0 || b.y != 0)) {
-                        drawList->AddLine(ToImVec2(a), ToImVec2(b), lineColor); // 색상 동기화
+                        drawList->AddLine(ToImVec2(a), ToImVec2(b), lineColor, ESP_LINE_THICKNESS);
                     }
                 }
             }
 
-
             if (esp_show_box) {
-                // 각도 기반 박스 그리기
-                drawAngleBoundingBox(drawList, bonePos2D, isR15, lineColor);
+                drawAngleBoundingBox(drawList, bonePos2D, isR15, lineColor, ESP_BOX_THICKNESS);
             }
-            //drawAngleBoundingBox(drawList, bonePos2D, isR15, lineColor);
         }
 
+        // 바닥 중앙 원
         drawList->AddCircleFilled(screenBottomCenter, 5.0f, IM_COL32(255, 255, 255, 150));
-        //drawRadar(drawList, myPos3D, hasValidMyPos);
     }
 }
 
@@ -396,7 +419,7 @@ inline void aimbotLoop()
         }
 
         if (waitAfterDeath) {
-            if (GetTickCount() - lastTargetDeathTime < 200) {
+            if (GetTickCount() - lastTargetDeathTime < 50) {
                 return;
             }
             waitAfterDeath = false;
@@ -407,8 +430,8 @@ inline void aimbotLoop()
             int deltaY = static_cast<int>(bestTarget2D.y - mouseImGui.y);
             float dist = sqrtf(deltaX * deltaX + deltaY * deltaY);
             float smooth = 2.4f;
-            
-			if (dist < 10.0f) smooth = 1.1f;
+
+            if (dist < 10.0f) smooth = 1.05f;
             if (dist < 20.0f) smooth = 1.4f;
             if (dist < 40.0f) smooth = 1.8f;
             if (dist < 60.0f) smooth = 2.2f;

@@ -84,6 +84,9 @@ RBX::Instance RBX::Instance::findFristChildByClass(const str& name) {
 RBX::Primitive RBX::Instance::getPrimitive() {
 	return RBX::Primitive(comms->read<u64>(address + Offsets::Primitive));
 }
-u64 RBX::Instance::getAddress() {
+u64 RBX::Instance::getAddress() const{
 	return address;
+}
+bool RBX::Instance::isA(const std::string& className) {
+	return this->getClassName() == className;
 }

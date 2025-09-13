@@ -193,11 +193,8 @@ std::string GetExeDirectory() {
 bool Render::createImGui() {
     using namespace ImGui;
     CreateContext();
-    //폰트 추가
-    ImGuiIO& io = GetIO();
+    
 
-    std::string fontPath = GetExeDirectory() + "\\Font\\Bold.ttf";
-    io.Fonts->AddFontFromFileTTF(fontPath.c_str(), 16.0f, nullptr, io.Fonts->GetGlyphRangesKorean());
 
     StyleColorsDark();
 
@@ -237,7 +234,6 @@ Render::~Render() {
 }
 
 void Render::setupOverlay(cstr windowName) {
-    ImGui_ImplWin32_EnableDpiAwareness(); // DPI 인식을 window 생성 전에 활성화
     createWindow(windowName);
     createDevice();
     createImGui();
@@ -254,14 +250,12 @@ void Render::startRender() {
     ImGui_ImplWin32_NewFrame();
     ImGui::NewFrame();
 
-    // Delete 키 상태 확인 (키가 눌렸다가 떼어졌을 때만 토글)
-    bool currentDeleteKeyState = (GetAsyncKeyState(VK_DELETE) & 0x8000) != 0;
-    if (currentDeleteKeyState && !lastDeleteKeyState) {
-        isVisible = !isVisible;
-    }
-    lastDeleteKeyState = currentDeleteKeyState;
+    //bool currentDeleteKeyState = (GetAsyncKeyState(VK_DELETE) & 0x8000) != 0;
+    //if (currentDeleteKeyState && !lastDeleteKeyState) {
+    //    isVisible = !isVisible;
+    //}
+    //lastDeleteKeyState = currentDeleteKeyState;
 
-    // 표시 상태에 따라 윈도우 속성 설정
     if (isVisible) {
         SetWindowLong(overlaywindow, GWL_EXSTYLE, WS_EX_TOOLWINDOW | WS_EX_TOPMOST | WS_EX_LAYERED);
     }
@@ -318,62 +312,13 @@ void ApplyModernStyle() {
     colors[ImGuiCol_FrameBgHovered] = ImVec4(0.86f, 0.12f, 0.12f, 0.60f);
     colors[ImGuiCol_FrameBgActive] = ImVec4(0.9f, 0.14f, 0.14f, 1.0f);
 }
-void sort() {
-    using namespace ImGui;
-
-    static const int graphWidth = 220;
-    static const int graphHeight = 120;
-    static const int steps = 100;
-
-    if (Begin("Easing Functions", nullptr, ImGuiWindowFlags_AlwaysAutoResize)) {
-        ImDrawList* draw_list = GetWindowDrawList();
-        ImVec2 p = GetCursorScreenPos();
-
-
-        draw_list->AddRectFilled(p, ImVec2(p.x + graphWidth, p.y + graphHeight), IM_COL32(30, 30, 30, 220), 6.0f);
-
-        // 축
-        draw_list->AddLine(ImVec2(p.x, p.y + graphHeight - 1), ImVec2(p.x + graphWidth, p.y + graphHeight - 1), IM_COL32(100, 100, 100, 255), 1.0f);
-        draw_list->AddLine(ImVec2(p.x, p.y), ImVec2(p.x, p.y + graphHeight), IM_COL32(100, 100, 100, 255), 1.0f);
-
-        ImU32 colLinear = IM_COL32(220, 220, 220, 255);
-        ImU32 colIn = IM_COL32(120, 180, 255, 255);
-        ImU32 colOut = IM_COL32(255, 180, 120, 255);
-        ImU32 colInOut = IM_COL32(180, 255, 120, 255);
-
-        auto drawCurve = [&](auto func, ImU32 color) {
-            for (int i = 0; i < steps; ++i) {
-                float t0 = (float)i / steps;
-                float t1 = (float)(i + 1) / steps;
-                float y0 = func(t0);
-                float y1 = func(t1);
-                ImVec2 a = ImVec2(p.x + t0 * graphWidth, p.y + graphHeight - y0 * graphHeight);
-                ImVec2 b = ImVec2(p.x + t1 * graphWidth, p.y + graphHeight - y1 * graphHeight);
-                draw_list->AddLine(a, b, color, 2.0f);
-            }
-            };
-
-        drawCurve(linear, colLinear);
-        drawCurve(easeIn, colIn);
-        drawCurve(easeOut, colOut);
-        drawCurve(easeInOut, colInOut);
-
-
-        float legendY = p.y + graphHeight + 8.0f;
-        draw_list->AddText(ImVec2(p.x, legendY), colLinear, "Linear");
-        draw_list->AddText(ImVec2(p.x + 60, legendY), colIn, "Ease In");
-        draw_list->AddText(ImVec2(p.x + 130, legendY), colOut, "Ease Out");
-        draw_list->AddText(ImVec2(p.x + 200, legendY), colInOut, "Ease InOut");
-
-        Dummy(ImVec2((float)graphWidth, (float)graphHeight + 24.0f));
-    }
-    End();
-}
 void Render::renderMenu() {
     ApplyModernStyle();
     using namespace ImGui;
+
     SetNextWindowSize(ImVec2(300, 200), ImGuiCond_FirstUseEver);
     SetNextWindowPos(ImVec2(120, 120), ImGuiCond_FirstUseEver);
+
     if (!Begin("untitled_external @warwick.320", &isRunning,
         ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoCollapse)) {
         End();
@@ -382,6 +327,9 @@ void Render::renderMenu() {
     //TextColored(ImVec4(0.66f, 0.12f, 0.12f, 1.0f), "Esp");
     Text("Esp");
     ToggleSwitch("esp_toggle", &Esp_Enabled, ImVec2(68, 30));
+
+
+
     if (Esp_Enabled) {
         Checkbox("Show Player Names", &esp_show_names);
         Checkbox("Show Box", &esp_show_box);
@@ -391,12 +339,11 @@ void Render::renderMenu() {
     //TextColored(ImVec4(0.66f, 0.12f, 0.12f, 1.0f), "AimBot");
     Text("Aimbot");
     ToggleSwitch("aimbot_toggle", &Aimbot_Enabled, ImVec2(68, 30));
+
     if (Aimbot_Enabled) {
-        sort();
         SliderFloat("Fov Size", &fov_size, 10.0f, 400.0f, "%.2f");
         SliderFloat("Smooth Aim", &smoothMultiplier, 0.0f, 1.0f, "%.2f");
     }
-
 
     End();
 }

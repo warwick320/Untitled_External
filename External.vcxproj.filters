@@ -137,5 +137,23 @@
     <ClInclude Include="source\SDK\Classes\World\Primtive.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="source\SDK\Classes\World\Workspace.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Cheats\WallCheck.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="source\SDK\Classes\Math\CFrame.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="source\SDK\Classes\AddressMananger.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="source\SharedMemoryManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="source\SharedData.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

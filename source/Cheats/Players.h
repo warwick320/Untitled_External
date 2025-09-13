@@ -64,7 +64,7 @@ void updatePlayers() {
 	RBX::Instance playerService = dataModel->findFristChildByClass("Players");
 
 
-	while (true) {
+	while (runningThread) {
 		if (toggePF) {
 			printf("PlayerService not found\n");
 			pfPlayers();

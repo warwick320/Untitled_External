@@ -400,7 +400,8 @@
             "c:\\users\\warwick\\source\\repos\\untitled_external\\source\\sdk\\classes\\visualengine\\visualengine.h",
             "c:\\users\\warwick\\source\\repos\\untitled_external\\source\\sdk\\classes\\math\\vector.h",
             "c:\\users\\warwick\\source\\repos\\untitled_external\\source\\sdk\\classes\\math\\matrix.h",
-            "c:\\users\\warwick\\source\\repos\\untitled_external\\source\\sdk\\offset.h"
+            "c:\\users\\warwick\\source\\repos\\untitled_external\\source\\sdk\\offset.h",
+            "c:\\program files\\microsoft visual studio\\2022\\community\\vc\\tools\\msvc\\14.44.35207\\include\\mutex"
         ],
         "ImportedModules": [],
         "ImportedHeaderUnits": []

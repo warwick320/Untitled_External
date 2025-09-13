@@ -166,19 +166,25 @@
     <ClCompile Include="vender\ImGui\imgui_widgets.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="source\SharedData.h" />
+    <ClInclude Include="source\SharedMemoryManager.h" />
     <ClInclude Include="source\Cheats\Players.h" />
     <ClInclude Include="source\Cheats\Visuals.h" />
+    <ClInclude Include="source\Cheats\WallCheck.h" />
     <ClInclude Include="source\driver\communication.h" />
     <ClInclude Include="source\global.h" />
     <ClInclude Include="source\Render\Render.h" />
     <ClInclude Include="source\SDK\Cache.h" />
+    <ClInclude Include="source\SDK\Classes\AddressMananger.h" />
     <ClInclude Include="source\SDK\Classes\DataModel\DataModel.h" />
     <ClInclude Include="source\SDK\Classes\DataModel\ModelInstance.h" />
     <ClInclude Include="source\SDK\Classes\DataModel\Player.h" />
     <ClInclude Include="source\SDK\Classes\instance.h" />
+    <ClInclude Include="source\SDK\Classes\Math\CFrame.h" />
     <ClInclude Include="source\SDK\Classes\Math\matrix.h" />
     <ClInclude Include="source\SDK\Classes\Math\Vector.h" />
     <ClInclude Include="source\SDK\Classes\VisualEngine\VisualEngine.h" />
+    <ClInclude Include="source\SDK\Classes\World\Workspace.h" />
     <ClInclude Include="source\SDK\Offset.h" />
     <ClInclude Include="source\SDK\Classes\World\Primtive.h" />
     <ClInclude Include="vender\ImGui\imconfig.h" />

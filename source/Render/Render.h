@@ -28,7 +28,7 @@ private:
 public:
 	Render() = default;
 	~Render();
-	bool isVisible = true; //should show
+	bool isVisible = false; //should show
 	void setupOverlay(cstr windowName);
 	bool isRunning = true; // should Run
 	void startRender();

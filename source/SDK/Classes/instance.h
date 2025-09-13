@@ -23,8 +23,8 @@ namespace RBX {
 		RBX::Instance findFirstChild(const str& name);
 		RBX::Instance findFristChildByClass(const str& className);
 		str getVaue();
-
+		bool isA(const std::string& className);
 		RBX::Primitive getPrimitive();
-		u64 getAddress();
+		u64 getAddress() const;
 	};
 }
