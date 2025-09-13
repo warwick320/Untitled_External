@@ -1,4 +1,4 @@
-# Memory Control Source(Kernel Driver) - [Link](https://github.com/obamaruntz/RickOwens00)
+
 ```
  ____ ___       __  .__  __  .__.__             .___    ___________         __                             .__   
 |    |   \_____/  |_|__|/  |_|__|  |   ____   __| _/    \_   _____/__  ____/  |_  ___________  ____ _____  |  |  
