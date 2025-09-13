@@ -1,0 +1,5 @@
+﻿   Qt/MSBuild: 3.4.1.0
+   Qt: 6.9.2
+  main.cpp
+  qrc_qml.cpp
+  External.vcxproj -> C:\Users\warwick\source\repos\External\x64\Debug\External.exe

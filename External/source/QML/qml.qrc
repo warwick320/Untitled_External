@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/qt/qml/external">
+        <file>main.qml</file>
+        <file>ToggleItem.qml</file>
+        <file>SliderItem.qml</file>
+    </qresource>
+</RCC>
