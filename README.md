@@ -1,7 +1,7 @@
 # Untitled_External
 
 ## Features
-
+> there some typo error charms -> chams
 ### ESP
 - **Bones**: Displays skeleton overlays on visible players.
 - **Box**: Draws bounding boxes around detected entities.
