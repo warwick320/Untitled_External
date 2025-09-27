@@ -39,14 +39,18 @@ template <> constexpr inline auto SharedMemoryController::qt_create_metaobjectda
     namespace QMC = QtMocConstants;
     QtMocHelpers::StringRefStorage qt_stringData {
         "SharedMemoryController",
-        "aimbotEnabledChanged",
+        "triggerbotEnabledChanged",
         "",
+        "targetSpeedChanged",
+        "jumpPowerChanged",
+        "aimbotEnabledChanged",
         "espEnabledChanged",
         "espShowNamesChanged",
         "espShowBoxChanged",
         "espShowBonesChanged",
         "espShowDistanceChanged",
         "espShowTracerChanged",
+        "espCharmsChanged",
         "fovSizeChanged",
         "isConnectedChanged",
         "syncWithSharedMemory",
@@ -58,53 +62,73 @@ template <> constexpr inline auto SharedMemoryController::qt_create_metaobjectda
         "espShowBones",
         "espShowDistance",
         "espShowTracer",
+        "espCharms",
+        "triggerbotEnabled",
+        "targetSpeed",
+        "jumpPower",
         "fovSize",
         "isConnected"
     };
 
     QtMocHelpers::UintData qt_methods {
-        // Signal 'aimbotEnabledChanged'
+        // Signal 'triggerbotEnabledChanged'
         QtMocHelpers::SignalData<void()>(1, 2, QMC::AccessPublic, QMetaType::Void),
-        // Signal 'espEnabledChanged'
+        // Signal 'targetSpeedChanged'
         QtMocHelpers::SignalData<void()>(3, 2, QMC::AccessPublic, QMetaType::Void),
-        // Signal 'espShowNamesChanged'
+        // Signal 'jumpPowerChanged'
         QtMocHelpers::SignalData<void()>(4, 2, QMC::AccessPublic, QMetaType::Void),
-        // Signal 'espShowBoxChanged'
+        // Signal 'aimbotEnabledChanged'
         QtMocHelpers::SignalData<void()>(5, 2, QMC::AccessPublic, QMetaType::Void),
-        // Signal 'espShowBonesChanged'
+        // Signal 'espEnabledChanged'
         QtMocHelpers::SignalData<void()>(6, 2, QMC::AccessPublic, QMetaType::Void),
-        // Signal 'espShowDistanceChanged'
+        // Signal 'espShowNamesChanged'
         QtMocHelpers::SignalData<void()>(7, 2, QMC::AccessPublic, QMetaType::Void),
-        // Signal 'espShowTracerChanged'
+        // Signal 'espShowBoxChanged'
         QtMocHelpers::SignalData<void()>(8, 2, QMC::AccessPublic, QMetaType::Void),
-        // Signal 'fovSizeChanged'
+        // Signal 'espShowBonesChanged'
         QtMocHelpers::SignalData<void()>(9, 2, QMC::AccessPublic, QMetaType::Void),
-        // Signal 'isConnectedChanged'
+        // Signal 'espShowDistanceChanged'
         QtMocHelpers::SignalData<void()>(10, 2, QMC::AccessPublic, QMetaType::Void),
+        // Signal 'espShowTracerChanged'
+        QtMocHelpers::SignalData<void()>(11, 2, QMC::AccessPublic, QMetaType::Void),
+        // Signal 'espCharmsChanged'
+        QtMocHelpers::SignalData<void()>(12, 2, QMC::AccessPublic, QMetaType::Void),
+        // Signal 'fovSizeChanged'
+        QtMocHelpers::SignalData<void()>(13, 2, QMC::AccessPublic, QMetaType::Void),
+        // Signal 'isConnectedChanged'
+        QtMocHelpers::SignalData<void()>(14, 2, QMC::AccessPublic, QMetaType::Void),
         // Slot 'syncWithSharedMemory'
-        QtMocHelpers::SlotData<void()>(11, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(15, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'checkConnection'
-        QtMocHelpers::SlotData<void()>(12, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(16, 2, QMC::AccessPrivate, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
         // property 'aimbotEnabled'
-        QtMocHelpers::PropertyData<bool>(13, QMetaType::Bool, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet, 0),
+        QtMocHelpers::PropertyData<bool>(17, QMetaType::Bool, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet, 3),
         // property 'espEnabled'
-        QtMocHelpers::PropertyData<bool>(14, QMetaType::Bool, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet, 1),
+        QtMocHelpers::PropertyData<bool>(18, QMetaType::Bool, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet, 4),
         // property 'espShowNames'
-        QtMocHelpers::PropertyData<bool>(15, QMetaType::Bool, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet, 2),
+        QtMocHelpers::PropertyData<bool>(19, QMetaType::Bool, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet, 5),
         // property 'espShowBox'
-        QtMocHelpers::PropertyData<bool>(16, QMetaType::Bool, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet, 3),
+        QtMocHelpers::PropertyData<bool>(20, QMetaType::Bool, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet, 6),
         // property 'espShowBones'
-        QtMocHelpers::PropertyData<bool>(17, QMetaType::Bool, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet, 4),
+        QtMocHelpers::PropertyData<bool>(21, QMetaType::Bool, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet, 7),
         // property 'espShowDistance'
-        QtMocHelpers::PropertyData<bool>(18, QMetaType::Bool, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet, 5),
+        QtMocHelpers::PropertyData<bool>(22, QMetaType::Bool, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet, 8),
         // property 'espShowTracer'
-        QtMocHelpers::PropertyData<bool>(19, QMetaType::Bool, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet, 6),
+        QtMocHelpers::PropertyData<bool>(23, QMetaType::Bool, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet, 9),
+        // property 'espCharms'
+        QtMocHelpers::PropertyData<bool>(24, QMetaType::Bool, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet, 10),
+        // property 'triggerbotEnabled'
+        QtMocHelpers::PropertyData<bool>(25, QMetaType::Bool, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet, 0),
+        // property 'targetSpeed'
+        QtMocHelpers::PropertyData<float>(26, QMetaType::Float, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet, 1),
+        // property 'jumpPower'
+        QtMocHelpers::PropertyData<float>(27, QMetaType::Float, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet, 2),
         // property 'fovSize'
-        QtMocHelpers::PropertyData<float>(20, QMetaType::Float, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet, 7),
+        QtMocHelpers::PropertyData<float>(28, QMetaType::Float, QMC::DefaultPropertyFlags | QMC::Writable | QMC::StdCppSet, 11),
         // property 'isConnected'
-        QtMocHelpers::PropertyData<bool>(21, QMetaType::Bool, QMC::DefaultPropertyFlags, 8),
+        QtMocHelpers::PropertyData<bool>(29, QMetaType::Bool, QMC::DefaultPropertyFlags, 12),
     };
     QtMocHelpers::UintData qt_enums {
     };
@@ -126,38 +150,50 @@ void SharedMemoryController::qt_static_metacall(QObject *_o, QMetaObject::Call _
     auto *_t = static_cast<SharedMemoryController *>(_o);
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
-        case 0: _t->aimbotEnabledChanged(); break;
-        case 1: _t->espEnabledChanged(); break;
-        case 2: _t->espShowNamesChanged(); break;
-        case 3: _t->espShowBoxChanged(); break;
-        case 4: _t->espShowBonesChanged(); break;
-        case 5: _t->espShowDistanceChanged(); break;
-        case 6: _t->espShowTracerChanged(); break;
-        case 7: _t->fovSizeChanged(); break;
-        case 8: _t->isConnectedChanged(); break;
-        case 9: _t->syncWithSharedMemory(); break;
-        case 10: _t->checkConnection(); break;
+        case 0: _t->triggerbotEnabledChanged(); break;
+        case 1: _t->targetSpeedChanged(); break;
+        case 2: _t->jumpPowerChanged(); break;
+        case 3: _t->aimbotEnabledChanged(); break;
+        case 4: _t->espEnabledChanged(); break;
+        case 5: _t->espShowNamesChanged(); break;
+        case 6: _t->espShowBoxChanged(); break;
+        case 7: _t->espShowBonesChanged(); break;
+        case 8: _t->espShowDistanceChanged(); break;
+        case 9: _t->espShowTracerChanged(); break;
+        case 10: _t->espCharmsChanged(); break;
+        case 11: _t->fovSizeChanged(); break;
+        case 12: _t->isConnectedChanged(); break;
+        case 13: _t->syncWithSharedMemory(); break;
+        case 14: _t->checkConnection(); break;
         default: ;
         }
     }
     if (_c == QMetaObject::IndexOfMethod) {
-        if (QtMocHelpers::indexOfMethod<void (SharedMemoryController::*)()>(_a, &SharedMemoryController::aimbotEnabledChanged, 0))
+        if (QtMocHelpers::indexOfMethod<void (SharedMemoryController::*)()>(_a, &SharedMemoryController::triggerbotEnabledChanged, 0))
             return;
-        if (QtMocHelpers::indexOfMethod<void (SharedMemoryController::*)()>(_a, &SharedMemoryController::espEnabledChanged, 1))
+        if (QtMocHelpers::indexOfMethod<void (SharedMemoryController::*)()>(_a, &SharedMemoryController::targetSpeedChanged, 1))
             return;
-        if (QtMocHelpers::indexOfMethod<void (SharedMemoryController::*)()>(_a, &SharedMemoryController::espShowNamesChanged, 2))
+        if (QtMocHelpers::indexOfMethod<void (SharedMemoryController::*)()>(_a, &SharedMemoryController::jumpPowerChanged, 2))
             return;
-        if (QtMocHelpers::indexOfMethod<void (SharedMemoryController::*)()>(_a, &SharedMemoryController::espShowBoxChanged, 3))
+        if (QtMocHelpers::indexOfMethod<void (SharedMemoryController::*)()>(_a, &SharedMemoryController::aimbotEnabledChanged, 3))
             return;
-        if (QtMocHelpers::indexOfMethod<void (SharedMemoryController::*)()>(_a, &SharedMemoryController::espShowBonesChanged, 4))
+        if (QtMocHelpers::indexOfMethod<void (SharedMemoryController::*)()>(_a, &SharedMemoryController::espEnabledChanged, 4))
             return;
-        if (QtMocHelpers::indexOfMethod<void (SharedMemoryController::*)()>(_a, &SharedMemoryController::espShowDistanceChanged, 5))
+        if (QtMocHelpers::indexOfMethod<void (SharedMemoryController::*)()>(_a, &SharedMemoryController::espShowNamesChanged, 5))
             return;
-        if (QtMocHelpers::indexOfMethod<void (SharedMemoryController::*)()>(_a, &SharedMemoryController::espShowTracerChanged, 6))
+        if (QtMocHelpers::indexOfMethod<void (SharedMemoryController::*)()>(_a, &SharedMemoryController::espShowBoxChanged, 6))
             return;
-        if (QtMocHelpers::indexOfMethod<void (SharedMemoryController::*)()>(_a, &SharedMemoryController::fovSizeChanged, 7))
+        if (QtMocHelpers::indexOfMethod<void (SharedMemoryController::*)()>(_a, &SharedMemoryController::espShowBonesChanged, 7))
             return;
-        if (QtMocHelpers::indexOfMethod<void (SharedMemoryController::*)()>(_a, &SharedMemoryController::isConnectedChanged, 8))
+        if (QtMocHelpers::indexOfMethod<void (SharedMemoryController::*)()>(_a, &SharedMemoryController::espShowDistanceChanged, 8))
+            return;
+        if (QtMocHelpers::indexOfMethod<void (SharedMemoryController::*)()>(_a, &SharedMemoryController::espShowTracerChanged, 9))
+            return;
+        if (QtMocHelpers::indexOfMethod<void (SharedMemoryController::*)()>(_a, &SharedMemoryController::espCharmsChanged, 10))
+            return;
+        if (QtMocHelpers::indexOfMethod<void (SharedMemoryController::*)()>(_a, &SharedMemoryController::fovSizeChanged, 11))
+            return;
+        if (QtMocHelpers::indexOfMethod<void (SharedMemoryController::*)()>(_a, &SharedMemoryController::isConnectedChanged, 12))
             return;
     }
     if (_c == QMetaObject::ReadProperty) {
@@ -170,8 +206,12 @@ void SharedMemoryController::qt_static_metacall(QObject *_o, QMetaObject::Call _
         case 4: *reinterpret_cast<bool*>(_v) = _t->getEspShowBones(); break;
         case 5: *reinterpret_cast<bool*>(_v) = _t->getEspShowDistance(); break;
         case 6: *reinterpret_cast<bool*>(_v) = _t->getEspShowTracer(); break;
-        case 7: *reinterpret_cast<float*>(_v) = _t->getFovSize(); break;
-        case 8: *reinterpret_cast<bool*>(_v) = _t->getIsConnected(); break;
+        case 7: *reinterpret_cast<bool*>(_v) = _t->getEspCharms(); break;
+        case 8: *reinterpret_cast<bool*>(_v) = _t->getTriggerbotEnabled(); break;
+        case 9: *reinterpret_cast<float*>(_v) = _t->getTargetSpeed(); break;
+        case 10: *reinterpret_cast<float*>(_v) = _t->getJumpPower(); break;
+        case 11: *reinterpret_cast<float*>(_v) = _t->getFovSize(); break;
+        case 12: *reinterpret_cast<bool*>(_v) = _t->getIsConnected(); break;
         default: break;
         }
     }
@@ -185,7 +225,11 @@ void SharedMemoryController::qt_static_metacall(QObject *_o, QMetaObject::Call _
         case 4: _t->setEspShowBones(*reinterpret_cast<bool*>(_v)); break;
         case 5: _t->setEspShowDistance(*reinterpret_cast<bool*>(_v)); break;
         case 6: _t->setEspShowTracer(*reinterpret_cast<bool*>(_v)); break;
-        case 7: _t->setFovSize(*reinterpret_cast<float*>(_v)); break;
+        case 7: _t->setEspCharms(*reinterpret_cast<bool*>(_v)); break;
+        case 8: _t->setTriggerbotEnabled(*reinterpret_cast<bool*>(_v)); break;
+        case 9: _t->setTargetSpeed(*reinterpret_cast<float*>(_v)); break;
+        case 10: _t->setJumpPower(*reinterpret_cast<float*>(_v)); break;
+        case 11: _t->setFovSize(*reinterpret_cast<float*>(_v)); break;
         default: break;
         }
     }
@@ -210,75 +254,99 @@ int SharedMemoryController::qt_metacall(QMetaObject::Call _c, int _id, void **_a
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 11)
+        if (_id < 15)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 11;
+        _id -= 15;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 11)
+        if (_id < 15)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 11;
+        _id -= 15;
     }
     if (_c == QMetaObject::ReadProperty || _c == QMetaObject::WriteProperty
             || _c == QMetaObject::ResetProperty || _c == QMetaObject::BindableProperty
             || _c == QMetaObject::RegisterPropertyMetaType) {
         qt_static_metacall(this, _c, _id, _a);
-        _id -= 9;
+        _id -= 13;
     }
     return _id;
 }
 
 // SIGNAL 0
-void SharedMemoryController::aimbotEnabledChanged()
+void SharedMemoryController::triggerbotEnabledChanged()
 {
     QMetaObject::activate(this, &staticMetaObject, 0, nullptr);
 }
 
 // SIGNAL 1
-void SharedMemoryController::espEnabledChanged()
+void SharedMemoryController::targetSpeedChanged()
 {
     QMetaObject::activate(this, &staticMetaObject, 1, nullptr);
 }
 
 // SIGNAL 2
-void SharedMemoryController::espShowNamesChanged()
+void SharedMemoryController::jumpPowerChanged()
 {
     QMetaObject::activate(this, &staticMetaObject, 2, nullptr);
 }
 
 // SIGNAL 3
-void SharedMemoryController::espShowBoxChanged()
+void SharedMemoryController::aimbotEnabledChanged()
 {
     QMetaObject::activate(this, &staticMetaObject, 3, nullptr);
 }
 
 // SIGNAL 4
-void SharedMemoryController::espShowBonesChanged()
+void SharedMemoryController::espEnabledChanged()
 {
     QMetaObject::activate(this, &staticMetaObject, 4, nullptr);
 }
 
 // SIGNAL 5
-void SharedMemoryController::espShowDistanceChanged()
+void SharedMemoryController::espShowNamesChanged()
 {
     QMetaObject::activate(this, &staticMetaObject, 5, nullptr);
 }
 
 // SIGNAL 6
-void SharedMemoryController::espShowTracerChanged()
+void SharedMemoryController::espShowBoxChanged()
 {
     QMetaObject::activate(this, &staticMetaObject, 6, nullptr);
 }
 
 // SIGNAL 7
-void SharedMemoryController::fovSizeChanged()
+void SharedMemoryController::espShowBonesChanged()
 {
     QMetaObject::activate(this, &staticMetaObject, 7, nullptr);
 }
 
 // SIGNAL 8
-void SharedMemoryController::isConnectedChanged()
+void SharedMemoryController::espShowDistanceChanged()
 {
     QMetaObject::activate(this, &staticMetaObject, 8, nullptr);
+}
+
+// SIGNAL 9
+void SharedMemoryController::espShowTracerChanged()
+{
+    QMetaObject::activate(this, &staticMetaObject, 9, nullptr);
+}
+
+// SIGNAL 10
+void SharedMemoryController::espCharmsChanged()
+{
+    QMetaObject::activate(this, &staticMetaObject, 10, nullptr);
+}
+
+// SIGNAL 11
+void SharedMemoryController::fovSizeChanged()
+{
+    QMetaObject::activate(this, &staticMetaObject, 11, nullptr);
+}
+
+// SIGNAL 12
+void SharedMemoryController::isConnectedChanged()
+{
+    QMetaObject::activate(this, &staticMetaObject, 12, nullptr);
 }
 QT_WARNING_POP

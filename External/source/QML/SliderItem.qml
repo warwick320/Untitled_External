@@ -106,7 +106,7 @@ Rectangle {
                         color: root.accentColor
                         font.pixelSize: 12
                         font.bold: true
-                        font.family: "Arial" // 안전한 폰트 사용
+                        font.family: "Arial"
                     }
                 }
             }

@@ -12,9 +12,14 @@ SharedMemoryController::SharedMemoryController(QObject* parent)
     m_espShowBones(false),
     m_espShowDistance(false),
     m_espShowTracer(false),
+    m_espCharms(false),
     m_fovSize(150.0f),
+	m_triggerbot(false),
+	m_targetSpeed(16.0f),
+	m_jumpPower(50.0f),
     m_isConnected(false),
     m_lastUpdateTime(0)
+
 {
     // 공유 메모리 연결
     connectToSharedMemory();
@@ -42,7 +47,6 @@ SharedMemoryController::~SharedMemoryController()
 
 bool SharedMemoryController::connectToSharedMemory()
 {
-    // 기존 공유 메모리 열기
     hMapFile = OpenFileMapping(
         FILE_MAP_ALL_ACCESS,
         FALSE,
@@ -54,7 +58,6 @@ bool SharedMemoryController::connectToSharedMemory()
         return false;
     }
 
-    // 메모리 맵핑
     pSharedData = (SharedData*)MapViewOfFile(
         hMapFile,
         FILE_MAP_ALL_ACCESS,
@@ -73,7 +76,6 @@ bool SharedMemoryController::connectToSharedMemory()
     m_isConnected = true;
     emit isConnectedChanged();
 
-    // 초기값 읽기
     readFromSharedMemory();
 
     return true;
@@ -83,10 +85,8 @@ void SharedMemoryController::syncWithSharedMemory()
 {
     if (!pSharedData) return;
 
-    // 메인 프로세스에서 업데이트된 값들 읽기
     readFromSharedMemory();
 }
-
 
 void SharedMemoryController::readFromSharedMemory()
 {
@@ -94,74 +94,106 @@ void SharedMemoryController::readFromSharedMemory()
 
     bool changed = false;
 
-    // 기존 boolean 값들
-    if (m_aimbotEnabled != pSharedData->aimbot_enabled) {
-        m_aimbotEnabled = pSharedData->aimbot_enabled;
+    // BYTE를 bool로 변환
+    if (m_aimbotEnabled != (pSharedData->aimbot_enabled != 0)) {
+        m_aimbotEnabled = (pSharedData->aimbot_enabled != 0);
         emit aimbotEnabledChanged();
         changed = true;
     }
 
-    if (m_espEnabled != pSharedData->esp_enabled) {
-        m_espEnabled = pSharedData->esp_enabled;
+    if (m_espEnabled != (pSharedData->esp_enabled != 0)) {
+        m_espEnabled = (pSharedData->esp_enabled != 0);
         emit espEnabledChanged();
         changed = true;
     }
 
-    if (m_espShowNames != pSharedData->esp_show_names) {
-        m_espShowNames = pSharedData->esp_show_names;
+    if (m_espShowNames != (pSharedData->esp_show_names != 0)) {
+        m_espShowNames = (pSharedData->esp_show_names != 0);
         emit espShowNamesChanged();
         changed = true;
     }
 
-    if (m_espShowBox != pSharedData->esp_show_box) {
-        m_espShowBox = pSharedData->esp_show_box;
+    if (m_espShowBox != (pSharedData->esp_show_box != 0)) {
+        m_espShowBox = (pSharedData->esp_show_box != 0);
         emit espShowBoxChanged();
         changed = true;
     }
 
-    if (m_espShowBones != pSharedData->esp_show_bones) {
-        m_espShowBones = pSharedData->esp_show_bones;
+    if (m_espShowBones != (pSharedData->esp_show_bones != 0)) {
+        m_espShowBones = (pSharedData->esp_show_bones != 0);
         emit espShowBonesChanged();
         changed = true;
     }
 
-    if (m_espShowDistance != pSharedData->esp_show_distance) {
-        m_espShowDistance = pSharedData->esp_show_distance;
+    if (m_espShowDistance != (pSharedData->esp_show_distance != 0)) {
+        m_espShowDistance = (pSharedData->esp_show_distance != 0);
         emit espShowDistanceChanged();
         changed = true;
     }
 
-    if (m_espShowTracer != pSharedData->esp_show_tracer) {
-        m_espShowTracer = pSharedData->esp_show_tracer;
+    if (m_espShowTracer != (pSharedData->esp_show_tracer != 0)) {
+        m_espShowTracer = (pSharedData->esp_show_tracer != 0);
         emit espShowTracerChanged();
         changed = true;
     }
 
-    // 새로운 float 값들
+    if (m_espCharms != (pSharedData->esp_chams != 0)) {
+        m_espCharms = (pSharedData->esp_chams != 0);
+        emit espCharmsChanged();
+        changed = true;
+    }
+
+	if (m_triggerbot != (pSharedData->triggerbot != 0)) {
+        m_triggerbot = (pSharedData->triggerbot != 0);
+        emit triggerbotEnabledChanged();
+		changed = true;
+	}
+
     if (qAbs(m_fovSize - pSharedData->fov_size) > 0.001f) {
         m_fovSize = pSharedData->fov_size;
         emit fovSizeChanged();
         changed = true;
     }
-
+    if (qAbs(m_targetSpeed - pSharedData->targetSpeed) > 0.001f) {
+        m_targetSpeed = pSharedData->targetSpeed;
+        emit targetSpeedChanged();
+        changed = true;
+	}
+    if (qAbs(m_jumpPower - pSharedData->jumpPower) > 0.001f) {
+        m_jumpPower = pSharedData->jumpPower;
+        emit jumpPowerChanged();
+        changed = true;
+    }
 
     if (changed) {
         qDebug() << "[SYNC] Values updated from main process";
     }
 }
+
 void SharedMemoryController::writeToSharedMemory()
 {
     if (!pSharedData) return;
 
-    pSharedData->aimbot_enabled = m_aimbotEnabled;
-    pSharedData->esp_enabled = m_espEnabled;
-    pSharedData->esp_show_names = m_espShowNames;
-    pSharedData->esp_show_box = m_espShowBox;
-    pSharedData->esp_show_bones = m_espShowBones;
-    pSharedData->esp_show_distance = m_espShowDistance;
-    pSharedData->esp_show_tracer = m_espShowTracer;
+    // bool을 BYTE로 변환
+    pSharedData->aimbot_enabled = m_aimbotEnabled ? 1 : 0;
+    pSharedData->esp_enabled = m_espEnabled ? 1 : 0;
+    pSharedData->esp_show_names = m_espShowNames ? 1 : 0;
+    pSharedData->esp_show_box = m_espShowBox ? 1 : 0;
+    pSharedData->esp_show_bones = m_espShowBones ? 1 : 0;
+    pSharedData->esp_show_distance = m_espShowDistance ? 1 : 0;
+    pSharedData->esp_show_tracer = m_espShowTracer ? 1 : 0;
+    pSharedData->triggerbot = m_triggerbot ? 1 : 0;
+    pSharedData->esp_chams = m_espCharms ? 1 : 0;  // charms → chams 변경!
+    
     pSharedData->fov_size = m_fovSize;
+    pSharedData->targetSpeed = m_targetSpeed;
+    pSharedData->jumpPower = m_jumpPower;
+    
+    // 디버깅용
+    qDebug() << "[WRITE] Memory state - targetSpeed:" << pSharedData->targetSpeed 
+             << "jumpPower:" << pSharedData->jumpPower;
 }
+
 void SharedMemoryController::checkConnection()
 {
     if (!pSharedData) {
@@ -171,14 +203,12 @@ void SharedMemoryController::checkConnection()
             qDebug() << "[WARNING] Lost connection to main process";
         }
 
-        // 재연결 시도
         connectToSharedMemory();
         return;
     }
 
-    // 메인 프로세스가 살아있는지 확인
     ULONGLONG currentTime = GetTickCount64();
-    if (currentTime - pSharedData->last_update > 5000) { // 5초 이상 업데이트 없음
+    if (currentTime - pSharedData->last_update > 5000) {
         if (m_isConnected) {
             m_isConnected = false;
             emit isConnectedChanged();
@@ -194,7 +224,6 @@ void SharedMemoryController::checkConnection()
     }
 }
 
-// Setters - QML에서 호출됨
 void SharedMemoryController::setAimbotEnabled(bool value)
 {
     if (m_aimbotEnabled != value) {
@@ -234,6 +263,7 @@ void SharedMemoryController::setEspShowBox(bool value)
         qDebug() << "[UI] ESP Box:" << (value ? "ON" : "OFF");
     }
 }
+
 void SharedMemoryController::setFovSize(float value)
 {
     if (qAbs(m_fovSize - value) > 0.001f) {
@@ -243,6 +273,7 @@ void SharedMemoryController::setFovSize(float value)
         qDebug() << "[UI] FOV Size:" << value;
     }
 }
+
 void SharedMemoryController::setEspShowBones(bool value)
 {
     if (m_espShowBones != value) {
@@ -262,6 +293,7 @@ void SharedMemoryController::setEspShowDistance(bool value)
         qDebug() << "[UI] ESP Distance:" << (value ? "ON" : "OFF");
     }
 }
+
 void SharedMemoryController::setEspShowTracer(bool value)
 {
     if (m_espShowTracer != value) {
@@ -269,5 +301,50 @@ void SharedMemoryController::setEspShowTracer(bool value)
         writeToSharedMemory();
         emit espShowTracerChanged();
         qDebug() << "[UI] ESP Tracer:" << (value ? "ON" : "OFF");
+    }
+}
+
+void SharedMemoryController::setEspCharms(bool value)
+{
+    if (m_espCharms != value) {
+        m_espCharms = value;
+        writeToSharedMemory();
+        emit espCharmsChanged();
+        qDebug() << "[UI] ESP Charms:" << (value ? "ON" : "OFF");
+    }
+}
+
+void SharedMemoryController::setTriggerbotEnabled(bool value)
+{
+    if (m_triggerbot != value) {
+        m_triggerbot = value;
+        writeToSharedMemory();
+        emit triggerbotEnabledChanged();
+        qDebug() << "[UI] Triggerbot:" << (value ? "ON" : "OFF");
+    }
+}
+
+void SharedMemoryController::setTargetSpeed(float value)
+{
+    if (qAbs(m_targetSpeed - value) > 0.001f) {
+        float oldValue = m_targetSpeed;
+        m_targetSpeed = value;
+        writeToSharedMemory();
+        emit targetSpeedChanged();
+        qDebug() << "[UI] Target Speed changed from" << oldValue << "to" << value;
+        
+        // 디버깅을 위해 쓰기 후 바로 읽기
+        qDebug() << "  → Shared memory now has:" << pSharedData->targetSpeed;
+        qDebug() << "  → Jump power in shared memory:" << pSharedData->jumpPower;
+    }
+}
+
+void SharedMemoryController::setJumpPower(float value)
+{
+    if (qAbs(m_jumpPower - value) > 0.001f) {
+        m_jumpPower = value;
+        writeToSharedMemory();
+        emit jumpPowerChanged();
+        qDebug() << "[UI] Jump Power:" << value;
     }
 }

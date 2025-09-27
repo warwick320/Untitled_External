@@ -13,7 +13,6 @@ ApplicationWindow {
     color: "transparent"
     flags: Qt.FramelessWindowHint | Qt.Window
 
-    // style
     property int sidebarWidthExpanded: 220
     property int sidebarWidthCollapsed: 80
     property int btnHeight: 48
@@ -23,7 +22,6 @@ ApplicationWindow {
     property int targetWidth: 800
     property int windowRadius: 12
 
-    // color
     property color accentColor: "#C62828"
     property color backgroundColor: "#0f0f0f"
     property color macRed:    "#FF605C"
@@ -33,7 +31,6 @@ ApplicationWindow {
     property bool closingInProgress: false
     property bool firstShowDone: false
 
-    // 泅犁 急琶等 徘 (流立 包府)
     property string currentTab: "aim"
 
     Component.onCompleted: {
@@ -134,6 +131,7 @@ ApplicationWindow {
         id: tabsModel
         ListElement { name: "Aim"; tabId: "aim" }
         ListElement { name: "Visual"; tabId: "visual" }
+        ListElement { name: "Misc"; tabId: "misc" }
     }
 
     property int currentSidebarIndex: 0
@@ -485,9 +483,9 @@ ApplicationWindow {
                             }
                         }
                     }
-                }
+                } // sidebar
 
-                // 刀赋利牢 徘 能刨明甸
+                // --- AIM TAB ---
                 Rectangle {
                     id: aimTab
                     anchors.top: parent.top
@@ -496,7 +494,7 @@ ApplicationWindow {
                     x: sidebar.width
                     width: parent.width - sidebar.width
                     color: "#141414"
-    
+
                     visible: appWindow.currentTab === "aim"
                     opacity: visible ? 1.0 : 0.0
 
@@ -541,7 +539,17 @@ ApplicationWindow {
                                             appController.aimbotEnabled = state
                                         }
                                     }
+                                    ToggleItem {
+                                        title: "Trigger Bot"
+                                        description: "Auto shoot(+ wallcheck!)"
+                                        toggleState: appController.triggerbotEnabled
+                                        accentColor: appWindow.accentColor
 
+                                        onToggled: function(state) {
+                                            console.log("TriggerBot toggled:", state)
+                                            appController.triggerbotEnabled = state
+                                        }
+                                    }
                                     SliderItem {
                                         title: "FOV Size"
                                         description: "Adjust the Field of View range for aimbot targeting"
@@ -564,9 +572,9 @@ ApplicationWindow {
                             }
                         }
                     }
-                }
+                } // aimTab
 
-
+                // --- VISUAL TAB ---
                 Rectangle {
                     id: visualTab
                     anchors.top: parent.top
@@ -575,7 +583,7 @@ ApplicationWindow {
                     x: sidebar.width
                     width: parent.width - sidebar.width
                     color: "#141414"
-                    
+
                     visible: appWindow.currentTab === "visual"
                     opacity: visible ? 1.0 : 0.0
 
@@ -610,7 +618,7 @@ ApplicationWindow {
                                     spacing: 12
 
                                     ToggleItem {
-                                        title: "ESP (Wallhack)"
+                                        title: "ESP (Base)"
                                         description: "See enemies through walls and obstacles"
                                         toggleState: appController.espEnabled
                                         accentColor: appWindow.accentColor
@@ -620,7 +628,17 @@ ApplicationWindow {
                                             appController.espEnabled = state
                                         }
                                     }
+                                    ToggleItem {
+                                        title: "Charms"
+                                        description: "Display player charms"
+                                        toggleState: appController.espCharms
+                                        accentColor: appWindow.accentColor
 
+                                        onToggled: function(state) {
+                                            console.log("ESP Charms toggled:", state)
+                                            appController.espCharms = state
+                                        }
+                                    }
                                     ToggleItem {
                                         title: "Player Names"
                                         description: "Display enemy player names above heads"
@@ -689,8 +707,91 @@ ApplicationWindow {
                             }
                         }
                     }
-                }
-            }
-        }
-    }
-}
+                } // visualTab
+
+                // --- MISC TAB ---
+                Rectangle {
+                    id: miscTab
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    anchors.right: parent.right
+                    x: sidebar.width
+                    width: parent.width - sidebar.width
+                    color: "#141414"
+
+                    visible: appWindow.currentTab === "misc"
+                    opacity: visible ? 1.0 : 0.0
+
+                    Behavior on opacity {
+                        NumberAnimation {
+                            duration: 200
+                            easing.type: Easing.InOutQuad
+                        }
+                    }
+
+                    ScrollView {
+                        anchors.fill: parent
+                        anchors.margins: 0
+                        clip: true
+
+                        ScrollBar.vertical.policy: ScrollBar.AlwaysOff
+                        ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
+
+                        Column {
+                            width: parent.width
+                            spacing: 0
+
+                            Item {
+                                width: parent.width
+                                height: childrenRect.height + 30
+
+                                Column {
+                                    width: parent.width - 40
+                                    anchors.horizontalCenter: parent.horizontalCenter
+                                    anchors.top: parent.top
+                                    anchors.topMargin: 15
+                                    spacing: 12
+
+                                    SliderItem {
+                                        title: "Speed"
+                                        description: "Adjust movement speed multiplier"
+                                        sliderValue: appController.targetSpeed
+                                        minValue: 16.0
+                                        maxValue: 500.0
+                                        accentColor: appWindow.accentColor
+
+                                        onValueChanged: function(value) {
+                                            console.log("Speed changed:", value)
+                                            appController.targetSpeed = value
+                                        }
+                                    }
+
+                                    SliderItem {
+                                        title: "Jump Power"
+                                        description: "Adjust jump power multiplier"
+                                        sliderValue: appController.jumpPower
+                                        minValue: 50.0
+                                        maxValue: 500.0
+                                        accentColor: appWindow.accentColor
+
+                                        onValueChanged: function(value) {
+                                            console.log("Jump Power changed:", value)
+                                            appController.jumpPower = value
+                                        }
+                                    }
+
+                                    Item {
+                                        width: parent.width
+                                        height: 15
+                                    }
+                                }
+                            }
+                        }
+                    }
+                } // miscTab
+
+            } // Item contentArea
+
+        } // ColumnLayout
+    } // Rectangle mainContainer
+} // ApplicationWindow

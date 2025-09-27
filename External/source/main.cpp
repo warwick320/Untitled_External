@@ -1,11 +1,13 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QDebug>
+#include <QDir>
 #include <QQmlContext>
 #include "SharedMemoryController.h"  
 
 //#define _DEBUG
-
+//windeployqt External.exe --release --qmldir C:\Users\warwick\source\repos\External\External\source\QML --compiler-runtime
+//FUCK QT
 int main(int argc, char* argv[])
 {
 #ifdef _DEBUG
@@ -24,7 +26,7 @@ int main(int argc, char* argv[])
 #endif
 
     QGuiApplication app(argc, argv);
-
+    QDir::setCurrent(QCoreApplication::applicationDirPath());
 
     SharedMemoryController sharedController;
 

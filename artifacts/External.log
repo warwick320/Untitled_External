@@ -1,149 +1,516 @@
 ﻿   Qt/MSBuild: 3.4.1.0
    Qt: 6.9.2
   main.cpp
-C:\Users\warwick\source\repos\External\External\source\main.cpp(1,1): warning C4828: 파일에 0x25a 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
-C:\Users\warwick\source\repos\External\External\source\main.cpp(1,1): warning C4828: 파일에 0x25b 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
-C:\Users\warwick\source\repos\External\External\source\main.cpp(1,1): warning C4828: 파일에 0x25c 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
-C:\Users\warwick\source\repos\External\External\source\main.cpp(1,1): warning C4828: 파일에 0x25d 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
-C:\Users\warwick\source\repos\External\External\source\main.cpp(1,1): warning C4828: 파일에 0x25f 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
-C:\Users\warwick\source\repos\External\External\source\main.cpp(1,1): warning C4828: 파일에 0x262 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
-C:\Users\warwick\source\repos\External\External\source\main.cpp(1,1): warning C4828: 파일에 0x266 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
-C:\Users\warwick\source\repos\External\External\source\main.cpp(1,1): warning C4828: 파일에 0x26a 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
-C:\Users\warwick\source\repos\External\External\source\main.cpp(1,1): warning C4828: 파일에 0x26d 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
-C:\Users\warwick\source\repos\External\External\source\main.cpp(1,1): warning C4828: 파일에 0x26f 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
-C:\Users\warwick\source\repos\External\External\source\main.cpp(1,1): warning C4828: 파일에 0x270 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
-C:\Users\warwick\source\repos\External\External\source\main.cpp(1,1): warning C4828: 파일에 0x271 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
-C:\Users\warwick\source\repos\External\External\source\main.cpp(1,1): warning C4828: 파일에 0x272 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
-C:\Users\warwick\source\repos\External\External\source\main.cpp(1,1): warning C4828: 파일에 0x2b0 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
-C:\Users\warwick\source\repos\External\External\source\main.cpp(1,1): warning C4828: 파일에 0x2b1 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
-C:\Users\warwick\source\repos\External\External\source\main.cpp(1,1): warning C4828: 파일에 0x2b2 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
-C:\Users\warwick\source\repos\External\External\source\main.cpp(1,1): warning C4828: 파일에 0x2b3 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
-C:\Users\warwick\source\repos\External\External\source\main.cpp(1,1): warning C4828: 파일에 0x2b5 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
-C:\Users\warwick\source\repos\External\External\source\main.cpp(1,1): warning C4828: 파일에 0x2b6 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
-C:\Users\warwick\source\repos\External\External\source\main.cpp(1,1): warning C4828: 파일에 0x2b7 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
-C:\Users\warwick\source\repos\External\External\source\main.cpp(1,1): warning C4828: 파일에 0x2b8 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
-C:\Users\warwick\source\repos\External\External\source\main.cpp(1,1): warning C4828: 파일에 0x379 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
-C:\Users\warwick\source\repos\External\External\source\main.cpp(1,1): warning C4828: 파일에 0x37a 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
-C:\Users\warwick\source\repos\External\External\source\main.cpp(1,1): warning C4828: 파일에 0x37e 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
-C:\Users\warwick\source\repos\External\External\source\main.cpp(1,1): warning C4828: 파일에 0x380 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
-C:\Users\warwick\source\repos\External\External\source\main.cpp(1,1): warning C4828: 파일에 0x381 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
-C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.h(1,1): warning C4828: 파일에 0xb6 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.h(1,1): warning C4828: 파일에 0xc4e 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.h(1,1): warning C4828: 파일에 0xb9 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.h(1,1): warning C4828: 파일에 0xc4f 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.h(1,1): warning C4828: 파일에 0xba 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.h(1,1): warning C4828: 파일에 0xc54 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.h(1,1): warning C4828: 파일에 0xbb 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.h(1,1): warning C4828: 파일에 0xc55 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.h(1,1): warning C4828: 파일에 0x87e 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.h(1,1): warning C4828: 파일에 0xc57 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.h(1,1): warning C4828: 파일에 0x87f 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.h(1,1): warning C4828: 파일에 0xc5a 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.h(1,1): warning C4828: 파일에 0x884 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.h(1,1): warning C4828: 파일에 0xc5b 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.h(1,1): warning C4828: 파일에 0x885 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.h(1,1): warning C4828: 파일에 0xc5c 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.h(1,1): warning C4828: 파일에 0x887 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.h(1,1): warning C4828: 파일에 0xc5d 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.h(1,1): warning C4828: 파일에 0x88a 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.h(1,1): warning C4828: 파일에 0xc5e 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.h(1,1): warning C4828: 파일에 0x88b 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.h(1,1): warning C4828: 파일에 0xc62 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.h(1,1): warning C4828: 파일에 0x88c 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.h(1,1): warning C4828: 파일에 0xc63 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.h(1,1): warning C4828: 파일에 0x88d 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x29 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.h(1,1): warning C4828: 파일에 0x88e 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x2b 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.h(1,1): warning C4828: 파일에 0x892 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x2d 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.h(1,1): warning C4828: 파일에 0x893 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x30 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.h(1,1): warning C4828: 파일에 0xa6c 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x32 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.h(1,1): warning C4828: 파일에 0xa6d 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x34 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.h(1,1): warning C4828: 파일에 0xa6e 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x35 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.h(1,1): warning C4828: 파일에 0xa6f 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x36 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.h(1,1): warning C4828: 파일에 0xa71 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x37 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.h(1,1): warning C4828: 파일에 0xa74 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x39 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.h(1,1): warning C4828: 파일에 0xab6 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x3a 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.h(1,1): warning C4828: 파일에 0xab7 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x3b 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.h(1,1): warning C4828: 파일에 0xab8 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x3c 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.h(1,1): warning C4828: 파일에 0xab9 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x3f 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.h(1,1): warning C4828: 파일에 0xabb 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x40 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.h(1,1): warning C4828: 파일에 0xabc 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x42 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.h(1,1): warning C4828: 파일에 0xbd1 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x45 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.h(1,1): warning C4828: 파일에 0xbd6 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x46 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x102 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x47 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x103 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x49 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x104 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x4c 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x105 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x50 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x144 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x51 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x145 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x52 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x14b 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x57 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x14e 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x5b 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x5c 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x97 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x98 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0xa1 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0xa2 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0xa9 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0xaf 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0xb0 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0xb2 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0xb4 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0xb5 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0xb6 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0xb8 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0xb9 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0xbc 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0xbe 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0xbf 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0xc1 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0xc2 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0xc3 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0xc6 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x19c 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x19d 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x1a1 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x1a4 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x1a5 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x1a6 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x1a9 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x1aa 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x1ac 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x1ad 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x1ae 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x1af 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x1b1 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x1b3 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x1b4 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x1b5 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x1b6 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x1d6 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x1d9 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x1db 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x1dc 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x1e9 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x1ea 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x201 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x204 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x205 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x208 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x20c 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x20d 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x20e 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x20f 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x211 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x212 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x213 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x214 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x216 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x218 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x219 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x21a 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x21d 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x21f 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x220 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x241 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x242 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x244 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x246 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x248 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x249 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x24c 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x24d 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x24f 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x250 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x254 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x257 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x258 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x269 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x26c 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x26d 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x270 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x274 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x275 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x278 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x279 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x27d 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x280 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x281 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x282 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x285 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x286 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x288 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x289 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x28a 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x28b 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x28d 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x28f 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x290 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x291 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x292 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x2b8 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x2b9 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x2bb 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x2bc 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x2bf 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x2c0 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x2c1 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x2c2 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x2c3 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x2c4 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x2c6 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x2c7 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x307 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x308 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x30e 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x30f 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x311 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x313 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x314 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x36c 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x36d 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x36f 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x371 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x373 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x374 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x377 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x378 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x37a 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x37b 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x37f 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x382 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\External\External\source\SharedData.h(1,1): warning C4828: 파일에 0x383 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
   코드를 생성하고 있습니다.
-  1 of 135 functions ( 0.7%) were compiled, the rest were copied from previous compilation.
+  15 of 147 functions (10.2%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+    2 functions had inline decision re-evaluated but remain unchanged
   코드를 생성했습니다.
   External.vcxproj -> C:\Users\warwick\source\repos\External\build\External.exe
