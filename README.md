@@ -5,7 +5,7 @@
 ### ESP
 - **Bones**: Displays skeleton overlays on visible players.
 - **Box**: Draws bounding boxes around detected entities.
-- **Charms**: Adds colored overlays to entities for visual distinction.
+- **Chams**: Adds colored overlays to entities for visual distinction.
 
 ### AIM
 - **Aimbot**: Automatically aims at targets for improved accuracy.
