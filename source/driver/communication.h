@@ -103,14 +103,14 @@ T communication::read(u64 address) {
 	if (process_handle != INVALID_HANDLE_VALUE && NtReadVirtualMemory) {
 		NTSTATUS status = NtReadVirtualMemory(process_handle, reinterpret_cast<PVOID>(address), &temp, sizeof(T), &bytes_read);
 		if (status != 0 || bytes_read != sizeof(T)) {
-			printf("Memory read failed at address 0x%llx (Status: 0x%lx, Read: %zu bytes)\n", address, status, bytes_read);
+			//printf("Memory read failed at address 0x%llx (Status: 0x%lx, Read: %zu bytes)\n", address, status, bytes_read);
 			// 실패한 경우 0으로 초기화
 			memset(&temp, 0, sizeof(T));
 		}
 	}
-	else {
+	/*else {
 		printf("Cannot read memory: process handle invalid or NtReadVirtualMemory not available\n");
-	}
+	}*/
 
 	return temp;
 }
@@ -120,8 +120,12 @@ void communication::v_write(u64 address, T& value) {
 	SIZE_T bytes_written = 0;
 
 	if (process_handle != INVALID_HANDLE_VALUE && NtWriteVirtualMemory) {
-		NtWriteVirtualMemory(process_handle, reinterpret_cast<PVOID>(address), &value, sizeof(T), &bytes_written);
+		NTSTATUS status = NtWriteVirtualMemory(process_handle, reinterpret_cast<PVOID>(address), &value, sizeof(T), &bytes_written);
+		if(status != 0) {
+			printf("failed to write memory");
+		}
 	}
+	
 }
 
 template <typename T>

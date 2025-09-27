@@ -4,9 +4,6 @@ namespace RBX {
 	class Primitive;
 
 	class Instance {
-	//private:
-	//	u64 address;
-
 	protected:
 		u64 address;
 	public:
@@ -24,6 +21,7 @@ namespace RBX {
 		RBX::Instance findFristChildByClass(const str& className);
 		str getVaue();
 		bool isA(const std::string& className);
+		bool getCanCollide();
 		RBX::Primitive getPrimitive();
 		u64 getAddress() const;
 	};

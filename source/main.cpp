@@ -3,11 +3,11 @@
 #include <Cheats/Visuals.h>
 #include <ImGui/imgui_impl_win32.h>
 #include <SDK/Classes/AddressMananger.h>
-#include "SharedMemoryManager.h" // 추가
+#include "SharedMemoryManager.h"
+#include "Cheats/Misc.h"
+#include <Cheats/Object.h>
+RBX::Instance g_Team;
 
-inline RBX::Instance g_Team;
-
-// 공유 메모리 매니저 전역 선언
 std::unique_ptr<SharedMemoryManager> sharedMem;
 
 
@@ -58,26 +58,56 @@ void SharedMemoryUpdateThread() {
 
         if (sharedMem) {
 
-            sharedMem->ReadFromShared();    // UI -> External
-
-            sharedMem->UpdateToShared();    // External -> UI
-
-            //frameCounter++;
-            //if (frameCounter % 600 == 0) { 
-            //    if (sharedMem->IsUIConnected()) {
-            //        std::cout << "[INFO] UI is connected and active" << std::endl;
-            //    }
-            //    else {
-            //        std::cout << "[WARNING] UI seems disconnected or inactive" << std::endl;
-            //    }
-            //    frameCounter = 0;
-            //}
+            sharedMem->ReadFromShared();
+            sharedMem->UpdateToShared();
         }
         else {
             std::cout << "[ERROR] SharedMem is null!" << std::endl;
         }
     }
 }
+void startQML() {
+    debug_print("Starting QML UI", 0);
+
+    char currentDir[MAX_PATH];
+    GetCurrentDirectoryA(MAX_PATH, currentDir);
+
+    char fullPath[MAX_PATH];
+    snprintf(fullPath, sizeof(fullPath), "%s\\ui\\EX.exe", currentDir);
+
+    // 파일 존재 확인
+    if (GetFileAttributesA(fullPath) == INVALID_FILE_ATTRIBUTES) {
+        debug_print("EX.exe file does not exist", 1);
+        return;
+    }
+
+    STARTUPINFOA si = { sizeof(si) };
+    PROCESS_INFORMATION pi;
+
+    if (CreateProcessA(
+        fullPath,       // application name
+        NULL,           // command line
+        NULL,           // process attributes
+        NULL,           // thread attributes
+        FALSE,          // inherit handles
+        0,              // creation flags
+        NULL,           // environment
+        NULL,           // current directory
+        &si,            // startup info
+        &pi             // process info
+    )) {
+        debug_print("QML UI started successfully with CreateProcess", 0);
+        CloseHandle(pi.hProcess);
+        CloseHandle(pi.hThread);
+    }
+    else {
+        DWORD error = GetLastError();
+        char errorMsg[256];
+        snprintf(errorMsg, sizeof(errorMsg), "CreateProcess failed - Error code: %lu", error);
+        debug_print(errorMsg, 1);
+    }
+}
+
 auto main(int argc, char** argv) -> int {
     inject();
 
@@ -96,14 +126,20 @@ auto main(int argc, char** argv) -> int {
 
     std::thread playerThread(updatePlayers);
     std::thread(CheckAddressesLoop).detach();
+	std::thread(miscLoop).detach();
+	std::thread(WorkspaceObjPos).detach();
     std::thread sharedMemThread(SharedMemoryUpdateThread);
     bool firstTime = false;
 
+   
     while (render->isRunning) {
         if (!firstTime) {
 			firstTime = true;
 			MemShared = true;
+            sleep_ms(100);
+			std::thread(startQML).detach();
         }
+
         if (!runningThread) {
             playerThread.join();
             runningThread = true;
@@ -111,12 +147,17 @@ auto main(int argc, char** argv) -> int {
         }
 
         render->startRender();
+		//raycast_test();
 
         if (Esp_Enabled) {
             espLoop();
         }
         if (Aimbot_Enabled) {
+            //triggerBot();
             aimbotLoop();
+        }
+        if (triggerbot) {
+            triggerBot();
         }
         if (render->isVisible) {
             render->renderMenu();
@@ -125,7 +166,6 @@ auto main(int argc, char** argv) -> int {
         render->endRender();
 
     }
-
     runningThread = false;
     playerThread.join();
     sharedMemThread.join();

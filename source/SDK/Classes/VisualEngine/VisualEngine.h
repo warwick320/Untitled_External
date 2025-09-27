@@ -1,6 +1,6 @@
 #pragma once
 #include <SDK/Classes/Math/Vector.h>
-#include <SDK/Classes/Math/Matrix.h>
+#include <SDK/Classes/Math/matrix.h> 
 
 namespace RBX {
 	class VisualEngine : public Instance {

@@ -62,7 +62,7 @@ void pfPlayers() {
 }
 void updatePlayers() {
 	RBX::Instance playerService = dataModel->findFristChildByClass("Players");
-
+	toggePF = false;
 
 	while (runningThread) {
 		if (toggePF) {
@@ -75,6 +75,7 @@ void updatePlayers() {
 			if (!player.getAddress()) {
 				continue;
 			}
+			//printf("Player: %s, Address: 0x%llx\n", player.getName().c_str(), player.getAddress());
 			g_PlayerList.push_back(RBX::Player(player.getAddress()));
 
 		}

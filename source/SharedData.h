@@ -1,18 +1,22 @@
-#pragma once
-#include <windows.h>
-
+#pragma pack(push, 1)
 struct SharedData {
+    BYTE aimbot_enabled;
+    BYTE esp_enabled;
+    BYTE esp_show_names;
+    BYTE esp_show_box;
+    BYTE esp_show_bones;
+    BYTE esp_show_distance;
+    BYTE esp_show_tracer;
+    BYTE triggerbot;
+    BYTE esp_chams;
+    BYTE padding[3];
 
-    bool aimbot_enabled;
-    bool esp_enabled;
-    bool esp_show_names;
-    bool esp_show_box;
-    bool esp_show_bones;
-    bool esp_show_distance;
-	bool esp_show_tracer;
-    f32 fov_size;
+    float fov_size;
+    float targetSpeed;
+    float jumpPower;
 
-    // 상태 확인용
     ULONGLONG last_update;
-    bool process_running;
+    BYTE process_running;
+    BYTE reserved[7];
 };
+#pragma pack(pop)

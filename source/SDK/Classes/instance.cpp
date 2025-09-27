@@ -90,3 +90,6 @@ u64 RBX::Instance::getAddress() const{
 bool RBX::Instance::isA(const std::string& className) {
 	return this->getClassName() == className;
 }
+bool RBX::Instance::getCanCollide() {
+	return comms->read<bool>(address + Offsets::CanCollide);
+}

@@ -85,8 +85,8 @@ std::string communication::readstr(u64 address) {
     i32 StrLength = read<i32>(address + 0x18);
 
     if (StrLength >= 16) {
-        address = read<u64>(address);
-    }
+        address = read<u64>(address); // pointer
+	}// SSo string
 
     std::vector<i8> Buffer(256);
     SIZE_T bytes_read = 0;

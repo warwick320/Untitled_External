@@ -137,15 +137,6 @@
     <ClInclude Include="source\SDK\Classes\World\Primtive.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="source\SDK\Classes\World\Workspace.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="source\Cheats\WallCheck.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="source\SDK\Classes\Math\CFrame.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="source\SDK\Classes\AddressMananger.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -153,6 +144,21 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="source\SharedData.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Cheats\Misc.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Cheats\RayCast.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Cheats\Object.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="source\SDK\Classes\Math\CFrame.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Cheats\Aimbot.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

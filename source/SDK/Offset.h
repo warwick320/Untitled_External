@@ -9,12 +9,12 @@ namespace Offsets {
 	inline constexpr u64 Dimensions = 0x720;
 	inline constexpr u64 ViewMatrix = 0x4B0;
 
-	inline constexpr u64 FakeDataModel = 0x70B1EF8;
+	inline constexpr u64 FakeDataModel = 0x7168648;
 	inline constexpr u64 RealDataModel = 0x1C0; // FDMTDM
-	inline constexpr u64 VisualEngine = 0x6E10210;
+	inline constexpr u64 VisualEngine = 0x6EC49B0;
 
 	inline constexpr u64 LocalPlayer = 0x128;
-	inline constexpr u64 ModelInstance = 0x338;
+	inline constexpr u64 ModelInstance = 0x348;
 
 	inline constexpr u64 Primitive = 0x178;
 
@@ -22,4 +22,11 @@ namespace Offsets {
 	inline constexpr u64 PartPosition = 0x154;
 	inline constexpr u64 Team = 0x258;
 	inline constexpr u64 CanCollide = 0x2E5;
+	inline constexpr u64 CFrame = 0x130;
+	inline constexpr u64 speedAddress = 0x1DC;
+	inline constexpr u64 WalkSpeedCheck = 0x3B8;
+	inline constexpr u64 JumpPowerAddress = 0x1B8;
+}
+namespace sender {
+	inline uintptr_t PhysicsSenderMaxBandwidthBps = 0x5f3decc;
 }

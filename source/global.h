@@ -1,4 +1,5 @@
 #pragma once
+#define NOMINMAX
 #include <driver/communication.h>
 
 #include <memory>
@@ -16,7 +17,8 @@ inline std::unique_ptr<RBX::DataModel> dataModel;
 inline std::unique_ptr<RBX::VisualEngine> visualEngine;
 inline std::atomic<bool> runningThread{ true };
 inline std::atomic<bool> paused{ false };
-
+inline bool triggerbot = false;
+inline bool esp_chams = false;
 inline bool Esp_Enabled = false;
 inline bool Aimbot_Enabled = false;
 inline bool esp_show_names = false;
@@ -25,7 +27,7 @@ inline bool esp_show_tracer = false;
 inline bool esp_show_bones = false;
 inline bool esp_show_distance = false;
 inline float fov_size = 150.0f;
-inline float smoothMultiplier = 1; // 기본 스무딩 배율
+inline float smoothMultiplier = 1;
 inline bool toggePF = false;
 inline void debug_print(str text, i32 lev) {
     str log = (lev == 0) ? "[+]" : (lev == 1) ? "[-]" : "[?]";
@@ -36,19 +38,20 @@ inline void debug_print(str text, i32 lev) {
 #ifndef M_PI
 #define M_PI 3.14159265358979323846
 #endif
-inline auto linear = [](float t) { return t; };
-inline auto easeIn = [](float t) { return t * t; };
-inline auto easeOut = [](float t) { return 1.0f - (1.0f - t) * (1.0f - t); };
-//inline auto easeInOut = [](float t) { return t < 0.5f ? 2.0f * t * t : 1.0f - powf(-2.0f * t + 2.0f, 2) / 2.0f; };
-inline auto easeInOutSineG = [](float t) { return -(cosf(M_PI * t) - 1.0f) / 2.0f; }; // sine
-inline auto easeInOut = [](float t) {return easeInOutSineG(t); };
-inline auto easeInOutCubic = [](float b, float c, float t) {
+inline auto linear = [](f32 t) { return t; };
+inline auto easeIn = [](f32 t) { return t * t; };
+inline auto easeOut = [](f32 t) { return 1.0f - (1.0f - t) * (1.0f - t); };
+inline auto easeInOutSineG = [](f32 t) { return -(cosf(M_PI * t) - 1.0f) / 2.0f; }; // sine
+inline auto easeInOut = [](f32 t) {return easeInOutSineG(t); };
+inline auto easeInOutCubic = [](f32 b, f32 c, f32 t) {
     if (t < 0.5f) {
         return c / 2.0f * 4.0f * t * t * t + b;
     }
-    float f = (t - 1.0f);
+    f32 f = (t - 1.0f);
     return c / 2.0f * (4.0f * f * f * f + 1.0f) + b;
 };
 inline u64 DataModelOld = 0;
 inline u64 VisualEngineOld = 0;
 inline u64 fakeDataModel;
+inline f32 targetSpeed = 16.0f;
+inline f32 jumpPower = 50.0f;
