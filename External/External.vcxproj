@@ -127,6 +127,8 @@
       <QtMocFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(Filename).moc</QtMocFileName>
     </ClCompile>
     <ClCompile Include="source\SharedMemoryController.cpp" />
+    <None Include="source\QML\DropBox.qml" />
+    <None Include="source\QML\KeyBindItem.qml" />
     <None Include="source\QML\SliderItem.qml" />
     <None Include="source\QML\ToggleItem.qml" />
     <QtRcc Include="source\QML\qml.qrc" />

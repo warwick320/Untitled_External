@@ -53,6 +53,12 @@
     <None Include="source\QML\SliderItem.qml">
       <Filter>Source Files</Filter>
     </None>
+    <None Include="source\QML\DropBox.qml">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="source\QML\KeyBindItem.qml">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="source\SharedMemoryController.h">

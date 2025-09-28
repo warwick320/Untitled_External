@@ -7,8 +7,8 @@ import Qt5Compat.GraphicalEffects
 ApplicationWindow {
     id: appWindow
     visible: true
-    width: 800
-    height: 400
+    width: 1000
+    height: 500
     title: qsTr("Untitiled External @warwick.320")
     color: "transparent"
     flags: Qt.FramelessWindowHint | Qt.Window
@@ -19,7 +19,7 @@ ApplicationWindow {
     property int btnSpacing: 12
     property int sidePadding: 16
     property int titleBarHeight: 36
-    property int targetWidth: 800
+    property int targetWidth: 1000
     property int windowRadius: 12
 
     property color accentColor: "#C62828"
@@ -539,19 +539,45 @@ ApplicationWindow {
                                             appController.aimbotEnabled = state
                                         }
                                     }
-                                    ToggleItem {
-                                        title: "Trigger Bot"
-                                        description: "Auto shoot(+ wallcheck!)"
-                                        toggleState: appController.triggerbotEnabled
+                                    KeyBindItem {
+                                        title: "Toggle Key"
+                                        description: "Keybind"
+                                        currentKeybind: appController.aimbotKeybind
                                         accentColor: appWindow.accentColor
-
-                                        onToggled: function(state) {
-                                            console.log("TriggerBot toggled:", state)
-                                            appController.triggerbotEnabled = state
+    
+                                        onKeybindChanged: function(newKeybind) {
+                                            console.log("Changed to:", newKeybind)
+                                            appController.setAimbotKeybind(newKeybind) 
                                         }
                                     }
+                                    
+                                    DropBox {
+                                        id: aimbotTypeDrop
+                                        title: "Aimbot Type"
+                                        description: "Select Targetting Type"
+                                        items: ["Legit", "Sticky", "Custom"]
+                                        accentColor: appWindow.accentColor
+                                        visible: appController.aimbotEnabled
+                                        opacity: visible ? 1.0 : 0.0
+                                        Behavior on opacity {
+                                            NumberAnimation { duration: 200; easing.type: Easing.InOutQuad }
+                                        }
+                                        Behavior on Layout.preferredHeight {
+                                            NumberAnimation { duration: 200; easing.type: Easing.InOutQuad }
+                                        }
+
+
+                                        selectedIndex: (typeof appController.aimbotType !== "undefined") ? appController.aimbotType : 0
+
+                                        onValueChanged: function(idx, value) {
+                                            console.log("Aimbot Type changed:", idx, value)
+                                            if (typeof appController.aimbotType !== "undefined")
+                                                appController.aimbotType = idx
+                                        }
+                                    }
+
                                     SliderItem {
-                                        title: "FOV Size"
+                                        title: "Aimbot FOV Size"
                                         description: "Adjust the Field of View range for aimbot targeting"
                                         sliderValue: appController.fovSize
                                         minValue: 10.0
@@ -563,7 +589,43 @@ ApplicationWindow {
                                             appController.fovSize = value
                                         }
                                     }
+                                    SliderItem {
+                                        title: "Aimbot Smooth"
+                                        description: "Adjust smoothness for custom aimbot"
+                                        sliderValue: appController.smooth
+                                        minValue: 1.0
+                                        maxValue: 25.0
+                                        stepSize: 0.1  
+                                        precision: 1  
+                                        accentColor: appWindow.accentColor
+    
+                                        visible: appController.aimbotEnabled && appController.aimbotType === 2 
+                                        opacity: visible ? 1.0 : 0.0
+                                        Layout.preferredHeight: visible ? 90 : 0
+    
+                                        Behavior on opacity {
+                                            NumberAnimation { duration: 200; easing.type: Easing.InOutQuad }
+                                        }
+                                        Behavior on Layout.preferredHeight {
+                                            NumberAnimation { duration: 200; easing.type: Easing.InOutQuad }
+                                        }
 
+                                        onValueChanged: function(value) {
+                                            console.log("Smooth changed:", value)
+                                            appController.smooth = value
+                                        }
+                                    }
+                                    ToggleItem {
+                                        title: "Trigger Bot"
+                                        description: "Auto shoot(+ wallcheck!)"
+                                        toggleState: appController.triggerbotEnabled
+                                        accentColor: appWindow.accentColor
+
+                                        onToggled: function(state) {
+                                            console.log("TriggerBot toggled:", state)
+                                            appController.triggerbotEnabled = state
+                                        }
+                                    }
                                     Item {
                                         width: parent.width
                                         height: 15
@@ -629,13 +691,13 @@ ApplicationWindow {
                                         }
                                     }
                                     ToggleItem {
-                                        title: "Charms"
-                                        description: "Display player charms"
+                                        title: "Chams"
+                                        description: "Display player Chams"
                                         toggleState: appController.espCharms
                                         accentColor: appWindow.accentColor
 
                                         onToggled: function(state) {
-                                            console.log("ESP Charms toggled:", state)
+                                            console.log("ESP Chams toggled:", state)
                                             appController.espCharms = state
                                         }
                                     }

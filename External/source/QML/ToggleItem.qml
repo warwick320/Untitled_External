@@ -30,7 +30,6 @@ Rectangle {
         ColorAnimation { duration: 200 }
     }
 
-
     Rectangle {
         id: accentBar
         width: 3
@@ -85,11 +84,9 @@ Rectangle {
         width: 54
         height: 28
         radius: 14
-
         anchors.right: parent.right
         anchors.rightMargin: 20
-        y: (parent.height - height) / 2  
-
+        anchors.verticalCenter: parent.verticalCenter
         color: root.toggleState ? root.accentColor : "#3a3a3a"
         border.width: 1
 
@@ -107,9 +104,9 @@ Rectangle {
             height: 24
             radius: 12
             color: "#ffffff"
-
             x: root.toggleState ? parent.width - width - 2 : 2
-            y: (parent.height - height) / 2
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.verticalCenterOffset: -1
 
             Behavior on x {
                 NumberAnimation {
@@ -124,7 +121,7 @@ Rectangle {
                 verticalOffset: 1
                 radius: 2
                 color: "#60000000"
-                samples: 5
+                samples: 3
             }
         }
 

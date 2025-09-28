@@ -11,7 +11,8 @@ Rectangle {
     property real sliderValue: 50.0
     property real minValue: 0.0
     property real maxValue: 100.0
-    property string valueText: Math.round(sliderValue).toString()
+    property real stepSize: 1.0      
+    property int precision: 0        
     property color accentColor: "#C62828"
 
     signal valueChanged(real value)
@@ -24,6 +25,20 @@ Rectangle {
     border.width: 1
 
     property bool hovered: false
+
+
+    function roundToStep(value) {
+        return Math.round(value / stepSize) * stepSize
+    }
+
+
+    function formatValue(value) {
+        if (precision === 0) {
+            return Math.round(value).toString()
+        } else {
+            return value.toFixed(precision)
+        }
+    }
 
     Behavior on border.color {
         ColorAnimation { duration: 200 }
@@ -85,7 +100,6 @@ Rectangle {
                 }
             }
 
-            // Value display
             Item {
                 width: 80
                 height: 40
@@ -102,7 +116,7 @@ Rectangle {
 
                     Text {
                         anchors.centerIn: parent
-                        text: Math.round(root.sliderValue).toString()
+                        text: formatValue(root.sliderValue)
                         color: root.accentColor
                         font.pixelSize: 12
                         font.bold: true
@@ -127,7 +141,7 @@ Rectangle {
 
                 Rectangle {
                     id: sliderProgress
-                    width: (Math.round(root.sliderValue) - root.minValue) / (root.maxValue - root.minValue) * parent.width
+                    width: (root.sliderValue - root.minValue) / (root.maxValue - root.minValue) * parent.width
                     height: parent.height
                     radius: 2
                     color: root.accentColor
@@ -146,9 +160,9 @@ Rectangle {
                 color: "#ffffff"
                 border.color: root.accentColor
                 border.width: 2
-                
-                x: (Math.round(root.sliderValue) - root.minValue) / (root.maxValue - root.minValue) * (parent.width - width)
+                x: (root.sliderValue - root.minValue) / (root.maxValue - root.minValue) * (parent.width - width)
                 anchors.verticalCenter: parent.verticalCenter
+                anchors.verticalCenterOffset: -1
 
                 scale: handleMouseArea.pressed ? 1.2 : (root.hovered ? 1.1 : 1.0)
 
@@ -166,7 +180,7 @@ Rectangle {
                     verticalOffset: 2
                     radius: 4
                     color: "#40000000"
-                    samples: 9
+                    samples: 5
                 }
             }
 
@@ -197,13 +211,13 @@ Rectangle {
                         var valueRange = root.maxValue - root.minValue
                         var pixelRange = width - sliderHandle.width
                         var valueDelta = (delta / pixelRange) * valueRange
-                        
+
                         var newValue = startValue + valueDelta
                         newValue = Math.max(root.minValue, Math.min(root.maxValue, newValue))
-                        
-                        // 정수로 반올림
-                        newValue = Math.round(newValue)
-                        
+
+                        // stepSize에 맞게 반올림
+                        newValue = roundToStep(newValue)
+
                         root.sliderValue = newValue
                         root.valueChanged(newValue)
                     }
@@ -214,12 +228,12 @@ Rectangle {
                     var valueRange = root.maxValue - root.minValue
                     var clickRatio = (mouse.x - sliderHandle.width/2) / pixelRange
                     clickRatio = Math.max(0, Math.min(1, clickRatio))
-                    
+
                     var newValue = root.minValue + (clickRatio * valueRange)
-                    
-                    // 정수로 반올림
-                    newValue = Math.round(newValue)
-                    
+
+                    // stepSize에 맞게 반올림
+                    newValue = roundToStep(newValue)
+
                     root.sliderValue = newValue
                     root.valueChanged(newValue)
                 }
