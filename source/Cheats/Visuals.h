@@ -2,7 +2,7 @@
 
 #include <Cheats/Players.h>
 #include <SDK/Classes/World/Primtive.h>
-#include <SDK/Classes/Math/CFrame.h>  // CFrame 헤더 추가
+#include <SDK/Classes/Math/CFrame.h>
 #include <array>
 #include <unordered_map>
 #include <SDK/Offset.h>
@@ -12,7 +12,12 @@
 #include <algorithm>
 #include <Cheats/RayCast.h>
 #include <Cheats/Object.h>
-#include <Cheats/Aimbot.h>  // Aimbot 헤더 추가
+#include <Cheats/Aimbot.h>
+#include <vector>
+#include <thread>
+#include <mutex>
+#include <future>
+#include <atomic>
 
 inline ImVec2 ToImVec2(const Vector2& v) {
     return ImVec2(v.x, v.y);
@@ -95,73 +100,40 @@ inline void drawOBBChams(ImDrawList* drawList, const CFrame& cframe, const CVect
     CVector halfSize = CVector(size.x * 0.5f, size.y * 0.5f, size.z * 0.5f);
 
     CVector localVertices[8] = {
-        {-halfSize.x, -halfSize.y, -halfSize.z}, // 0: 뒤쪽 아래 왼쪽
-        {+halfSize.x, -halfSize.y, -halfSize.z}, // 1: 뒤쪽 아래 오른쪽
-        {+halfSize.x, +halfSize.y, -halfSize.z}, // 2: 뒤쪽 위 오른쪽
-        {-halfSize.x, +halfSize.y, -halfSize.z}, // 3: 뒤쪽 위 왼쪽
-        {-halfSize.x, -halfSize.y, +halfSize.z}, // 4: 앞쪽 아래 왼쪽
-        {+halfSize.x, -halfSize.y, +halfSize.z}, // 5: 앞쪽 아래 오른쪽
-        {+halfSize.x, +halfSize.y, +halfSize.z}, // 6: 앞쪽 위 오른쪽
-        {-halfSize.x, +halfSize.y, +halfSize.z}  // 7: 앞쪽 위 왼쪽
+        {-halfSize.x, -halfSize.y, -halfSize.z},
+        {+halfSize.x, -halfSize.y, -halfSize.z}, 
+        {+halfSize.x, +halfSize.y, -halfSize.z},
+        {-halfSize.x, +halfSize.y, -halfSize.z},
+        {-halfSize.x, -halfSize.y, +halfSize.z},
+        {+halfSize.x, -halfSize.y, +halfSize.z},
+        {+halfSize.x, +halfSize.y, +halfSize.z}, 
+        {-halfSize.x, +halfSize.y, +halfSize.z}  
     };
-
 
     Vector2 vertices2D[8];
     CVector worldVertices[8];
-    bool validVertices[8];
-    int validCount = 0;
 
     for (int i = 0; i < 8; i++) {
         worldVertices[i] = cframe.pointToWorldSpace(localVertices[i]);
         vertices2D[i] = visualEngine->worldToScreen(worldVertices[i].toVector3());
-
-
-        validVertices[i] = !(vertices2D[i].x == 0 && vertices2D[i].y == 0) &&
-            vertices2D[i].x > -10000 && vertices2D[i].x < 10000 &&
-            vertices2D[i].y > -10000 && vertices2D[i].y < 10000;
-
-        if (validVertices[i]) validCount++;
     }
 
-    if (validCount < 4) return;
-
-
     const int faces[6][4] = {
-        // 앞면 (z+)
-        {4, 5, 6, 7},
-        // 뒷면 (z-)
-        {0, 3, 2, 1},
-        // 윗면 (y+)
-        {3, 7, 6, 2},
-        // 아랫면 (y-)
-        {0, 1, 5, 4},
-        // 오른쪽 면 (x+)
-        {1, 2, 6, 5},
-        // 왼쪽 면 (x-)
-        {0, 4, 7, 3}
+        {4, 7, 6, 5},
+        {1, 2, 3, 0},
+        {3, 2, 6, 7},
+        {0, 4, 5, 1},
+        {1, 5, 6, 2},
+        {0, 3, 7, 4}
     };
 
-
     for (int faceIdx = 0; faceIdx < 6; faceIdx++) {
+        ImVec2 p1 = ImVec2(vertices2D[faces[faceIdx][0]].x, vertices2D[faces[faceIdx][0]].y);
+        ImVec2 p2 = ImVec2(vertices2D[faces[faceIdx][1]].x, vertices2D[faces[faceIdx][1]].y);
+        ImVec2 p3 = ImVec2(vertices2D[faces[faceIdx][2]].x, vertices2D[faces[faceIdx][2]].y);
+        ImVec2 p4 = ImVec2(vertices2D[faces[faceIdx][3]].x, vertices2D[faces[faceIdx][3]].y);
 
-        bool allValid = true;
-        for (int i = 0; i < 4; i++) {
-            if (!validVertices[faces[faceIdx][i]]) {
-                allValid = false;
-                break;
-            }
-        }
-
-        if (allValid) {
-
-            ImVec2 quad[4];
-            for (int i = 0; i < 4; i++) {
-                quad[i] = ImVec2(vertices2D[faces[faceIdx][i]].x, vertices2D[faces[faceIdx][i]].y);
-            }
-
-            drawList->AddTriangleFilled(quad[0], quad[1], quad[2], color);
-            drawList->AddTriangleFilled(quad[0], quad[2], quad[3], color);
-        }
+        drawList->AddQuadFilled(p1, p2, p3, p4, color);
     }
 }
 
@@ -272,7 +244,6 @@ inline void drawOBBVisualization(ImDrawList* drawList, const CFrame& cframe, con
         {-halfSize.x, +halfSize.y, +halfSize.z}  // 7: 앞쪽 위 왼쪽
     };
 
-    // 로컬 좌표를 월드 좌표로 변환 후 2D로 변환
     Vector2 vertices2D[8];
     CVector worldVertices[8];
     bool validVertices[8];
@@ -475,6 +446,7 @@ inline void drawRaycastVisualization(ImDrawList* drawList, const CVector& myPos3
                     partInfo.size.x, partInfo.size.y, partInfo.size.z,
                     (result.hit && &partInfo == &result.hitPart) ? "(HIT!)" : "");
 
+
                 ImVec2 textPos = ImVec2(partPos2D.x + 10, partPos2D.y - 30);
                 ImVec2 textSize = ImGui::CalcTextSize(sizeText);
                 drawList->AddRectFilled(
@@ -549,160 +521,266 @@ inline void drawHitIndicator(ImDrawList* drawList, RBX::Player& player, const CV
     }
 }
 
-inline void espLoop() {
-    if (toggePF) {
-        pf_Esp();
-    }
-    else {
-        ImDrawList* drawList = ImGui::GetBackgroundDrawList();
 
-        ImVec2 viewportPos = ImGui::GetMainViewport()->Pos;
-        ImVec2 viewportSize = ImGui::GetMainViewport()->Size;
-        ImVec2 screenBottomCenter = ImVec2(
-            viewportPos.x + viewportSize.x / 2,
-            viewportPos.y + viewportSize.y - 5
-        );
+struct PlayerRenderData {
+    RBX::Player player;
+    std::string playerName; 
+    CVector headPos3D;
+    Vector2 headPos2D;
+    float distance3D;
+    ImU32 lineColor;
+    std::array<Vector2, R15_BoneCount> bonePos2D;
+    bool isValid;
+    bool isR15;
+};
 
-        CVector myPos3D = { 0, 0, 0 };  // Vector3 -> CVector로 변경
-        bool hasValidMyPos = false;
+static std::vector<std::thread> g_WorkerThreads;
+static std::atomic<bool> g_ThreadPoolActive{false};
+static std::mutex g_RenderDataMutex;
+static std::vector<PlayerRenderData> g_RenderDataCache;
+static constexpr size_t THREAD_POOL_SIZE = 100; // cpu core 수에 맞게
 
-        if (g_LocalPlayer.getAddress()) {
-            RBX::Player localPlayerInstance(g_LocalPlayer.getAddress());
-            RBX::ModelInstance myCharacter = localPlayerInstance.getModelInstance();
-            if (myCharacter.getAddress()) {
-                auto myHead = myCharacter.findFirstChild("Head");
-                if (myHead.getAddress()) {
-                    myPos3D = CVector(myHead.getPrimitive().getPartPosition());  // Vector3 -> CVector 변환
-                    hasValidMyPos = true;
-                }
-            }
+
+inline void InitESPThreadPool() {
+    if (g_ThreadPoolActive.load()) return;
+    
+    g_ThreadPoolActive.store(true);
+    g_WorkerThreads.reserve(THREAD_POOL_SIZE);
+}
+
+inline void ShutdownESPThreadPool() {
+    g_ThreadPoolActive.store(false);
+    
+    for (auto& thread : g_WorkerThreads) {
+        if (thread.joinable()) {
+            thread.join();
         }
+    }
+    g_WorkerThreads.clear();
+}
 
-        // ESP 선 두께 설정
-        constexpr float ESP_LINE_THICKNESS = 1.5f;
-        constexpr float ESP_BOX_THICKNESS = 2.0f;
-
-        for (RBX::Player& player : g_PlayerList) {
-            RBX::ModelInstance character = player.getModelInstance();
-
-            if (!character.getAddress() || player.getName() == g_LocalPlayer.getName() ||
-                (player.getTeamName() == g_LocalPlayer.getTeamName() && player.getTeamName() != "No Team" && player.getTeamName() != "Players")) {
-                continue;
-            }
-
-            auto headPart = character.findFirstChild("Head");
-            if (!headPart.getAddress()) {
-                continue;
-            }
-            CVector headPos3D = CVector(headPart.getPrimitive().getPartPosition());  // Vector3 -> CVector 변환
-            if (visualEngine->isOnScreen(headPos3D.toVector3()) == false) continue;  // CVector -> Vector3 변환
-            Vector2 headPos2D = visualEngine->worldToScreen(headPos3D.toVector3());  // CVector -> Vector3 변환
-            if (headPos2D.x == 0 && headPos2D.y == 0) continue;
-
-            // 3D 거리 계산
-            float distance3D = 0.0f;
-            if (hasValidMyPos) {
-                float dx = headPos3D.x - myPos3D.x;
-                float dy = headPos3D.y - myPos3D.y;
-                float dz = headPos3D.z - myPos3D.z;
-                distance3D = sqrtf(dx * dx + dy * dy + dz * dz);
-            }
-
-            ImU32 lineColor;
-            if (hasValidMyPos) {
-                float normalizedDist = distance3D / 200.0f;
-                if (normalizedDist > 1.0f) normalizedDist = 1.0f;
-
-                const int nearRed = 255;
-                const int farRed = 90;
-                int red = static_cast<int>(nearRed + (farRed - nearRed) * normalizedDist);
-                lineColor = IM_COL32(red, 0, 0, 255);
-
-                if (esp_show_tracer) {
-                    ImU32 tracerColor = IM_COL32(red, 0, 0, 150);
-                    drawList->AddLine(
-                        screenBottomCenter,
-                        ImVec2(headPos2D.x, headPos2D.y),
-                        tracerColor,
-                        ESP_LINE_THICKNESS
-                    );
-                }
-            }
-            else {
-                lineColor = IM_COL32(255, 0, 0, 255);
-                if (esp_show_tracer) {
-                    ImU32 tracerColor = IM_COL32(255, 0, 0, 150);
-                    drawList->AddLine(
-                        screenBottomCenter,
-                        ImVec2(headPos2D.x, headPos2D.y),
-                        tracerColor,
-                        ESP_LINE_THICKNESS
-                    );
-                }
-            }
-
-            if (esp_chams) {
-                drawPlayerChams(drawList, player, distance3D);
-            }
-
-
-            //drawHitIndicator(drawList, player, myPos3D, hasValidMyPos);
-
-            std::string name = player.getName();
-            ImVec2 textSize = ImGui::CalcTextSize(name.c_str());
-            float nameY = headPos2D.y - textSize.y - 5;
-            if (esp_show_names) {
-                drawList->AddText(ImVec2(headPos2D.x - textSize.x / 2, nameY), IM_COL32(255, 255, 255, 255), name.c_str());
-            }
-
-            // 거리 표시
-            char distText[32];
-            if (hasValidMyPos) {
-                snprintf(distText, sizeof(distText), "%.1fm", distance3D / 10.0f);
-            }
-            else {
-                snprintf(distText, sizeof(distText), "N/A");
-            }
-            ImVec2 distTextSize = ImGui::CalcTextSize(distText);
-            float distY = headPos2D.y - 35;
-            if (esp_show_distance) {
-                drawList->AddText(ImVec2(headPos2D.x - distTextSize.x / 2, distY), IM_COL32(0, 0, 255, 255), distText);
-            }
-
-            // 스켈레톤 그리기
-            const bool isR15 = character.findFirstChild("UpperTorso").getAddress() != 0;
-            const auto& boneMap = isR15 ? boneMapR15 : boneMapR6;
-            const BoneLine* lines = isR15 ? linesR15 : linesR6;
-            const size_t lineCount = isR15 ? lineCountR15 : lineCountR6;
-
-            std::array<Vector2, R15_BoneCount> bonePos2D{};
-            std::vector<RBX::Instance> children = character.getChildren();
-            for (RBX::Instance& child : children) {
-                std::string childName = child.getName();
+inline PlayerRenderData ProcessPlayerData(RBX::Player& player, const CVector& myPos3D, bool hasValidMyPos) {
+    PlayerRenderData data{};
+    data.player = player;
+    data.isValid = false;
+    
+    try {
+        try {
+            data.playerName = player.getName();
+        } catch (...) {
+            data.playerName = "Unknown";
+        }
+        
+        RBX::ModelInstance character = player.getModelInstance();
+        if (!character.getAddress()) return data;
+        
+        auto headPart = character.findFirstChild("Head");
+        if (!headPart.getAddress()) return data;
+        
+        data.headPos3D = CVector(headPart.getPrimitive().getPartPosition());
+        if (!visualEngine->isOnScreen(data.headPos3D.toVector3())) return data;
+        
+        data.headPos2D = visualEngine->worldToScreen(data.headPos3D.toVector3());
+        if (data.headPos2D.x == 0 && data.headPos2D.y == 0) return data;
+        
+        // 3D 거리 계산
+        if (hasValidMyPos) {
+            float dx = data.headPos3D.x - myPos3D.x;
+            float dy = data.headPos3D.y - myPos3D.y;
+            float dz = data.headPos3D.z - myPos3D.z;
+            data.distance3D = sqrtf(dx * dx + dy * dy + dz * dz);
+            
+            // 거리 기반 색상 계산
+            float normalizedDist = data.distance3D / 200.0f;
+            if (normalizedDist > 1.0f) normalizedDist = 1.0f;
+            const int nearRed = 255;
+            const int farRed = 90;
+            int red = static_cast<int>(nearRed + (farRed - nearRed) * normalizedDist);
+            data.lineColor = IM_COL32(red, 0, 0, 255);
+        } else {
+            data.distance3D = 0.0f;
+            data.lineColor = IM_COL32(255, 0, 0, 255);
+        }
+        
+        // 스켈레톤 데이터 준비
+        data.isR15 = character.findFirstChild("UpperTorso").getAddress() != 0;
+        const auto& boneMap = data.isR15 ? boneMapR15 : boneMapR6;
+        
+        std::vector<RBX::Instance> children = character.getChildren();
+        for (RBX::Instance& child : children) {
+            try {
+                std::string childName = child.getName();  // str -> std::string
                 auto it = boneMap.find(childName);
                 if (it != boneMap.end()) {
                     int boneIndex = it->second;
                     auto primitive = child.getPrimitive();
                     Vector3 pos3D = primitive.getPartPosition();
-                    bonePos2D[boneIndex] = visualEngine->worldToScreen(pos3D);
+                    data.bonePos2D[boneIndex] = visualEngine->worldToScreen(pos3D);
                 }
-            }
-            if (esp_show_bones) {
-                for (size_t i = 0; i < lineCount; ++i) {
-                    const Vector2& a = bonePos2D[lines[i].a];
-                    const Vector2& b = bonePos2D[lines[i].b];
-                    if ((a.x != 0 || a.y != 0) && (b.x != 0 || b.y != 0)) {
-                        drawList->AddLine(ToImVec2(a), ToImVec2(b), lineColor, ESP_LINE_THICKNESS);
-                    }
-                }
-            }
-
-            if (esp_show_box) {
-                drawAngleBoundingBox(drawList, bonePos2D, isR15, lineColor, ESP_BOX_THICKNESS);
+            } catch (...) {
+                continue;
             }
         }
-        // for debug
-        //drawRaycastVisualization(drawList, myPos3D, hasValidMyPos);
-        drawList->AddCircleFilled(screenBottomCenter, 5.0f, IM_COL32(255, 255, 255, 150));
+        
+        data.isValid = true;
+    } catch (...) {
+        data.isValid = false;
     }
+    
+    return data;
+}
+
+inline void espLoopThreaded() {
+    if (toggePF) {
+        pf_Esp();
+        return;
+    }
+    
+    ImDrawList* drawList = ImGui::GetBackgroundDrawList();
+    ImVec2 viewportPos = ImGui::GetMainViewport()->Pos;
+    ImVec2 viewportSize = ImGui::GetMainViewport()->Size;
+    ImVec2 screenBottomCenter = ImVec2(
+        viewportPos.x + viewportSize.x / 2,
+        viewportPos.y + viewportSize.y - 5
+    );
+    
+    CVector myPos3D = { 0, 0, 0 };
+    bool hasValidMyPos = false;
+    
+    if (g_LocalPlayer.getAddress()) {
+        RBX::Player localPlayerInstance(g_LocalPlayer.getAddress());
+        RBX::ModelInstance myCharacter = localPlayerInstance.getModelInstance();
+        if (myCharacter.getAddress()) {
+            auto myHead = myCharacter.findFirstChild("Head");
+            if (myHead.getAddress()) {
+                myPos3D = CVector(myHead.getPrimitive().getPartPosition());
+                hasValidMyPos = true;
+            }
+        }
+    }
+
+    const size_t playerCount = g_PlayerList.size();
+    if (playerCount == 0) return;
+    
+    const size_t chunkSize = std::max(size_t(1), playerCount / THREAD_POOL_SIZE);
+    std::vector<std::future<std::vector<PlayerRenderData>>> futures;
+
+    for (size_t i = 0; i < playerCount; i += chunkSize) {
+        size_t endIdx = std::min(i + chunkSize, playerCount);
+        
+        auto future = std::async(std::launch::async, [i, endIdx, &myPos3D, hasValidMyPos]() {
+            std::vector<PlayerRenderData> chunkData;
+            chunkData.reserve(endIdx - i);
+            
+            for (size_t j = i; j < endIdx; ++j) {
+                RBX::Player& player = g_PlayerList[j];
+
+                if (player.getName() == g_LocalPlayer.getName() ||
+                    (player.getTeamName() == g_LocalPlayer.getTeamName() && 
+                     player.getTeamName() != "No Team" && 
+                     player.getTeamName() != "Players")) {
+                    continue;
+                }
+                
+                PlayerRenderData data = ProcessPlayerData(player, myPos3D, hasValidMyPos);
+                if (data.isValid) {
+                    chunkData.push_back(std::move(data));
+                }
+            }
+            
+            return chunkData;
+        });
+        
+        futures.push_back(std::move(future));
+    }
+
+    std::vector<PlayerRenderData> allRenderData;
+    for (auto& future : futures) {
+        try {
+            auto chunkData = future.get();
+            allRenderData.insert(allRenderData.end(), 
+                                std::make_move_iterator(chunkData.begin()),
+                                std::make_move_iterator(chunkData.end()));
+        } catch (...) {
+
+        }
+    }
+    
+
+    constexpr float ESP_LINE_THICKNESS = 1.5f;
+    constexpr float ESP_BOX_THICKNESS = 2.0f;
+    
+    for (const auto& data : allRenderData) {
+        // Tracer 그리기
+        if (esp_show_tracer) {
+            ImU32 tracerColor = IM_COL32(
+                (data.lineColor >> 24) & 0xFF,  // R
+                (data.lineColor >> 16) & 0xFF,  // G  
+                (data.lineColor >> 8) & 0xFF,   // B
+                150                              // A
+            );
+            drawList->AddLine(
+                screenBottomCenter,
+                ImVec2(data.headPos2D.x, data.headPos2D.y),
+                tracerColor,
+                ESP_LINE_THICKNESS
+            );
+        }
+        
+        // Chams 그리기
+        if (esp_chams) {
+            drawPlayerChams(drawList, const_cast<RBX::Player&>(data.player), data.distance3D);
+        }
+        
+        // 이름 표시
+        if (esp_show_names) {
+
+            ImVec2 textSize = ImGui::CalcTextSize(data.playerName.c_str());
+            float nameY = data.headPos2D.y - textSize.y - 5;
+            drawList->AddText(ImVec2(data.headPos2D.x - textSize.x / 2, nameY),
+                IM_COL32(255, 255, 255, 255), data.playerName.c_str());
+        }
+        // 거리 표시
+        if (esp_show_distance && hasValidMyPos) {
+            char distText[32];
+            snprintf(distText, sizeof(distText), "%.1fm", data.distance3D / 10.0f);
+            ImVec2 distTextSize = ImGui::CalcTextSize(distText);
+            float distY = data.headPos2D.y - 35;
+            drawList->AddText(ImVec2(data.headPos2D.x - distTextSize.x / 2, distY), 
+                            IM_COL32(0, 0, 255, 255), distText);
+        }
+        
+        // 스켈레톤 그리기
+        if (esp_show_bones) {
+            const BoneLine* lines = data.isR15 ? linesR15 : linesR6;
+            const size_t lineCount = data.isR15 ? lineCountR15 : lineCountR6;
+            
+            for (size_t i = 0; i < lineCount; ++i) {
+                const Vector2& a = data.bonePos2D[lines[i].a];
+                const Vector2& b = data.bonePos2D[lines[i].b];
+                if ((a.x != 0 || a.y != 0) && (b.x != 0 || b.y != 0)) {
+                    drawList->AddLine(ToImVec2(a), ToImVec2(b), data.lineColor, ESP_LINE_THICKNESS);
+                }
+            }
+        }
+        
+        // 박스 그리기
+        if (esp_show_box) {
+            drawAngleBoundingBox(drawList, data.bonePos2D, data.isR15, data.lineColor, ESP_BOX_THICKNESS);
+        }
+    }
+    
+    // 크로스헤어 그리기
+    drawList->AddCircleFilled(screenBottomCenter, 5.0f, IM_COL32(255, 255, 255, 150));
+}
+
+
+inline void espLoop() {
+    static bool threadPoolInitialized = false;
+    if (!threadPoolInitialized) {
+        InitESPThreadPool();
+        threadPoolInitialized = true;
+    }
+    
+    espLoopThreaded();
 }
