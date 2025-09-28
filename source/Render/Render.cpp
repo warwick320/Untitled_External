@@ -342,7 +342,6 @@ void Render::renderMenu() {
 
     if (Aimbot_Enabled) {
         SliderFloat("Fov Size", &fov_size, 10.0f, 400.0f, "%.2f");
-        SliderFloat("Smooth Aim", &smoothMultiplier, 0.0f, 1.0f, "%.2f");
     }
 
     End();

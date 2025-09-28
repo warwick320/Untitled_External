@@ -1,8 +1,21 @@
 #pragma once
 #define NOMINMAX
+//#define CPPHTTPLIB_OPENSSL_SUPPORT
+#include <winsock2.h>
+#define CURL_STATICLIB 
+#define WIN32_LEAN_AND_MEAN
+#ifdef _WIN32
+#pragma comment(lib, "vender/libcurl_a.lib")
+#pragma comment(lib, "ws2_32.lib")
+#pragma comment(lib, "wldap32.lib")
+#pragma comment(lib, "crypt32.lib")
+#pragma comment(lib, "normaliz.lib")
+#endif
 #include <driver/communication.h>
-
+#include <atomic>
+#include "curl.h"
 #include <memory>
+#include <nlohmann/json.hpp>
 #include <Render/Render.h>
 #include <SDK/Classes/instance.h>
 #include <SDK/Classes/DataModel/DataModel.h>
@@ -26,9 +39,11 @@ inline bool esp_show_box= false;
 inline bool esp_show_tracer = false;
 inline bool esp_show_bones = false;
 inline bool esp_show_distance = false;
-inline float fov_size = 150.0f;
-inline float smoothMultiplier = 1;
+inline f32 fov_size = 150.0f;
+inline f32 g_Smooth = 1.0f;
 inline bool toggePF = false;
+inline str aimbot_keybind = "LMB";
+inline i32 aimbot_type = 0;
 inline void debug_print(str text, i32 lev) {
     str log = (lev == 0) ? "[+]" : (lev == 1) ? "[-]" : "[?]";
     std::cout << std::format("{} {}\n", log, text) << std::endl;

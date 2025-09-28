@@ -8,6 +8,7 @@ C:\Users\warwick\source\repos\Untitled_External\source\SDK\Classes\DataModel\Pla
 C:\Users\warwick\source\repos\Untitled_External\source\SDK\Classes\instance.cpp;C:\Users\warwick\source\repos\Untitled_External\artifacts\instance.obj
 C:\Users\warwick\source\repos\Untitled_External\source\SDK\Classes\VisualEngine\VisualEngine.cpp;C:\Users\warwick\source\repos\Untitled_External\artifacts\VisualEngine.obj
 C:\Users\warwick\source\repos\Untitled_External\source\SDK\Classes\World\Primtive.cpp;C:\Users\warwick\source\repos\Untitled_External\artifacts\Primtive.obj
+C:\Users\warwick\source\repos\Untitled_External\vender\base64.cpp;C:\Users\warwick\source\repos\Untitled_External\artifacts\base64.obj
 C:\Users\warwick\source\repos\Untitled_External\vender\ImGui\imgui.cpp;C:\Users\warwick\source\repos\Untitled_External\artifacts\imgui.obj
 C:\Users\warwick\source\repos\Untitled_External\vender\ImGui\imgui_demo.cpp;C:\Users\warwick\source\repos\Untitled_External\artifacts\imgui_demo.obj
 C:\Users\warwick\source\repos\Untitled_External\vender\ImGui\imgui_draw.cpp;C:\Users\warwick\source\repos\Untitled_External\artifacts\imgui_draw.obj

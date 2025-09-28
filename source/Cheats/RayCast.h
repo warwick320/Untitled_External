@@ -1,5 +1,5 @@
-#pragma once
-#define NOMINMAX // Windows.hÀÇ min/max ¸ÅÅ©·Î ¹æÁö
+ï»¿#pragma once
+#define NOMINMAX // Windows.hï¿½ï¿½ min/max ï¿½ï¿½Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 #include <vector>
 #include <limits>
 #include <SDK/Classes/Math/Vector.h>
@@ -13,10 +13,11 @@ namespace Roblox {
         CFrame cframe;
         std::string className;
         float distanceFromOrigin;
-        
+
         PartInfo() = default;
         PartInfo(const Vector3& pos, const Vector3& sz, const CFrame& cf, const std::string& name)
-            : position(CVector(pos)), size(CVector(sz)), cframe(cf), className(name), distanceFromOrigin(0.0f) {}
+            : position(CVector(pos)), size(CVector(sz)), cframe(cf), className(name), distanceFromOrigin(0.0f) {
+        }
     };
 
     struct RaycastResult {
@@ -24,7 +25,7 @@ namespace Roblox {
         float distance = std::numeric_limits<float>::max();
         CVector hitPosition;
         PartInfo hitPart;
-        std::vector<PartInfo> partsUpToHit; // È÷Æ® ÁöÁ¡±îÁöÀÇ ÆÄÆ®µé¸¸ ÀúÀå
+        std::vector<PartInfo> partsUpToHit; // ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½é¸¸ ï¿½ï¿½ï¿½ï¿½
 
         Vector3 getHitPositionAsVector3() const {
             return hitPosition.toVector3();
@@ -35,118 +36,122 @@ namespace Roblox {
         inline RaycastResult cast_ray_with_rotation_optimized(const CVector& origin, const CVector& direction, float max_dist, std::vector<PartInfo> parts) {
             RaycastResult result;
             CVector dir_normalized = direction.normalized();
-            
-            // ÆÄÆ®µéÀ» ¿øÁ¡À¸·ÎºÎÅÍÀÇ °Å¸®·Î Á¤·Ä
+
+            // ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îºï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
             for (auto& part : parts) {
                 part.distanceFromOrigin = (part.position - origin).magnitude();
             }
-            
+
             std::sort(parts.begin(), parts.end(), [](const PartInfo& a, const PartInfo& b) {
                 return a.distanceFromOrigin < b.distanceFromOrigin;
-            });
+                });
 
             for (const auto& part : parts) {
-                // ÀÌ¹Ì È÷Æ®µÈ °Å¸®º¸´Ù ¸Ö¸® ÀÖ´Â ÆÄÆ®µéÀº °Ç³Ê¶Ù±â
-                if (result.hit && part.distanceFromOrigin > result.distance + 10.0f) {
-                    break; // Á¶±â Áß´Ü -> ´õ ÀÌ»ó °Ë»çÇÒ ÇÊ¿ä ¾øÀ½
+                // ï¿½Ì¹ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¸ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½Ç³Ê¶Ù±ï¿½
+                if (result.hit && part.distanceFromOrigin > result.distance + 1.0f) {
+                    break; // ï¿½ï¿½ï¿½ï¿½ ï¿½ß´ï¿½ -> ï¿½ï¿½ ï¿½Ì»ï¿½ ï¿½Ë»ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ ï¿½ï¿½ï¿½ï¿½
                 }
 
                 const CVector& part_pos = part.position;
                 const CVector& part_size = part.size;
                 const CFrame& part_cframe = part.cframe;
 
-                // ·ÎÄÃ ÁÂÇ¥°è·Î º¯È¯
+                // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç¥ï¿½ï¿½ï¿½ ï¿½ï¿½È¯
                 CVector local_origin = part_cframe.pointToObjectSpace(origin);
                 CVector local_dir = part_cframe.vectorToObjectSpace(dir_normalized);
 
-                // OBB °æ°è (Áß½ÉÀ» ¿øÁ¡À¸·Î ÇÏ´Â ·ÎÄÃ ÁÂÇ¥°è)
+                // OBB ï¿½ï¿½ï¿½ (ï¿½ß½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç¥ï¿½ï¿½)
                 CVector min_bounds = part_size * -0.5f;
                 CVector max_bounds = part_size * 0.5f;
 
-                // ½½·¦ Å×½ºÆ® (Slab Test) for OBB
+                // ï¿½ï¿½ï¿½ï¿½ ï¿½×½ï¿½Æ® (Slab Test) for OBB
                 float tmin = -std::numeric_limits<float>::infinity();
                 float tmax = std::numeric_limits<float>::infinity();
                 bool intersects = true;
 
-                // XÃà ½½·¦
+                // Xï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                 if (std::abs(local_dir.x) < 1e-8f) {
                     if (local_origin.x < min_bounds.x || local_origin.x > max_bounds.x) {
                         intersects = false;
                     }
-                } else {
+                }
+                else {
                     float inv_dir_x = 1.0f / local_dir.x;
                     float t1 = (min_bounds.x - local_origin.x) * inv_dir_x;
                     float t2 = (max_bounds.x - local_origin.x) * inv_dir_x;
-                    
+
                     if (t1 > t2) std::swap(t1, t2);
-                    
+
                     tmin = std::max(tmin, t1);
                     tmax = std::min(tmax, t2);
-                    
+
                     if (tmin > tmax) intersects = false;
                 }
 
                 if (!intersects) continue;
 
-                // YÃà ½½·¦
+                // Yï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                 if (std::abs(local_dir.y) < 1e-8f) {
                     if (local_origin.y < min_bounds.y || local_origin.y > max_bounds.y) {
                         intersects = false;
                     }
-                } else {
+                }
+                else {
                     float inv_dir_y = 1.0f / local_dir.y;
                     float t1 = (min_bounds.y - local_origin.y) * inv_dir_y;
                     float t2 = (max_bounds.y - local_origin.y) * inv_dir_y;
-                    
+
                     if (t1 > t2) std::swap(t1, t2);
-                    
+
                     tmin = std::max(tmin, t1);
                     tmax = std::min(tmax, t2);
-                    
+
                     if (tmin > tmax) intersects = false;
                 }
 
                 if (!intersects) continue;
 
-                // ZÃà ½½·¦
+                // Zï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
                 if (std::abs(local_dir.z) < 1e-8f) {
                     if (local_origin.z < min_bounds.z || local_origin.z > max_bounds.z) {
                         intersects = false;
                     }
-                } else {
+                }
+                else {
                     float inv_dir_z = 1.0f / local_dir.z;
                     float t1 = (min_bounds.z - local_origin.z) * inv_dir_z;
                     float t2 = (max_bounds.z - local_origin.z) * inv_dir_z;
-                    
+
                     if (t1 > t2) std::swap(t1, t2);
-                    
+
                     tmin = std::max(tmin, t1);
                     tmax = std::min(tmax, t2);
-                    
+
                     if (tmin > tmax) intersects = false;
                 }
 
                 if (!intersects) continue;
 
-                // À¯È¿ÇÑ ±³Â÷Á¡ È®ÀÎ ¹× Á¶±â È÷Æ® Ã³¸®
+                // ï¿½ï¿½È¿ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ® Ã³ï¿½ï¿½
                 if (tmin >= 0 && tmin <= max_dist) {
-                    // Ã¹ ¹øÂ° È÷Æ®ÀÌ°Å³ª ´õ °¡±î¿î È÷Æ®ÀÎ °æ¿ì
+                    // Ã¹ ï¿½ï¿½Â° ï¿½ï¿½Æ®ï¿½Ì°Å³ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½
                     if (!result.hit || tmin < result.distance) {
                         result.hit = true;
                         result.distance = tmin;
                         result.hitPosition = origin + dir_normalized * tmin;
                         result.hitPart = part;
-                        
-                        // È÷Æ® ÁöÁ¡±îÁöÀÇ ÆÄÆ®µé¸¸ ÀúÀå
+
+                        // ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½é¸¸ ï¿½ï¿½ï¿½ï¿½
                         result.partsUpToHit.clear();
                         for (const auto& p : parts) {
-                            if (p.distanceFromOrigin <= result.distance + 5.0f) { // ¾à°£ÀÇ ¿©À¯°ª
+                            if (p.distanceFromOrigin <= result.distance + 1.0f) { // ï¿½à°£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                                 result.partsUpToHit.push_back(p);
-                            } else {
-                                break; // Á¤·ÄµÇ¾î ÀÖÀ¸¹Ç·Î ¿©±â¼­ Áß´Ü
+                            }
+                            else {
+                                break; // ï¿½ï¿½ï¿½ÄµÇ¾ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ ï¿½ï¿½ï¿½â¼­ ï¿½ß´ï¿½
                             }
                         }
-                        
+
                         if (tmin < 1.0f) {
                             return result;
                         }

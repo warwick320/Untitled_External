@@ -66,6 +66,9 @@
     <ClCompile Include="source\SDK\Classes\World\Primtive.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="vender\base64.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\driver\communication.h">
@@ -161,5 +164,91 @@
     <ClInclude Include="source\Cheats\Aimbot.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="vender\nlohmann\json.hpp">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="vender\nlohmann\json_fwd.hpp">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="vender\Request\base64.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="vender\Request\curlver.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="vender\Request\curl.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="vender\Request\json.hpp">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="vender\Request\easy.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="vender\Request\mprintf.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="vender\Request\multi.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="vender\Request\options.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="vender\Request\stdcheaders.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="vender\Request\sqlite3ext.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="vender\Request\typecheck-gcc.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="vender\Request\system.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="vender\Request\urlapi.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="vender\curl.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="vender\curlver.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="vender\system.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="vender\easy.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="vender\multi.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="vender\base64.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="vender\options.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="vender\urlapi.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="vender\libcurl_a.lib" />
+    <Library Include="vender\libbrotlidec.a" />
+    <Library Include="vender\libbrotlicommon.a" />
+    <Library Include="vender\libcrypto.a" />
+    <Library Include="vender\libcurl.a" />
+    <Library Include="vender\libcurl.dll.a" />
+    <Library Include="vender\libnghttp2.a" />
+    <Library Include="vender\libnghttp3.a" />
+    <Library Include="vender\libngtcp2.a" />
+    <Library Include="vender\libngtcp2_crypto_libressl.a" />
+    <Library Include="vender\libpsl.a" />
+    <Library Include="vender\libssh2.a" />
+    <Library Include="vender\libz.a" />
+    <Library Include="vender\libssl.a" />
+    <Library Include="vender\libzstd.a" />
   </ItemGroup>
 </Project>

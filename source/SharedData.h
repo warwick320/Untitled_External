@@ -1,5 +1,6 @@
 #pragma pack(push, 1)
 struct SharedData {
+    // flag bytes
     BYTE aimbot_enabled;
     BYTE esp_enabled;
     BYTE esp_show_names;
@@ -9,12 +10,23 @@ struct SharedData {
     BYTE esp_show_tracer;
     BYTE triggerbot;
     BYTE esp_chams;
-    BYTE padding[3];
 
-    float fov_size;
-    float targetSpeed;
-    float jumpPower;
+    // Aimbot Type (0: Legit, 1: Sticky, 2: Custom)
+    BYTE aimbot_type;
+    BYTE padding[2];
 
+    // aim
+    f32 fov_size;
+    f32 smooth;
+
+    // player
+    f32 targetSpeed;
+    f32 jumpPower;
+
+    // 키바인드 문자열 (최대 63자 + null terminator)
+    char aimbot_keybind[64];
+
+    // 상태
     ULONGLONG last_update;
     BYTE process_running;
     BYTE reserved[7];

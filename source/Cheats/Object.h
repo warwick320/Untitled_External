@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include <Cheats/Players.h>
 #include <SDK/Classes/World/Primtive.h>
 #include <SDK/Classes/Math/CFrame.h> 
@@ -28,7 +28,7 @@ bool isPlayerModel(const RBX::Instance& instance) {
 }
 
 void WorkspaceObjPos() {
-	while (true)
+	while (runningThread)
 	{
 		std::vector<Roblox::PartInfo> tempPartList;
 		std::function<void(RBX::Instance&)> addPartsRecursively;
@@ -41,7 +41,7 @@ void WorkspaceObjPos() {
 
 
 				if (className == "Model" && isPlayerModel(instance)) {
-					return; 
+					return;
 				}
 
 				if (className == "Script" || className == "LocalScript" ||
@@ -67,7 +67,7 @@ void WorkspaceObjPos() {
 					try {
 						RBX::Primitive primitive = instance.getPrimitive();
 						if (primitive.getAddress()) {
-							Vector3 position, size;  
+							Vector3 position, size;
 							CFrame cframe;
 
 							try {
@@ -86,8 +86,8 @@ void WorkspaceObjPos() {
 									}
 
 									Roblox::PartInfo partInfo;
-									partInfo.position = CVector(position);  
-									partInfo.size = CVector(size);          
+									partInfo.position = CVector(position);
+									partInfo.size = CVector(size);
 									partInfo.cframe = cframe;
 									partInfo.className = className;
 									tempPartList.push_back(partInfo);
@@ -192,7 +192,7 @@ std::vector<Roblox::PartInfo> getValidObstaclesForRaycast(const CVector& origin,
 	float rayDistance = (target - origin).magnitude();
 
 	for (const Roblox::PartInfo& partInfo : obstacles) {
-		// OBB ±â¹Ý Á¡ °Ë»ç (È¸Àü °í·Á)
+		// OBB ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ë»ï¿½ (È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
 		CVector localOrigin = partInfo.cframe.pointToObjectSpace(origin);
 		CVector halfSize = partInfo.size * 0.5f;
 		if (abs(localOrigin.x) <= halfSize.x + 0.5f &&
@@ -235,7 +235,7 @@ std::vector<Roblox::PartInfo> getValidObstaclesForRaycast(const CVector& origin,
 			((partInfo.size.x > partInfo.size.z) ? partInfo.size.x : partInfo.size.z) :
 			((partInfo.size.y > partInfo.size.z) ? partInfo.size.y : partInfo.size.z);
 
-		float filterRange = maxBoxDimension + 300.0f;
+		float filterRange = maxBoxDimension + 1.0f;
 
 		if (distanceToBox < filterRange) {
 			validParts.push_back(partInfo);

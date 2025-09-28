@@ -255,10 +255,10 @@ inline void drawOBBVisualization(ImDrawList* drawList, const CFrame& cframe, con
     float distanceToCamera = position.magnitude();
 
 
-    if (distanceToCamera > 500.0f) {
-        drawAABBVisualization(drawList, cframe.Position, size, color);
-        return;
-    }
+    //if (distanceToCamera > 500.0f) {
+    //    drawAABBVisualization(drawList, cframe.Position, size, color);
+    //    return;
+    //}
 
 
     CVector localVertices[8] = {
@@ -297,10 +297,11 @@ inline void drawOBBVisualization(ImDrawList* drawList, const CFrame& cframe, con
     }
 
 
-    if (validCount < 6) {
-        drawAABBVisualization(drawList, cframe.Position, size, color);
-        return;
-    }
+  //  if (validCount < 6) {
+  //      //drawOBBVisualization(drawList, cframe.Position, size, color);
+		//drawAABBVisualization(drawList, cframe.Position, size, color);
+  //      return;
+  //  }
 
 
     const int edges[12][2] = {
@@ -701,7 +702,7 @@ inline void espLoop() {
             }
         }
         // for debug
-        // drawRaycastVisualization(drawList, myPos3D, hasValidMyPos);
+        //drawRaycastVisualization(drawList, myPos3D, hasValidMyPos);
         drawList->AddCircleFilled(screenBottomCenter, 5.0f, IM_COL32(255, 255, 255, 150));
     }
 }
