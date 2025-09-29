@@ -1,5 +1,5 @@
 # Untitled_External
-# [Aimbot Clip](https://www.youtube.com/watch?v=02EI1TSvWJg) - [Trigger Bot Clip](https://www.youtube.com/watch?v=SKwSv7mxxTk)
+## [Aimbot Clip](https://www.youtube.com/watch?v=02EI1TSvWJg) - [Trigger Bot Clip](https://www.youtube.com/watch?v=SKwSv7mxxTk)
 
 ## Features
 > there some typo error charms -> chams
@@ -9,7 +9,10 @@
 - **Chams**: Adds colored overlays to entities for visual distinction.
 
 ### AIM
+
 - **Aimbot**: Automatically aims at targets for improved accuracy.
+  
+https://github.com/user-attachments/assets/00a059ed-7312-4a84-9245-efc7386282f1
 - **Triggerbot (Wallcheck)**: Automatically fires when an enemy is in the crosshair, with wall detection to avoid shooting through obstacles.
 
 ---
