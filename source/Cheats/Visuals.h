@@ -769,8 +769,6 @@ inline void espLoopThreaded() {
             drawAngleBoundingBox(drawList, data.bonePos2D, data.isR15, data.lineColor, ESP_BOX_THICKNESS);
         }
     }
-    
-    // 크로스헤어 그리기
     drawList->AddCircleFilled(screenBottomCenter, 5.0f, IM_COL32(255, 255, 255, 150));
 }
 
