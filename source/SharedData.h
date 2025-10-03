@@ -26,6 +26,10 @@ struct SharedData {
     // 키바인드 문자열 (최대 63자 + null terminator)
     char aimbot_keybind[64];
 
+    // settings
+	BYTE useCornerBox;
+	BYTE g_Rainbow;
+
     // 상태
     ULONGLONG last_update;
     BYTE process_running;

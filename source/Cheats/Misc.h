@@ -4,6 +4,20 @@ auto Workspace() {
 	RBX::Instance workspace = dataModel->findFristChildByClass("Workspace");
 	return workspace;
 }
+void Fly() {
+	u64 workspaceaddress = Workspace().getAddress();
+	f32 fly = 0.0f;
+	RBX::Instance Character = Workspace().findFirstChild(g_LocalPlayer.getName());
+	RBX::Instance HumanoidRootPart = Character.findFirstChild("HumanoidRootPart");
+	u64 HumanoidRootPartaddr = HumanoidRootPart.getAddress();
+	RBX::Primitive Primitive = HumanoidRootPart.getPrimitive();
+	while (true) {
+		Vector3 Position = Primitive.getPartPosition();
+		Vector3 Zero = { 0.0f, 0.0f, 0.0f };
+		printf("Current Position: X: %f, Y: %f, Z: %f\n", Position.x, Position.y, Position.z);
+		comms->write<Vector3>(HumanoidRootPartaddr + Offsets::PartPosition, Zero);
+	}
+}
 void speedExcute() {
 
 	RBX::Instance Character = Workspace().findFirstChild(g_LocalPlayer.getName());

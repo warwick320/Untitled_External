@@ -192,7 +192,6 @@ std::vector<Roblox::PartInfo> getValidObstaclesForRaycast(const CVector& origin,
 	float rayDistance = (target - origin).magnitude();
 
 	for (const Roblox::PartInfo& partInfo : obstacles) {
-		// OBB ��� �� �˻� (ȸ�� ����)
 		CVector localOrigin = partInfo.cframe.pointToObjectSpace(origin);
 		CVector halfSize = partInfo.size * 0.5f;
 		if (abs(localOrigin.x) <= halfSize.x + 0.5f &&
@@ -243,12 +242,4 @@ std::vector<Roblox::PartInfo> getValidObstaclesForRaycast(const CVector& origin,
 	}
 
 	return validParts;
-}
-
-std::vector<Roblox::PartInfo> getRelevantObstaclesWithSize(const CVector& origin, const CVector& target) {
-	return getValidObstaclesForRaycast(origin, target);
-}
-
-std::vector<Roblox::PartInfo> getRelevantObstaclesWithSize(const Vector3& origin, const Vector3& target) {
-	return getValidObstaclesForRaycast(CVector(origin), CVector(target));
 }

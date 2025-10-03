@@ -7,7 +7,42 @@
 #include <Windows.h>
 #include <cmath>
 #include <algorithm>
+inline ImU32 getRainbowColor(float time, float speed = 1.0f) {
+    float hue = fmodf(time * speed * 60.0f, 360.0f);
+    float saturation = 1.0f;
+    float value = 1.0f;
 
+    float c = value * saturation;
+    float x = c * (1.0f - fabsf(fmodf(hue / 60.0f, 2.0f) - 1.0f));
+    float m = value - c;
+
+    float r, g, b;
+
+    if (hue >= 0 && hue < 60) {
+        r = c; g = x; b = 0;
+    }
+    else if (hue >= 60 && hue < 120) {
+        r = x; g = c; b = 0;
+    }
+    else if (hue >= 120 && hue < 180) {
+        r = 0; g = c; b = x;
+    }
+    else if (hue >= 180 && hue < 240) {
+        r = 0; g = x; b = c;
+    }
+    else if (hue >= 240 && hue < 300) {
+        r = x; g = 0; b = c;
+    }
+    else {
+        r = c; g = 0; b = x;
+    }
+
+    int red = static_cast<int>((r + m) * 255);
+    int green = static_cast<int>((g + m) * 255);
+    int blue = static_cast<int>((b + m) * 255);
+
+    return IM_COL32(red, green, blue, 200);
+}
 inline bool isBodyPart(const std::string& partName) {
 
     if (partName == "Head" || partName == "UpperTorso" || partName == "LowerTorso" ||
@@ -32,7 +67,7 @@ constexpr float MAX_TARGET_DIST = 650.0f;
 
 inline void triggerBot() {
     f32 TRIGGER_FOV = 10.0f;
-    // -- hold �ɼ�
+	// -- hold settings
     //static bool isHolding = false;
     //static DWORD lastClickTime = 0;  
     //constexpr DWORD CLICK_COOLDOWN = 50;  
@@ -207,16 +242,16 @@ inline void triggerBot() {
 
         if (distance3D > 0) {
 
-            std::vector<Roblox::PartInfo> obstacles = getRelevantObstaclesWithSize(
+            std::vector<Roblox::PartInfo> obstacles = getValidObstaclesForRaycast(
                 myPos3D.toVector3(), bestTargetPos3D.toVector3()
             );
 
-            Roblox::RaycastResult result = Roblox::Ray::cast_ray_with_rotation(
+            Roblox::RaycastResult result = Roblox::Ray::raycastRotation(
                 myPos3D, direction, distance3D, obstacles
             );
 
             if (!result.hit) {
-				printf("TriggerBot: Shooting at %s\n", bestTarget->getName().c_str());
+                printf("TriggerBot: Shooting at %s\n", bestTarget->getName().c_str());
                 INPUT input = { 0 };
                 input.type = INPUT_MOUSE;
                 input.mi.dwFlags = MOUSEEVENTF_LEFTDOWN;
@@ -272,7 +307,7 @@ inline void triggerBotThread() {
         }
         sleep_ms(1);
     }
-}   
+}
 inline void pf_Aimbot() {
     POINT mousePos;
     GetCursorPos(&mousePos);
@@ -281,7 +316,13 @@ inline void pf_Aimbot() {
     ImVec2 mouseImGui = ImVec2(mousePos.x - viewportPos.x, mousePos.y - viewportPos.y);
 
     ImDrawList* drawList = ImGui::GetBackgroundDrawList();
-    drawList->AddCircle(mouseImGui, fov_size, IM_COL32(255, 0, 0, 180), 64, 2.0f);
+
+    static auto startTime = std::chrono::steady_clock::now();
+    auto currentTime = std::chrono::steady_clock::now();
+    float timeElapsed = std::chrono::duration<float>(currentTime - startTime).count();
+
+    ImU32 rainbowColor = getRainbowColor(timeElapsed, 1.0f);
+    drawList->AddCircle(mouseImGui, fov_size, rainbowColor, 64, 2.0f);
     if (render->isVisible) return;
     if (!(GetAsyncKeyState(VK_LBUTTON) & 0x8000))
         return;
@@ -399,9 +440,9 @@ inline u64 getKey() {
     if (aimbot_keybind == "←" || aimbot_keybind == "Left") return VK_LEFT;
     if (aimbot_keybind == "→" || aimbot_keybind == "Right") return VK_RIGHT;
 
-     if(aimbot_keybind == "Ctrl") return VK_CONTROL;
-     if(aimbot_keybind == "Shift") return VK_SHIFT;
-     if(aimbot_keybind == "Alt") return VK_MENU;
+    if (aimbot_keybind == "Ctrl") return VK_CONTROL;
+    if (aimbot_keybind == "Shift") return VK_SHIFT;
+    if (aimbot_keybind == "Alt") return VK_MENU;
 
     return VK_LBUTTON;
 }
@@ -475,7 +516,16 @@ inline void aimbotLoop() {
         ImVec2 mouseImGui = ImVec2(mousePos.x - viewportPos.x, mousePos.y - viewportPos.y);
 
         ImDrawList* drawList = ImGui::GetBackgroundDrawList();
-        drawList->AddCircle(mouseImGui, fov_size, IM_COL32(255, 0, 0, 180), 64, 2.0f);
+        static auto startTime = std::chrono::steady_clock::now();
+        auto currentTime = std::chrono::steady_clock::now();
+        float timeElapsed = std::chrono::duration<float>(currentTime - startTime).count();
+        ImU32 rainbowColor = IM_COL32(255, 0, 0, 200);
+        if (g_Rainbow) {
+            rainbowColor = getRainbowColor(timeElapsed, 1.0f);
+        }
+
+        drawList->AddCircle(mouseImGui, fov_size, IM_COL32(0, 0, 0, 200), 64, 4.0f);
+        drawList->AddCircle(mouseImGui, fov_size, rainbowColor, 64, 2.0f);
         if (render->isVisible) return;
         if (!(GetAsyncKeyState(getKey()) & 0x8000))return; // key
 
@@ -560,25 +610,48 @@ inline void aimbotLoop() {
             }
             waitAfterDeath = false;
         }
-
+        
         if (bestTarget2D.x != 0 && bestTarget2D.y != 0) {
+
             float deltaX = bestTarget2D.x - mouseImGui.x;
             float deltaY = bestTarget2D.y - mouseImGui.y;
             float dist = sqrtf(deltaX * deltaX + deltaY * deltaY);
 
+            if (currentTarget) {
+                RBX::ModelInstance targetCharacter = currentTarget->getModelInstance();
+                auto targetHead = targetCharacter.findFirstChild("Head");
+                
+                if (targetHead.getAddress()) {
+                    CVector targetPos3D = CVector(targetHead.getPrimitive().getPartPosition());
+                    CVector direction = targetPos3D - myPos;
+                    float distance3D = direction.magnitude();
 
-            switch (aimbot_type) {
-                case 0: 
-                    moveMouseEased(deltaX, deltaY, dist);
-                    break;
-                case 1: 
-                    moveMouse(deltaX, deltaY, 3.0f);
-                    break;
-                case 2: 
-                    moveMouse(deltaX, deltaY, g_Smooth);
-                    break;
-                default:
-                    break;
+                    if (distance3D > 0) {
+                        std::vector<Roblox::PartInfo> obstacles = getValidObstaclesForRaycast(
+                            myPos.toVector3(), targetPos3D.toVector3()
+                        );
+
+                        Roblox::RaycastResult result = Roblox::Ray::raycastRotation(
+                            myPos, direction, distance3D, obstacles
+                        );
+
+                        if (!result.hit) {
+                            switch (aimbot_type) {
+                            case 0:
+                                moveMouseEased(deltaX, deltaY, dist);
+                                break;
+                            case 1:
+                                moveMouse(deltaX, deltaY, 3.0f);
+                                break;
+                            case 2:
+                                moveMouse(deltaX, deltaY, g_Smooth);
+                                break;
+                            default:
+                                break;
+                            }
+                        }
+                    }
+                }
             }
         }
     }

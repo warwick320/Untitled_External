@@ -44,6 +44,7 @@ inline f32 g_Smooth = 1.0f;
 inline bool toggePF = false;
 inline str aimbot_keybind = "LMB";
 inline i32 aimbot_type = 0;
+inline bool useCornerBox = false;
 inline void debug_print(str text, i32 lev) {
     str log = (lev == 0) ? "[+]" : (lev == 1) ? "[-]" : "[?]";
     std::cout << std::format("{} {}\n", log, text) << std::endl;
@@ -70,3 +71,4 @@ inline u64 VisualEngineOld = 0;
 inline u64 fakeDataModel;
 inline f32 targetSpeed = 16.0f;
 inline f32 jumpPower = 50.0f;
+inline bool g_Rainbow = false;

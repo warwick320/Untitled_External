@@ -193,7 +193,7 @@ std::string GetExeDirectory() {
 bool Render::createImGui() {
     using namespace ImGui;
     CreateContext();
-    
+
 
 
     StyleColorsDark();

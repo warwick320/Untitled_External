@@ -1,4 +1,4 @@
-#include <windows.h>
+癤�#include <windows.h>
 #include <SDK/Cache.h>
 
 #include <Cheats/Players.h>
@@ -12,7 +12,7 @@
 
 RBX::Instance g_Team;
 
-std::unique_ptr<SharedMemoryManager> sharedMem;
+std::unique_ptr<NamedPipeServer> sharedMem;
 
 struct CurlResponse {
     std::string data;
@@ -151,7 +151,7 @@ void inject() {
     }
     debug_print("Connected to Ntdll successfully", 0);
     debug_print("Waiting for roblox", 0);
-
+	debug_print("Build Number 0", 0);
     while (comms->find_process("RobloxPlayerBeta.exe") == 0) sleep_ms(4000);
     printf("[+] PID: %d\n", comms->process_id);
 
@@ -211,8 +211,6 @@ void monitorQMLProcess() {
     }
     
     debug_print("Starting QML process monitor", 0);
-    
-    // QML 프로세스가 종료될 때까지 대기
     DWORD waitResult = WaitForSingleObject(g_qmlProcessHandle, INFINITE);
     
     if (waitResult == WAIT_OBJECT_0) {
@@ -376,26 +374,14 @@ void versionChecker() {
     }
     else {
         ChangeOffsets();
-        
-        // version.cfg 파일 업데이트
-        FILE* writeFile = nullptr;
-        errno_t writeErr = fopen_s(&writeFile, versionFilePath, "w");
-        if (writeErr == 0 && writeFile) {
-            fprintf(writeFile, "%s", CurrentVersion.c_str());
-            fclose(writeFile);
-            debug_print("Successfully updated version.cfg file", 0);
-        }
-        else {
-            debug_print("Failed to update version.cfg file", 1);
-        }
+       
     }
 }
 
 auto main(int argc, char** argv) -> int {
     versionChecker();
     inject();
-
-    sharedMem = std::make_unique<SharedMemoryManager>();
+    sharedMem = std::make_unique<NamedPipeServer>();
     if (sharedMem->Initialize()) {
         debug_print("Ready for UI communication", 0);
         sharedMem->PrintDebugInfo();
@@ -418,6 +404,7 @@ auto main(int argc, char** argv) -> int {
     bool firstTime = false;
 
     while (render->isRunning) {
+        //Fly();
         if (!firstTime) {
             firstTime = true;
             MemShared = true;
@@ -427,7 +414,6 @@ auto main(int argc, char** argv) -> int {
 
         if (!runningThread) {
             debug_print("Restart signal received - Terminating all threads", 0);
-
 
             MemShared = false;
             render->isRunning = false;

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include <d3d11.h>
 #include <dxgi.h>
@@ -24,7 +24,7 @@ private:
 	void destroyDevice();
 	void destroyWindow();
 	void destoryImGui();
-	bool lastDeleteKeyState = false; // �߰�
+	bool lastDeleteKeyState = false; // Ãß°¡
 public:
 	Render() = default;
 	~Render();

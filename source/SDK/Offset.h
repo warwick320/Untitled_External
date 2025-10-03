@@ -8,9 +8,9 @@ namespace Offsets {
     inline u64 Dimensions = 0x720;
     inline u64 ViewMatrix = 0x4B0;
 
-    inline u64 FakeDataModel = 0x7168648;
+    inline u64 FakeDataModel = 0x71CBE48;
     inline u64 RealDataModel = 0x1C0; // FDMTDM
-    inline u64 VisualEngine = 0x6EC49B0;
+    inline u64 VisualEngine = 0x6F31EF0;
 
     inline u64 LocalPlayer = 0x128;
     inline u64 ModelInstance = 0x348;

@@ -1,12 +1,16 @@
 ﻿#pragma once
 #include "SharedData.h"
+#include <windows.h>
 #include <iostream>
-#include <string>
+#include <thread>
+#include <atomic>
 
-class SharedMemoryManager {
+class NamedPipeServer {
 private:
-    HANDLE hMapFile;
-    SharedData* pSharedData;
+    HANDLE hPipe;
+    SharedData currentData;
+    std::thread serverThread;
+    std::atomic<bool> isRunning;
 
     bool prev_aimbot_enabled;
     int prev_aimbot_type;
@@ -17,284 +21,377 @@ private:
     bool prev_esp_show_distance;
     bool prev_esp_show_tracer;
     bool prev_esp_chams;
-    bool isFirstUpdate;
     bool prev_triggerbot;
     float prev_fov_size;
     float prev_smooth;
     float prev_jumpPower;
     float prev_targetSpeed;
     std::string prev_aimbot_keybind;
+    bool prev_useCornerBox;
+    bool prev_g_Rainbow;
+    bool isFirstUpdate;
 
 public:
-    SharedMemoryManager() : hMapFile(nullptr), pSharedData(nullptr),
-        prev_aimbot_enabled(false), prev_aimbot_type(0), prev_esp_enabled(false),
-        prev_esp_show_names(false), prev_esp_show_box(false),
-        prev_esp_show_bones(false), prev_esp_show_distance(false),
-        prev_esp_show_tracer(false), prev_esp_chams(false),
-        prev_fov_size(150.0f), prev_smooth(1.0f), prev_jumpPower(50.0f), prev_targetSpeed(16.0f),
-        prev_triggerbot(false), prev_aimbot_keybind("LMB"), isFirstUpdate(true) {
+    NamedPipeServer() :
+        hPipe(INVALID_HANDLE_VALUE),
+        isRunning(false),
+        prev_aimbot_enabled(false),
+        prev_aimbot_type(0),
+        prev_esp_enabled(false),
+        prev_esp_show_names(false),
+        prev_esp_show_box(false),
+        prev_esp_show_bones(false),
+        prev_esp_show_distance(false),
+        prev_esp_show_tracer(false),
+        prev_esp_chams(false),
+        prev_fov_size(150.0f),
+        prev_smooth(1.0f),
+        prev_jumpPower(50.0f),
+        prev_targetSpeed(16.0f),
+        prev_triggerbot(false),
+        prev_aimbot_keybind("LMB"),
+        prev_useCornerBox(false),
+        prev_g_Rainbow(false),
+        isFirstUpdate(true)
+    {
+        memset(&currentData, 0, sizeof(SharedData));
+
+        // 기본값 설정
+        currentData.aimbot_enabled = 0;
+        currentData.aimbot_type = 0;
+        currentData.esp_enabled = 0;
+        currentData.fov_size = 150.0f;
+        currentData.smooth = 1.0f;
+        currentData.jumpPower = 50.0f;
+        currentData.targetSpeed = 16.0f;
+        currentData.triggerbot = 0;
+        currentData.useCornerBox = 0;
+        currentData.g_Rainbow = 0;
+        strcpy_s(currentData.aimbot_keybind, sizeof(currentData.aimbot_keybind), "LMB");
     }
 
     bool Initialize() {
-        hMapFile = CreateFileMapping(
-            INVALID_HANDLE_VALUE,
-            NULL,
-            PAGE_READWRITE,
-            0,
-            sizeof(SharedData),
-            "RobloxExternalSharedMemory"
-        );
+        std::cout << "[PIPE] Initializing Named Pipe Server..." << std::endl;
 
-        if (hMapFile == NULL) {
-            debug_print("Failed to create shared memory", 1);
-            return false;
-        }
+        isRunning = true;
+        serverThread = std::thread(&NamedPipeServer::ServerLoop, this);
 
-        pSharedData = (SharedData*)MapViewOfFile(
-            hMapFile,
-            FILE_MAP_ALL_ACCESS,
-            0, 0,
-            sizeof(SharedData)
-        );
-
-        if (pSharedData == NULL) {
-            debug_print("Failed to map view of shared memory", 1);
-            CloseHandle(hMapFile);
-            return false;
-        }
-
-        memset(pSharedData, 0, sizeof(SharedData));
-        pSharedData->aimbot_enabled = 0;
-        pSharedData->aimbot_type = 0;
-        pSharedData->esp_enabled = 0;
-        pSharedData->fov_size = 150.0f;
-        pSharedData->smooth = 1.0f;
-        pSharedData->jumpPower = 50.0f;
-        pSharedData->targetSpeed = 16.0f;
-        pSharedData->triggerbot = 0;
-
-        strcpy_s(pSharedData->aimbot_keybind, sizeof(pSharedData->aimbot_keybind), "LMB");
-
-        debug_print("Shared memory initialized successfully", 0);
+        std::cout << "[PIPE] Server initialized successfully" << std::endl;
         return true;
     }
 
-    void UpdateToShared() {
-        if (!pSharedData) return;
+    void ServerLoop() {
+        while (isRunning) {
+            // Named Pipe
+            hPipe = CreateNamedPipe(
+                TEXT("\\\\.\\pipe\\RobloxExternalPipe"),
+                PIPE_ACCESS_DUPLEX,
+                PIPE_TYPE_MESSAGE | PIPE_READMODE_MESSAGE | PIPE_WAIT,
+                1,  // 최대 인스턴스 수
+                sizeof(SharedData),  // 출력 버퍼 크기
+                sizeof(SharedData),  // 입력 버퍼 크기
+                0,
+                NULL
+            );
 
-        pSharedData->aimbot_enabled = Aimbot_Enabled;
-        pSharedData->esp_enabled = Esp_Enabled;
-        pSharedData->esp_show_names = esp_show_names;
-        pSharedData->esp_show_box = esp_show_box;
-        pSharedData->esp_show_bones = esp_show_bones;
-        pSharedData->esp_show_distance = esp_show_distance;
-        pSharedData->esp_show_tracer = esp_show_tracer;
-        pSharedData->esp_chams = esp_chams;
-        pSharedData->fov_size = fov_size;
-        pSharedData->smooth = g_Smooth; 
-        pSharedData->triggerbot = triggerbot;
-        pSharedData->targetSpeed = targetSpeed;
-        pSharedData->jumpPower = jumpPower;
+            if (hPipe == INVALID_HANDLE_VALUE) {
+                std::cout << "[ERROR] Failed to create named pipe: " << GetLastError() << std::endl;
+                Sleep(1000);
+                continue;
+            }
 
-        if (aimbot_keybind != pSharedData->aimbot_keybind) {
-            strcpy_s(pSharedData->aimbot_keybind, sizeof(pSharedData->aimbot_keybind), aimbot_keybind.c_str());
+            std::cout << "[PIPE] Waiting for client connection..." << std::endl;
+
+            BOOL connected = ConnectNamedPipe(hPipe, NULL) ? TRUE : (GetLastError() == ERROR_PIPE_CONNECTED);
+
+            if (connected) {
+                std::cout << "[PIPE] Client connected!" << std::endl;
+                HandleClient();
+            }
+            else {
+                std::cout << "[ERROR] Failed to connect client: " << GetLastError() << std::endl;
+            }
+
+            CloseHandle(hPipe);
+            hPipe = INVALID_HANDLE_VALUE;
         }
-
-        pSharedData->last_update = GetTickCount64();
-        pSharedData->process_running = true;
     }
 
-    void ReadFromShared() {
-        if (!pSharedData) {
-            std::cout << "[ERROR] pSharedData is null!" << std::endl;
-            return;
+    void HandleClient() {
+        while (isRunning) {
+            SharedData receivedData;
+            DWORD bytesRead = 0;
+
+            BOOL success = ReadFile(
+                hPipe,
+                &receivedData,
+                sizeof(SharedData),
+                &bytesRead,
+                NULL
+            );
+
+            if (!success || bytesRead == 0) {
+                if (GetLastError() == ERROR_BROKEN_PIPE) {
+                    std::cout << "[PIPE] Client disconnected" << std::endl;
+                }
+                else {
+                    std::cout << "[ERROR] ReadFile failed: " << GetLastError() << std::endl;
+                }
+                break;
+            }
+
+            if (bytesRead == sizeof(SharedData)) {
+                ProcessReceivedData(receivedData);
+            }
+
+            UpdateToShared();
+            SendDataToClient();
+
+            Sleep(16);
         }
-
-        static int debugCounter = 0;
-        debugCounter++;
-
-        Aimbot_Enabled = pSharedData->aimbot_enabled;
-        aimbot_type = pSharedData->aimbot_type;
-        Esp_Enabled = pSharedData->esp_enabled;
-        esp_show_names = pSharedData->esp_show_names;
-        esp_show_box = pSharedData->esp_show_box;
-        esp_show_bones = pSharedData->esp_show_bones;
-        esp_show_distance = pSharedData->esp_show_distance;
-        esp_show_tracer = pSharedData->esp_show_tracer;
-        esp_chams = pSharedData->esp_chams;
-        fov_size = pSharedData->fov_size;
-        g_Smooth = pSharedData->smooth; 
-        jumpPower = pSharedData->jumpPower;
-        targetSpeed = pSharedData->targetSpeed;
-        triggerbot = pSharedData->triggerbot;
-
-        aimbot_keybind = std::string(pSharedData->aimbot_keybind);
     }
 
-    void CheckAndUpdateChanges() {
-        if (!pSharedData) return;
-
+    void ProcessReceivedData(const SharedData& data) {
         bool hasChanges = false;
 
-        if (prev_aimbot_enabled != pSharedData->aimbot_enabled) {
-            std::cout << "[SHARED] Aimbot: " << (pSharedData->aimbot_enabled ? "ENABLED" : "DISABLED")
+        if (prev_aimbot_enabled != data.aimbot_enabled) {
+            std::cout << "[PIPE] Aimbot: " << (data.aimbot_enabled ? "ENABLED" : "DISABLED")
                 << " (UI -> External)" << std::endl;
-            prev_aimbot_enabled = pSharedData->aimbot_enabled;
+            prev_aimbot_enabled = data.aimbot_enabled;
+            Aimbot_Enabled = data.aimbot_enabled;
             hasChanges = true;
         }
 
-        if (prev_aimbot_type != pSharedData->aimbot_type) {
-            std::cout << "[SHARED] Aimbot Type: " << (int)pSharedData->aimbot_type
+        if (prev_aimbot_type != data.aimbot_type) {
+            std::cout << "[PIPE] Aimbot Type: " << (int)data.aimbot_type
                 << " (UI -> External)" << std::endl;
-            prev_aimbot_type = pSharedData->aimbot_type;
+            prev_aimbot_type = data.aimbot_type;
+            aimbot_type = data.aimbot_type;
             hasChanges = true;
         }
 
-        if (prev_esp_enabled != pSharedData->esp_enabled) {
-            std::cout << "[SHARED] ESP: " << (pSharedData->esp_enabled ? "ENABLED" : "DISABLED")
+        if (prev_esp_enabled != data.esp_enabled) {
+            std::cout << "[PIPE] ESP: " << (data.esp_enabled ? "ENABLED" : "DISABLED")
                 << " (UI -> External)" << std::endl;
-            prev_esp_enabled = pSharedData->esp_enabled;
+            prev_esp_enabled = data.esp_enabled;
+            Esp_Enabled = data.esp_enabled;
             hasChanges = true;
         }
 
-        if (prev_esp_show_names != pSharedData->esp_show_names) {
-            std::cout << "[SHARED] ESP Names: " << (pSharedData->esp_show_names ? "ON" : "OFF")
-                << " (UI -> External)" << std::endl;
-            prev_esp_show_names = pSharedData->esp_show_names;
+        if (prev_esp_show_names != data.esp_show_names) {
+            std::cout << "[PIPE] ESP Names: " << (data.esp_show_names ? "ON" : "OFF") << std::endl;
+            prev_esp_show_names = data.esp_show_names;
+            esp_show_names = data.esp_show_names;
             hasChanges = true;
         }
 
-        if (prev_esp_show_box != pSharedData->esp_show_box) {
-            std::cout << "[SHARED] ESP Box: " << (pSharedData->esp_show_box ? "ON" : "OFF")
-                << " (UI -> External)" << std::endl;
-            prev_esp_show_box = pSharedData->esp_show_box;
+        if (prev_esp_show_box != data.esp_show_box) {
+            std::cout << "[PIPE] ESP Box: " << (data.esp_show_box ? "ON" : "OFF") << std::endl;
+            prev_esp_show_box = data.esp_show_box;
+            esp_show_box = data.esp_show_box;
             hasChanges = true;
         }
 
-        if (prev_esp_show_bones != pSharedData->esp_show_bones) {
-            std::cout << "[SHARED] ESP Bones: " << (pSharedData->esp_show_bones ? "ON" : "OFF")
-                << " (UI -> External)" << std::endl;
-            prev_esp_show_bones = pSharedData->esp_show_bones;
+        if (prev_esp_show_bones != data.esp_show_bones) {
+            std::cout << "[PIPE] ESP Bones: " << (data.esp_show_bones ? "ON" : "OFF") << std::endl;
+            prev_esp_show_bones = data.esp_show_bones;
+            esp_show_bones = data.esp_show_bones;
             hasChanges = true;
         }
 
-        if (prev_esp_show_distance != pSharedData->esp_show_distance) {
-            std::cout << "[SHARED] ESP Distance: " << (pSharedData->esp_show_distance ? "ON" : "OFF")
-                << " (UI -> External)" << std::endl;
-            prev_esp_show_distance = pSharedData->esp_show_distance;
+        if (prev_esp_show_distance != data.esp_show_distance) {
+            std::cout << "[PIPE] ESP Distance: " << (data.esp_show_distance ? "ON" : "OFF") << std::endl;
+            prev_esp_show_distance = data.esp_show_distance;
+            esp_show_distance = data.esp_show_distance;
             hasChanges = true;
         }
 
-        if (prev_esp_show_tracer != pSharedData->esp_show_tracer) {
-            std::cout << "[SHARED] ESP Tracer: " << (pSharedData->esp_show_tracer ? "ON" : "OFF")
-                << " (UI -> External)" << std::endl;
-            prev_esp_show_tracer = pSharedData->esp_show_tracer;
+        if (prev_esp_show_tracer != data.esp_show_tracer) {
+            std::cout << "[PIPE] ESP Tracer: " << (data.esp_show_tracer ? "ON" : "OFF") << std::endl;
+            prev_esp_show_tracer = data.esp_show_tracer;
+            esp_show_tracer = data.esp_show_tracer;
             hasChanges = true;
         }
 
-        if (abs(prev_fov_size - pSharedData->fov_size) > 0.01f) {
-            std::cout << "[SHARED] FOV Size: " << pSharedData->fov_size
-                << " (UI -> External)" << std::endl;
-            prev_fov_size = pSharedData->fov_size;
+        if (prev_esp_chams != data.esp_chams) {
+            std::cout << "[PIPE] ESP Chams: " << (data.esp_chams ? "ON" : "OFF") << std::endl;
+            prev_esp_chams = data.esp_chams;
+            esp_chams = data.esp_chams;
             hasChanges = true;
         }
 
-
-        if (abs(prev_smooth - pSharedData->smooth) > 0.01f) {
-            std::cout << "[SHARED] Smooth: " << pSharedData->smooth
-                << " (UI -> External)" << std::endl;
-            prev_smooth = pSharedData->smooth;
+        if (prev_triggerbot != data.triggerbot) {
+            std::cout << "[PIPE] Triggerbot: " << (data.triggerbot ? "ENABLED" : "DISABLED") << std::endl;
+            prev_triggerbot = data.triggerbot;
+            triggerbot = data.triggerbot;
             hasChanges = true;
         }
 
-        if (abs(prev_targetSpeed - pSharedData->targetSpeed) > 0.01f) {
-            std::cout << "[SHARED] Target Speed: " << pSharedData->targetSpeed
-                << " (UI -> External)" << std::endl;
-            prev_targetSpeed = pSharedData->targetSpeed;
+        if (abs(prev_fov_size - data.fov_size) > 0.01f) {
+            std::cout << "[PIPE] FOV Size: " << data.fov_size << std::endl;
+            prev_fov_size = data.fov_size;
+            fov_size = data.fov_size;
             hasChanges = true;
         }
 
-        if (abs(prev_jumpPower - pSharedData->jumpPower) > 0.01f) {
-            std::cout << "[SHARED] Jump Power: " << pSharedData->jumpPower
-                << " (UI -> External)" << std::endl;
-            prev_jumpPower = pSharedData->jumpPower;
+        if (abs(prev_smooth - data.smooth) > 0.01f) {
+            std::cout << "[PIPE] Smooth: " << data.smooth << std::endl;
+            prev_smooth = data.smooth;
+            g_Smooth = data.smooth;
             hasChanges = true;
         }
 
-        std::string current_keybind = std::string(pSharedData->aimbot_keybind);
+        if (abs(prev_targetSpeed - data.targetSpeed) > 0.01f) {
+            std::cout << "[PIPE] Target Speed: " << data.targetSpeed << std::endl;
+            prev_targetSpeed = data.targetSpeed;
+            targetSpeed = data.targetSpeed;
+            hasChanges = true;
+        }
+
+        if (abs(prev_jumpPower - data.jumpPower) > 0.01f) {
+            std::cout << "[PIPE] Jump Power: " << data.jumpPower << std::endl;
+            prev_jumpPower = data.jumpPower;
+            jumpPower = data.jumpPower;
+            hasChanges = true;
+        }
+
+        if (prev_useCornerBox != data.useCornerBox) {
+            std::cout << "[PIPE] Use Corner Box: " << (data.useCornerBox ? "ON" : "OFF") << std::endl;
+            prev_useCornerBox = data.useCornerBox;
+            useCornerBox = data.useCornerBox;
+            hasChanges = true;
+        }
+
+        if (prev_g_Rainbow != data.g_Rainbow) {
+            std::cout << "[PIPE] Rainbow: " << (data.g_Rainbow ? "ON" : "OFF") << std::endl;
+            prev_g_Rainbow = data.g_Rainbow;
+            g_Rainbow = data.g_Rainbow;
+            hasChanges = true;
+        }
+
+        std::string current_keybind = std::string(data.aimbot_keybind);
         if (prev_aimbot_keybind != current_keybind) {
-            std::cout << "[SHARED] Aimbot Keybind: '" << current_keybind
-                << "' (UI -> External)" << std::endl;
+            std::cout << "[PIPE] Aimbot Keybind: '" << current_keybind << "'" << std::endl;
             prev_aimbot_keybind = current_keybind;
+            aimbot_keybind = current_keybind;
             hasChanges = true;
         }
 
         if (hasChanges) {
+            currentData = data;
             PrintCurrentStatus();
         }
 
         isFirstUpdate = false;
     }
 
-    void PrintCurrentStatus() {
-        if (!pSharedData) return;
+    void UpdateToShared() {
+        currentData.aimbot_enabled = Aimbot_Enabled;
+        currentData.esp_enabled = Esp_Enabled;
+        currentData.esp_show_names = esp_show_names;
+        currentData.esp_show_box = esp_show_box;
+        currentData.esp_show_bones = esp_show_bones;
+        currentData.esp_show_distance = esp_show_distance;
+        currentData.esp_show_tracer = esp_show_tracer;
+        currentData.esp_chams = esp_chams;
+        currentData.fov_size = fov_size;
+        currentData.smooth = g_Smooth;
+        currentData.triggerbot = triggerbot;
+        currentData.targetSpeed = targetSpeed;
+        currentData.jumpPower = jumpPower;
+        currentData.useCornerBox = useCornerBox;
+        currentData.g_Rainbow = g_Rainbow;
 
-        std::cout << "[STATUS] Current Settings:" << std::endl;
-        std::cout << "  ├─ Aimbot: " << (pSharedData->aimbot_enabled ? "✓ ENABLED" : "✗ DISABLED") << std::endl;
-        std::cout << "  │  ├─ Type: " << (int)pSharedData->aimbot_type << std::endl;
-        std::cout << "  │  └─ Keybind: '" << pSharedData->aimbot_keybind << "'" << std::endl;
-        std::cout << "  ├─ ESP: " << (pSharedData->esp_enabled ? "✓ ENABLED" : "✗ DISABLED") << std::endl;
-
-        if (pSharedData->esp_enabled) {
-            std::cout << "  │  ├─ Names: " << (pSharedData->esp_show_names ? "✓ ON" : "✗ OFF") << std::endl;
-            std::cout << "  │  ├─ Box: " << (pSharedData->esp_show_box ? "✓ ON" : "✗ OFF") << std::endl;
-            std::cout << "  │  ├─ Bones: " << (pSharedData->esp_show_bones ? "✓ ON" : "✗ OFF") << std::endl;
-            std::cout << "  │  ├─ Tracer: " << (pSharedData->esp_show_tracer ? "✓ ON" : "✗ OFF") << std::endl;
-            std::cout << "  │  └─ Distance: " << (pSharedData->esp_show_distance ? "✓ ON" : "✗ OFF") << std::endl;
+        if (aimbot_keybind != currentData.aimbot_keybind) {
+            strcpy_s(currentData.aimbot_keybind, sizeof(currentData.aimbot_keybind), aimbot_keybind.c_str());
         }
 
-        std::cout << "  ├─ Triggerbot: " << (pSharedData->triggerbot ? "✓ ENABLED" : "✗ DISABLED") << std::endl;
-        std::cout << "  ├─ FOV Size: " << pSharedData->fov_size << std::endl;
-        std::cout << "  ├─ Smooth: " << pSharedData->smooth << std::endl;  // 추가
-        std::cout << "  ├─ Target Speed: " << pSharedData->targetSpeed << std::endl;
-        std::cout << "  ├─ Jump Power: " << pSharedData->jumpPower << std::endl;
-        std::cout << "  └─ Last Update: " << pSharedData->last_update << std::endl;
+        currentData.last_update = GetTickCount64();
+        currentData.process_running = true;
+    }
+
+    void SendDataToClient() {
+        if (hPipe == INVALID_HANDLE_VALUE) return;
+
+        DWORD bytesWritten = 0;
+        BOOL success = WriteFile(
+            hPipe,
+            &currentData,
+            sizeof(SharedData),
+            &bytesWritten,
+            NULL
+        );
+
+        if (!success || bytesWritten != sizeof(SharedData)) {
+			//write failed
+        }
+    }
+
+    void ReadFromShared() {
+        // None 
+    }
+
+    void CheckAndUpdateChanges() {
+        //auto 
+    }
+
+    void PrintCurrentStatus() {
+        std::cout << "[STATUS] Current Settings:" << std::endl;
+        std::cout << "  ├─ Aimbot: " << (currentData.aimbot_enabled ? "✓ ENABLED" : "✗ DISABLED") << std::endl;
+        std::cout << "  │  ├─ Type: " << (int)currentData.aimbot_type << std::endl;
+        std::cout << "  │  └─ Keybind: '" << currentData.aimbot_keybind << "'" << std::endl;
+        std::cout << "  ├─ ESP: " << (currentData.esp_enabled ? "✓ ENABLED" : "✗ DISABLED") << std::endl;
+
+        if (currentData.esp_enabled) {
+            std::cout << "  │  ├─ Names: " << (currentData.esp_show_names ? "✓ ON" : "✗ OFF") << std::endl;
+            std::cout << "  │  ├─ Box: " << (currentData.esp_show_box ? "✓ ON" : "✗ OFF") << std::endl;
+            std::cout << "  │  ├─ Corner Box: " << (currentData.useCornerBox ? "✓ ON" : "✗ OFF") << std::endl;
+            std::cout << "  │  ├─ Bones: " << (currentData.esp_show_bones ? "✓ ON" : "✗ OFF") << std::endl;
+            std::cout << "  │  ├─ Tracer: " << (currentData.esp_show_tracer ? "✓ ON" : "✗ OFF") << std::endl;
+            std::cout << "  │  ├─ Distance: " << (currentData.esp_show_distance ? "✓ ON" : "✗ OFF") << std::endl;
+            std::cout << "  │  └─ Rainbow: " << (currentData.g_Rainbow ? "✓ ON" : "✗ OFF") << std::endl;
+        }
+
+        std::cout << "  ├─ Triggerbot: " << (currentData.triggerbot ? "✓ ENABLED" : "✗ DISABLED") << std::endl;
+        std::cout << "  ├─ FOV Size: " << currentData.fov_size << std::endl;
+        std::cout << "  ├─ Smooth: " << currentData.smooth << std::endl;
+        std::cout << "  ├─ Target Speed: " << currentData.targetSpeed << std::endl;
+        std::cout << "  ├─ Jump Power: " << currentData.jumpPower << std::endl;
+        std::cout << "  └─ Last Update: " << currentData.last_update << std::endl;
         std::cout << std::endl;
     }
 
     std::string GetAimbotKeybind() {
-        if (!pSharedData) return "LMB";
-        return std::string(pSharedData->aimbot_keybind);
+        return std::string(currentData.aimbot_keybind);
     }
 
     bool IsUIConnected() {
-        if (!pSharedData) return false;
         ULONGLONG currentTime = GetTickCount64();
-        return (currentTime - pSharedData->last_update) < 5000;
+        return (hPipe != INVALID_HANDLE_VALUE) && ((currentTime - currentData.last_update) < 5000);
     }
 
     void PrintDebugInfo() {
-        if (!pSharedData) {
-            std::cout << "[DEBUG] Shared memory not initialized" << std::endl;
-            return;
-        }
-
-        std::cout << "[DEBUG] Shared Memory Info:" << std::endl;
-        std::cout << "  ├─ Memory Address: 0x" << std::hex << (uintptr_t)pSharedData << std::dec << std::endl;
+        std::cout << "[DEBUG] Named Pipe Server Info:" << std::endl;
+        std::cout << "  ├─ Pipe Handle: " << (hPipe != INVALID_HANDLE_VALUE ? "Valid" : "Invalid") << std::endl;
         std::cout << "  ├─ Structure Size: " << sizeof(SharedData) << " bytes" << std::endl;
-        std::cout << "  ├─ Process Running: " << (pSharedData->process_running ? "Yes" : "No") << std::endl;
+        std::cout << "  ├─ Process Running: " << (currentData.process_running ? "Yes" : "No") << std::endl;
         std::cout << "  ├─ UI Connected: " << (IsUIConnected() ? "Yes" : "No") << std::endl;
-        std::cout << "  ├─ Aimbot Keybind: '" << pSharedData->aimbot_keybind << "'" << std::endl;
-        std::cout << "  └─ Last Update: " << pSharedData->last_update << std::endl;
+        std::cout << "  ├─ Aimbot Keybind: '" << currentData.aimbot_keybind << "'" << std::endl;
+        std::cout << "  └─ Last Update: " << currentData.last_update << std::endl;
     }
 
-    ~SharedMemoryManager() {
-        if (pSharedData) {
-            pSharedData->process_running = false;
-            UnmapViewOfFile(pSharedData);
+    ~NamedPipeServer() {
+        isRunning = false;
+
+        if (hPipe != INVALID_HANDLE_VALUE) {
+            CloseHandle(hPipe);
+            hPipe = INVALID_HANDLE_VALUE;
         }
-        if (hMapFile) {
-            CloseHandle(hMapFile);
+
+        if (serverThread.joinable()) {
+            serverThread.join();
         }
+
+        std::cout << "[PIPE] Server shut down" << std::endl;
     }
 };

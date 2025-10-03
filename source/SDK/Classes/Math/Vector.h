@@ -10,7 +10,7 @@ struct Vector2 final
 
 struct Vector3 final
 {
-    float x{ 0 }, y{ 0 }, z{ 0 };
+    f32 x{ 0 }, y{ 0 }, z{ 0 };
 
     Vector3 operator+(const Vector3& other) const { return { x + other.x, y + other.y, z + other.z };}
     Vector3 operator-(const Vector3& other) const { return { x - other.x, y - other.y, z - other.z };}
