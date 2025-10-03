@@ -29,6 +29,7 @@ private:
     std::string prev_aimbot_keybind;
     bool prev_useCornerBox;
     bool prev_g_Rainbow;
+    bool prev_RaycastAim;
     bool isFirstUpdate;
 
 public:
@@ -52,6 +53,7 @@ public:
         prev_aimbot_keybind("LMB"),
         prev_useCornerBox(false),
         prev_g_Rainbow(false),
+        prev_RaycastAim(false),
         isFirstUpdate(true)
     {
         memset(&currentData, 0, sizeof(SharedData));
@@ -67,6 +69,7 @@ public:
         currentData.triggerbot = 0;
         currentData.useCornerBox = 0;
         currentData.g_Rainbow = 0;
+        currentData.RaycastAim = 0;
         strcpy_s(currentData.aimbot_keybind, sizeof(currentData.aimbot_keybind), "LMB");
     }
 
@@ -153,6 +156,9 @@ public:
 
     void ProcessReceivedData(const SharedData& data) {
         bool hasChanges = false;
+
+        // RaycastAim 수신 데이터 디버그
+        std::cout << "[DEBUG] Received RaycastAim raw value: " << static_cast<int>(data.RaycastAim) << std::endl;
 
         if (prev_aimbot_enabled != data.aimbot_enabled) {
             std::cout << "[PIPE] Aimbot: " << (data.aimbot_enabled ? "ENABLED" : "DISABLED")
@@ -269,6 +275,13 @@ public:
             hasChanges = true;
         }
 
+        if (prev_RaycastAim != data.RaycastAim) {
+            std::cout << "[PIPE] Raycast Aim: " << (data.RaycastAim ? "ENABLED" : "DISABLED") << std::endl;
+            prev_RaycastAim = data.RaycastAim;
+            RaycastAim = data.RaycastAim;
+            hasChanges = true;
+        }
+
         std::string current_keybind = std::string(data.aimbot_keybind);
         if (prev_aimbot_keybind != current_keybind) {
             std::cout << "[PIPE] Aimbot Keybind: '" << current_keybind << "'" << std::endl;
@@ -277,8 +290,26 @@ public:
             hasChanges = true;
         }
 
+        currentData.aimbot_enabled = Aimbot_Enabled;
+        currentData.aimbot_type = aimbot_type;
+        currentData.esp_enabled = Esp_Enabled;
+        currentData.esp_show_names = esp_show_names;
+        currentData.esp_show_box = esp_show_box;
+        currentData.esp_show_bones = esp_show_bones;
+        currentData.esp_show_distance = esp_show_distance;
+        currentData.esp_show_tracer = esp_show_tracer;
+        currentData.esp_chams = esp_chams;
+        currentData.triggerbot = triggerbot;
+        currentData.fov_size = fov_size;
+        currentData.smooth = g_Smooth;
+        currentData.targetSpeed = targetSpeed;
+        currentData.jumpPower = jumpPower;
+        currentData.useCornerBox = useCornerBox;
+        currentData.g_Rainbow = g_Rainbow;
+        currentData.RaycastAim = RaycastAim;
+        strcpy_s(currentData.aimbot_keybind, sizeof(currentData.aimbot_keybind), aimbot_keybind.c_str());
+
         if (hasChanges) {
-            currentData = data;
             PrintCurrentStatus();
         }
 
@@ -301,6 +332,7 @@ public:
         currentData.jumpPower = jumpPower;
         currentData.useCornerBox = useCornerBox;
         currentData.g_Rainbow = g_Rainbow;
+        currentData.RaycastAim = RaycastAim;
 
         if (aimbot_keybind != currentData.aimbot_keybind) {
             strcpy_s(currentData.aimbot_keybind, sizeof(currentData.aimbot_keybind), aimbot_keybind.c_str());
@@ -323,7 +355,7 @@ public:
         );
 
         if (!success || bytesWritten != sizeof(SharedData)) {
-			//write failed
+            //write failed
         }
     }
 
@@ -339,7 +371,8 @@ public:
         std::cout << "[STATUS] Current Settings:" << std::endl;
         std::cout << "  ├─ Aimbot: " << (currentData.aimbot_enabled ? "✓ ENABLED" : "✗ DISABLED") << std::endl;
         std::cout << "  │  ├─ Type: " << (int)currentData.aimbot_type << std::endl;
-        std::cout << "  │  └─ Keybind: '" << currentData.aimbot_keybind << "'" << std::endl;
+        std::cout << "  │  ├─ Keybind: '" << currentData.aimbot_keybind << "'" << std::endl;
+        std::cout << "  │  └─ Raycast Aim: " << (currentData.RaycastAim ? "✓ ON" : "✗ OFF") << std::endl;
         std::cout << "  ├─ ESP: " << (currentData.esp_enabled ? "✓ ENABLED" : "✗ DISABLED") << std::endl;
 
         if (currentData.esp_enabled) {

@@ -143,6 +143,7 @@ void ChangeOffsets() {
     curl_global_cleanup();
 }
 void inject() {
+    printf("Sizeof Data %d \n", sizeof(SharedData));
     debug_print("injecting", 0);
     if (!comms->is_connected()) {
         debug_print("Failed connect to Ntdll", 1);

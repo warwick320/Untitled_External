@@ -3,7 +3,7 @@
 C:\Users\warwick\source\repos\Untitled_External\source\global.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\Untitled_External\source\global.h(60,61): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\warwick\source\repos\Untitled_External\source\global.h(61,61): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
 C:\Users\warwick\source\repos\Untitled_External\source\Cheats\Aimbot.h(351,21): warning C4244: '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
@@ -33,103 +33,116 @@ C:\Users\warwick\source\repos\Untitled_External\source\Cheats\Visuals.h(250,18):
 C:\Users\warwick\source\repos\Untitled_External\source\Cheats\Visuals.h(762,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(346,75): warning C4566: 유니버설 문자 이름 '\u2713'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(376,75): warning C4566: 유니버설 문자 이름 '\u2713'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(346,91): warning C4566: 유니버설 문자 이름 '\u2717'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(376,91): warning C4566: 유니버설 문자 이름 '\u2717'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(349,69): warning C4566: 유니버설 문자 이름 '\u2713'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(379,81): warning C4566: 유니버설 문자 이름 '\u2713'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(349,85): warning C4566: 유니버설 문자 이름 '\u2717'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(379,92): warning C4566: 유니버설 문자 이름 '\u2717'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(352,83): warning C4566: 유니버설 문자 이름 '\u2713'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(380,69): warning C4566: 유니버설 문자 이름 '\u2713'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(352,94): warning C4566: 유니버설 문자 이름 '\u2717'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(380,85): warning C4566: 유니버설 문자 이름 '\u2717'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(353,79): warning C4566: 유니버설 문자 이름 '\u2713'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(383,83): warning C4566: 유니버설 문자 이름 '\u2713'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(353,90): warning C4566: 유니버설 문자 이름 '\u2717'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(383,94): warning C4566: 유니버설 문자 이름 '\u2717'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(354,86): warning C4566: 유니버설 문자 이름 '\u2713'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(384,79): warning C4566: 유니버설 문자 이름 '\u2713'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(354,97): warning C4566: 유니버설 문자 이름 '\u2717'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(384,90): warning C4566: 유니버설 문자 이름 '\u2717'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(355,83): warning C4566: 유니버설 문자 이름 '\u2713'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(385,86): warning C4566: 유니버설 문자 이름 '\u2713'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(355,94): warning C4566: 유니버설 문자 이름 '\u2717'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(385,97): warning C4566: 유니버설 문자 이름 '\u2717'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(356,85): warning C4566: 유니버설 문자 이름 '\u2713'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(386,83): warning C4566: 유니버설 문자 이름 '\u2713'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(356,96): warning C4566: 유니버설 문자 이름 '\u2717'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(386,94): warning C4566: 유니버설 문자 이름 '\u2717'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(357,89): warning C4566: 유니버설 문자 이름 '\u2713'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(387,85): warning C4566: 유니버설 문자 이름 '\u2713'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(357,100): warning C4566: 유니버설 문자 이름 '\u2717'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(387,96): warning C4566: 유니버설 문자 이름 '\u2717'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(358,80): warning C4566: 유니버설 문자 이름 '\u2713'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(388,89): warning C4566: 유니버설 문자 이름 '\u2713'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(358,91): warning C4566: 유니버설 문자 이름 '\u2717'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(388,100): warning C4566: 유니버설 문자 이름 '\u2717'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(361,75): warning C4566: 유니버설 문자 이름 '\u2713'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(389,80): warning C4566: 유니버설 문자 이름 '\u2713'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(361,91): warning C4566: 유니버설 문자 이름 '\u2717'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(389,91): warning C4566: 유니버설 문자 이름 '\u2717'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(162,40): warning C4805: '!=': 연산에 'bool' 형식과 'const BYTE' 형식을 함께 사용하는 것은 안전하지 않습니다.
+C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(392,75): warning C4566: 유니버설 문자 이름 '\u2713'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(178,37): warning C4805: '!=': 연산에 'bool' 형식과 'const BYTE' 형식을 함께 사용하는 것은 안전하지 않습니다.
+C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(392,91): warning C4566: 유니버설 문자 이름 '\u2717'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(186,40): warning C4805: '!=': 연산에 'bool' 형식과 'const BYTE' 형식을 함께 사용하는 것은 안전하지 않습니다.
+C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(163,40): warning C4805: '!=': 연산에 'bool' 형식과 'const BYTE' 형식을 함께 사용하는 것은 안전하지 않습니다.
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(193,38): warning C4805: '!=': 연산에 'bool' 형식과 'const BYTE' 형식을 함께 사용하는 것은 안전하지 않습니다.
+C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(179,37): warning C4805: '!=': 연산에 'bool' 형식과 'const BYTE' 형식을 함께 사용하는 것은 안전하지 않습니다.
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(200,40): warning C4805: '!=': 연산에 'bool' 형식과 'const BYTE' 형식을 함께 사용하는 것은 안전하지 않습니다.
+C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(187,40): warning C4805: '!=': 연산에 'bool' 형식과 'const BYTE' 형식을 함께 사용하는 것은 안전하지 않습니다.
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(207,43): warning C4805: '!=': 연산에 'bool' 형식과 'const BYTE' 형식을 함께 사용하는 것은 안전하지 않습니다.
+C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(194,38): warning C4805: '!=': 연산에 'bool' 형식과 'const BYTE' 형식을 함께 사용하는 것은 안전하지 않습니다.
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(214,41): warning C4805: '!=': 연산에 'bool' 형식과 'const BYTE' 형식을 함께 사용하는 것은 안전하지 않습니다.
+C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(201,40): warning C4805: '!=': 연산에 'bool' 형식과 'const BYTE' 형식을 함께 사용하는 것은 안전하지 않습니다.
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(221,35): warning C4805: '!=': 연산에 'bool' 형식과 'const BYTE' 형식을 함께 사용하는 것은 안전하지 않습니다.
+C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(208,43): warning C4805: '!=': 연산에 'bool' 형식과 'const BYTE' 형식을 함께 사용하는 것은 안전하지 않습니다.
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(228,36): warning C4805: '!=': 연산에 'bool' 형식과 'const BYTE' 형식을 함께 사용하는 것은 안전하지 않습니다.
+C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(215,41): warning C4805: '!=': 연산에 'bool' 형식과 'const BYTE' 형식을 함께 사용하는 것은 안전하지 않습니다.
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(263,38): warning C4805: '!=': 연산에 'bool' 형식과 'const BYTE' 형식을 함께 사용하는 것은 안전하지 않습니다.
+C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(222,35): warning C4805: '!=': 연산에 'bool' 형식과 'const BYTE' 형식을 함께 사용하는 것은 안전하지 않습니다.
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(270,35): warning C4805: '!=': 연산에 'bool' 형식과 'const BYTE' 형식을 함께 사용하는 것은 안전하지 않습니다.
+C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(229,36): warning C4805: '!=': 연산에 'bool' 형식과 'const BYTE' 형식을 함께 사용하는 것은 안전하지 않습니다.
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(264,38): warning C4805: '!=': 연산에 'bool' 형식과 'const BYTE' 형식을 함께 사용하는 것은 안전하지 않습니다.
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(271,35): warning C4805: '!=': 연산에 'bool' 형식과 'const BYTE' 형식을 함께 사용하는 것은 안전하지 않습니다.
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(278,36): warning C4805: '!=': 연산에 'bool' 형식과 'const BYTE' 형식을 함께 사용하는 것은 안전하지 않습니다.
+  (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\Untitled_External\source\main.cpp(146,12): warning C4477: 'printf' : 서식 문자열 '%d'에 'int' 형식의 인수가 필요하지만 variadic 인수 1의 형식이 'size_t'입니다.
+      C:\Users\warwick\source\repos\Untitled_External\source\main.cpp(146,12):
+      서식 문자열에서 '%zd'을(를) 사용하는 것이 좋습니다.
   
 LINK : warning LNK4098: 'LIBCMT' defaultlib가 다른 라이브러리와 충돌합니다. /NODEFAULTLIB:library를 사용하십시오.
   코드를 생성하고 있습니다.
-  405 of 5215 functions ( 7.8%) were compiled, the rest were copied from previous compilation.
+  6 of 5215 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    285 functions had inline decision re-evaluated but remain unchanged
+    52 functions had inline decision re-evaluated but remain unchanged
   코드를 생성했습니다.
   External.vcxproj -> C:\Users\warwick\source\repos\Untitled_External\build\External.exe

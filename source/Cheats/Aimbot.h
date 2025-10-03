@@ -610,7 +610,7 @@ inline void aimbotLoop() {
             }
             waitAfterDeath = false;
         }
-        
+
         if (bestTarget2D.x != 0 && bestTarget2D.y != 0) {
 
             float deltaX = bestTarget2D.x - mouseImGui.x;
@@ -620,22 +620,49 @@ inline void aimbotLoop() {
             if (currentTarget) {
                 RBX::ModelInstance targetCharacter = currentTarget->getModelInstance();
                 auto targetHead = targetCharacter.findFirstChild("Head");
-                
+
                 if (targetHead.getAddress()) {
                     CVector targetPos3D = CVector(targetHead.getPrimitive().getPartPosition());
                     CVector direction = targetPos3D - myPos;
                     float distance3D = direction.magnitude();
 
                     if (distance3D > 0) {
-                        std::vector<Roblox::PartInfo> obstacles = getValidObstaclesForRaycast(
-                            myPos.toVector3(), targetPos3D.toVector3()
-                        );
+                        // RaycastAim 디버그 출력
+                        static bool lastRaycastAimState = false;
+                        static int debugCounter = 0;
+                        if (RaycastAim != lastRaycastAimState || debugCounter % 100 == 0) {
+                            printf("[DEBUG] RaycastAim value: %s (raw: %d)\n",
+                                RaycastAim ? "TRUE" : "FALSE",
+                                static_cast<int>(RaycastAim));
+                            lastRaycastAimState = RaycastAim;
+                        }
+                        debugCounter++;
 
-                        Roblox::RaycastResult result = Roblox::Ray::raycastRotation(
-                            myPos, direction, distance3D, obstacles
-                        );
+                        if (RaycastAim) {
+                            std::vector<Roblox::PartInfo> obstacles = getValidObstaclesForRaycast(
+                                myPos.toVector3(), targetPos3D.toVector3()
+                            );
 
-                        if (!result.hit) {
+                            Roblox::RaycastResult result = Roblox::Ray::raycastRotation(
+                                myPos, direction, distance3D, obstacles
+                            );
+                            if (!result.hit) {
+                                switch (aimbot_type) {
+                                case 0:
+                                    moveMouseEased(deltaX, deltaY, dist);
+                                    break;
+                                case 1:
+                                    moveMouse(deltaX, deltaY, 3.0f);
+                                    break;
+                                case 2:
+                                    moveMouse(deltaX, deltaY, g_Smooth);
+                                    break;
+                                default:
+                                    break;
+                                }
+                            }
+                        }
+                        else {
                             switch (aimbot_type) {
                             case 0:
                                 moveMouseEased(deltaX, deltaY, dist);
