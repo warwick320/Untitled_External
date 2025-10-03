@@ -1,9 +1,14 @@
 #pragma once
 #include <Windows.h>
 
+
+#ifndef f32
+typedef float f32;
+#endif
+
 #pragma pack(push, 1)
 struct SharedData {
-    // flag bytes
+
     BYTE aimbot_enabled;
     BYTE esp_enabled;
     BYTE esp_show_names;
@@ -14,21 +19,25 @@ struct SharedData {
     BYTE triggerbot;
     BYTE esp_chams;
 
-    // Aimbot Type (0: Legit, 1: Sticky, 2: Custom)
-    BYTE aimbot_type;
 
+    BYTE aimbot_type;
     BYTE padding[2];
 
-    // floats
-    float fov_size;
-    float smooth;
-    float targetSpeed;
-    float jumpPower;
+    // aim (8 bytes)
+    f32 fov_size;      // offset 12
+    f32 smooth;        // offset 16
 
-    // 키바인드 문자열 (최대 63자 + null terminator)
-    char aimbot_keybind[64];
+    // player (8 bytes)
+    f32 targetSpeed;   // offset 20
+    f32 jumpPower;     // offset 24
 
-    // 상태
+    // keybind (64 bytes)
+    char aimbot_keybind[64];  // offset 28
+
+    // settings (2 bytes)
+    BYTE useCornerBox;   
+    BYTE g_Rainbow;   
+
     ULONGLONG last_update;
     BYTE process_running;
     BYTE reserved[7];

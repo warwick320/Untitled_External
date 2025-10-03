@@ -2,28 +2,32 @@
 #include <QObject>
 #include <QTimer>
 #include <QSettings>
+#include <QLocalSocket>
+#include <QLocalServer>
 #include "SharedData.h"
 #include <iostream>
 
 class SharedMemoryController : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(bool aimbotEnabled READ getAimbotEnabled WRITE setAimbotEnabled NOTIFY aimbotEnabledChanged)
-    Q_PROPERTY(int  aimbotType    READ getAimbotType    WRITE setAimbotType    NOTIFY aimbotTypeChanged)
-    Q_PROPERTY(bool espEnabled READ getEspEnabled WRITE setEspEnabled NOTIFY espEnabledChanged)
-    Q_PROPERTY(bool espShowNames READ getEspShowNames WRITE setEspShowNames NOTIFY espShowNamesChanged)
-    Q_PROPERTY(bool espShowBox READ getEspShowBox WRITE setEspShowBox NOTIFY espShowBoxChanged)
-    Q_PROPERTY(bool espShowBones READ getEspShowBones WRITE setEspShowBones NOTIFY espShowBonesChanged)
-    Q_PROPERTY(bool espShowDistance READ getEspShowDistance WRITE setEspShowDistance NOTIFY espShowDistanceChanged)
-    Q_PROPERTY(bool espShowTracer READ getEspShowTracer WRITE setEspShowTracer NOTIFY espShowTracerChanged)
-    Q_PROPERTY(bool espCharms READ getEspCharms WRITE setEspCharms NOTIFY espCharmsChanged)
-    Q_PROPERTY(bool triggerbotEnabled READ getTriggerbotEnabled WRITE setTriggerbotEnabled NOTIFY triggerbotEnabledChanged)
-    Q_PROPERTY(float targetSpeed READ getTargetSpeed WRITE setTargetSpeed NOTIFY targetSpeedChanged)
-    Q_PROPERTY(float jumpPower READ getJumpPower WRITE setJumpPower NOTIFY jumpPowerChanged)
-    Q_PROPERTY(float fovSize READ getFovSize WRITE setFovSize NOTIFY fovSizeChanged)
-    Q_PROPERTY(float smooth READ getSmooth WRITE setSmooth NOTIFY smoothChanged)  
-    Q_PROPERTY(QString aimbotKeybind READ getAimbotKeybind WRITE setAimbotKeybind NOTIFY aimbotKeybindChanged)
-    Q_PROPERTY(bool isConnected READ getIsConnected NOTIFY isConnectedChanged)
+        Q_PROPERTY(bool aimbotEnabled READ getAimbotEnabled WRITE setAimbotEnabled NOTIFY aimbotEnabledChanged)
+        Q_PROPERTY(int  aimbotType    READ getAimbotType    WRITE setAimbotType    NOTIFY aimbotTypeChanged)
+        Q_PROPERTY(bool espEnabled READ getEspEnabled WRITE setEspEnabled NOTIFY espEnabledChanged)
+        Q_PROPERTY(bool espShowNames READ getEspShowNames WRITE setEspShowNames NOTIFY espShowNamesChanged)
+        Q_PROPERTY(bool espShowBox READ getEspShowBox WRITE setEspShowBox NOTIFY espShowBoxChanged)
+        Q_PROPERTY(bool espShowBones READ getEspShowBones WRITE setEspShowBones NOTIFY espShowBonesChanged)
+        Q_PROPERTY(bool espShowDistance READ getEspShowDistance WRITE setEspShowDistance NOTIFY espShowDistanceChanged)
+        Q_PROPERTY(bool espShowTracer READ getEspShowTracer WRITE setEspShowTracer NOTIFY espShowTracerChanged)
+        Q_PROPERTY(bool espCharms READ getEspCharms WRITE setEspCharms NOTIFY espCharmsChanged)
+        Q_PROPERTY(bool triggerbotEnabled READ getTriggerbotEnabled WRITE setTriggerbotEnabled NOTIFY triggerbotEnabledChanged)
+        Q_PROPERTY(float targetSpeed READ getTargetSpeed WRITE setTargetSpeed NOTIFY targetSpeedChanged)
+        Q_PROPERTY(float jumpPower READ getJumpPower WRITE setJumpPower NOTIFY jumpPowerChanged)
+        Q_PROPERTY(float fovSize READ getFovSize WRITE setFovSize NOTIFY fovSizeChanged)
+        Q_PROPERTY(float smooth READ getSmooth WRITE setSmooth NOTIFY smoothChanged)
+        Q_PROPERTY(QString aimbotKeybind READ getAimbotKeybind WRITE setAimbotKeybind NOTIFY aimbotKeybindChanged)
+        Q_PROPERTY(bool useCornerBox READ getUseCornerBox WRITE setUseCornerBox NOTIFY useCornerBoxChanged)
+        Q_PROPERTY(bool rainbow READ getRainbow WRITE setRainbow NOTIFY rainbowChanged)
+        Q_PROPERTY(bool isConnected READ getIsConnected NOTIFY isConnectedChanged)
 
 public:
     explicit SharedMemoryController(QObject* parent = nullptr);
@@ -43,8 +47,10 @@ public:
     bool  getEspShowTracer() const { return m_espShowTracer; }
     bool  getEspCharms() const { return m_espCharms; }
     float getFovSize() const { return m_fovSize; }
-    float getSmooth() const { return m_smooth; }  
+    float getSmooth() const { return m_smooth; }
     QString getAimbotKeybind() const { return m_aimbotKeybind; }
+    bool  getUseCornerBox() const { return m_useCornerBox; }
+    bool  getRainbow() const { return m_rainbow; }
     bool  getIsConnected() const { return m_isConnected; }
 
 public slots:
@@ -64,6 +70,8 @@ public slots:
     void setFovSize(float value);
     void setSmooth(float value);
     void setAimbotKeybind(const QString& value);
+    void setUseCornerBox(bool value);
+    void setRainbow(bool value);
 
 signals:
     void triggerbotEnabledChanged();
@@ -81,24 +89,30 @@ signals:
     void fovSizeChanged();
     void smoothChanged();
     void aimbotKeybindChanged();
+    void useCornerBoxChanged();
+    void rainbowChanged();
     void isConnectedChanged();
 
 private slots:
-    void syncWithSharedMemory();
+    void onConnected();
+    void onDisconnected();
+    void onReadyRead();
+    void onErrorOccurred(QLocalSocket::LocalSocketError error);
     void checkConnection();
+    void attemptReconnect();
 
 private:
-    bool connectToSharedMemory();
-    void writeToSharedMemory();
-    void readFromSharedMemory();
+    bool connectToPipe();
+    void sendData();
+    void processReceivedData(const QByteArray& data);
 
     void loadSettings();
     void saveSettings();
     bool hasValueChangedFromDefault() const;
     void initializeDefaults();
 
-    HANDLE hMapFile;
-    SharedData* pSharedData;
+    QLocalSocket* m_socket;
+    QString m_pipeName;
 
     bool  m_aimbotEnabled;
     int   m_aimbotType;
@@ -111,14 +125,14 @@ private:
     bool  m_espCharms;
     float m_fovSize;
     float m_smooth;
-    float m_smoothMultiplier;
     bool  m_isConnected;
     bool  m_triggerbot;
     float m_targetSpeed;
     float m_jumpPower;
     QString m_aimbotKeybind;
+    bool  m_useCornerBox;
+    bool  m_rainbow;
 
-    // 기본값 저장
     struct DefaultValues {
         bool  aimbotEnabled = false;
         int   aimbotType = 0;
@@ -135,10 +149,10 @@ private:
         float targetSpeed = 16.0f;
         float jumpPower = 50.0f;
         QString aimbotKeybind = "LMB";
+        bool  useCornerBox = false;
+        bool  rainbow = false;
     } m_defaults;
 
-    QTimer* m_syncTimer;
     QTimer* m_connectionTimer;
-    ULONGLONG m_lastUpdateTime;
     QSettings* m_settings;
 };

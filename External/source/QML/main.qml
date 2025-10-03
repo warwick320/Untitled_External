@@ -581,7 +581,7 @@ ApplicationWindow {
                                         description: "Adjust the Field of View range for aimbot targeting"
                                         sliderValue: appController.fovSize
                                         minValue: 10.0
-                                        maxValue: 400.0
+                                        maxValue: 1000.0
                                         accentColor: appWindow.accentColor
 
                                         onValueChanged: function(value) {
@@ -691,6 +691,17 @@ ApplicationWindow {
                                         }
                                     }
                                     ToggleItem {
+                                        title: "Rainbow Effect"
+                                        description: "Enable rainbow color effect"
+                                        toggleState: appController.rainbow
+                                        accentColor: appWindow.accentColor
+
+                                        onToggled: function(state) {
+                                            console.log("Rainbow toggled:", state)
+                                            appController.rainbow = state
+                                        }
+                                    }
+                                    ToggleItem {
                                         title: "Chams"
                                         description: "Display player Chams"
                                         toggleState: appController.espCharms
@@ -714,7 +725,7 @@ ApplicationWindow {
                                     }
 
                                     ToggleItem {
-                                        title: "Bounding Boxes"
+                                        title: "Bounding Box"
                                         description: "Show rectangular boxes around enemies"
                                         toggleState: appController.espShowBox
                                         accentColor: appWindow.accentColor
@@ -724,7 +735,17 @@ ApplicationWindow {
                                             appController.espShowBox = state
                                         }
                                     }
+                                    ToggleItem {
+                                        title: "Corner Box"
+                                        description: "Use corner-style bounding boxes ( you must turn on Bounding Box)"
+                                        toggleState: appController.useCornerBox
+                                        accentColor: appWindow.accentColor
 
+                                        onToggled: function(state) {
+                                            console.log("Corner Box toggled:", state)
+                                            appController.useCornerBox = state
+                                        }
+                                    }
                                     ToggleItem {
                                         title: "Skeleton"
                                         description: "Display enemy skeleton/bones"
