@@ -1,45 +1,40 @@
 #pragma once
 #include <Windows.h>
 
-
 #ifndef f32
 typedef float f32;
 #endif
 
 #pragma pack(push, 1)
 struct SharedData {
+    // flag bytes (16 bytes total)
+    BYTE aimbot_enabled;      // offset 0
+    BYTE esp_enabled;         // offset 1
+    BYTE esp_show_names;      // offset 2
+    BYTE esp_show_box;        // offset 3
+    BYTE esp_show_bones;      // offset 4
+    BYTE esp_show_distance;   // offset 5
+    BYTE esp_show_tracer;     // offset 6
+    BYTE triggerbot;          // offset 7
+    BYTE esp_chams;           // offset 8
+    BYTE RaycastAim;          // offset 9
+    BYTE aimbot_type;         // offset 10
+    BYTE useCornerBox;        // offset 11
+    BYTE g_Rainbow;           // offset 12
+    BYTE process_running;     // offset 13
+    BYTE reserved_flags[2];   // offset 14-15
 
-    BYTE aimbot_enabled;
-    BYTE esp_enabled;
-    BYTE esp_show_names;
-    BYTE esp_show_box;
-    BYTE esp_show_bones;
-    BYTE esp_show_distance;
-    BYTE esp_show_tracer;
-    BYTE triggerbot;
-    BYTE esp_chams;
+    // float values (16 bytes)
+    f32 fov_size;             // offset 16
+    f32 smooth;               // offset 20
+    f32 targetSpeed;          // offset 24
+    f32 jumpPower;            // offset 28
 
+    // keybind string (64 bytes)
+    char aimbot_keybind[64];  // offset 32
 
-    BYTE aimbot_type;
-    BYTE padding[2];
-
-    // aim (8 bytes)
-    f32 fov_size;      // offset 12
-    f32 smooth;        // offset 16
-
-    // player (8 bytes)
-    f32 targetSpeed;   // offset 20
-    f32 jumpPower;     // offset 24
-
-    // keybind (64 bytes)
-    char aimbot_keybind[64];  // offset 28
-
-    // settings (2 bytes)
-    BYTE useCornerBox;   
-    BYTE g_Rainbow;   
-
-    ULONGLONG last_update;
-    BYTE process_running;
-    BYTE reserved[7];
+    // timestamp and reserved (16 bytes)
+    ULONGLONG last_update;    // offset 96
+    BYTE reserved[8];         // offset 104
 };
 #pragma pack(pop)

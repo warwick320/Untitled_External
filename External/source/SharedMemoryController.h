@@ -20,6 +20,7 @@ class SharedMemoryController : public QObject
         Q_PROPERTY(bool espShowTracer READ getEspShowTracer WRITE setEspShowTracer NOTIFY espShowTracerChanged)
         Q_PROPERTY(bool espCharms READ getEspCharms WRITE setEspCharms NOTIFY espCharmsChanged)
         Q_PROPERTY(bool triggerbotEnabled READ getTriggerbotEnabled WRITE setTriggerbotEnabled NOTIFY triggerbotEnabledChanged)
+        Q_PROPERTY(bool raycastAim READ getRaycastAim WRITE setRaycastAim NOTIFY raycastAimChanged)
         Q_PROPERTY(float targetSpeed READ getTargetSpeed WRITE setTargetSpeed NOTIFY targetSpeedChanged)
         Q_PROPERTY(float jumpPower READ getJumpPower WRITE setJumpPower NOTIFY jumpPowerChanged)
         Q_PROPERTY(float fovSize READ getFovSize WRITE setFovSize NOTIFY fovSizeChanged)
@@ -35,6 +36,7 @@ public:
 
     // Getters
     bool  getTriggerbotEnabled() const { return m_triggerbot; }
+    bool  getRaycastAim() const { return m_raycastAim; }
     float getTargetSpeed() const { return m_targetSpeed; }
     float getJumpPower() const { return m_jumpPower; }
     bool  getAimbotEnabled() const { return m_aimbotEnabled; }
@@ -56,6 +58,7 @@ public:
 public slots:
     // Setters
     void setTriggerbotEnabled(bool value);
+    void setRaycastAim(bool value);
     void setTargetSpeed(float value);
     void setJumpPower(float value);
     void setAimbotEnabled(bool value);
@@ -75,6 +78,7 @@ public slots:
 
 signals:
     void triggerbotEnabledChanged();
+    void raycastAimChanged();
     void targetSpeedChanged();
     void jumpPowerChanged();
     void aimbotEnabledChanged();
@@ -127,6 +131,7 @@ private:
     float m_smooth;
     bool  m_isConnected;
     bool  m_triggerbot;
+    bool  m_raycastAim;
     float m_targetSpeed;
     float m_jumpPower;
     QString m_aimbotKeybind;
@@ -146,6 +151,7 @@ private:
         float fovSize = 150.0f;
         float smooth = 1.0f;
         bool  triggerbot = false;
+        bool  raycastAim = false;
         float targetSpeed = 16.0f;
         float jumpPower = 50.0f;
         QString aimbotKeybind = "LMB";

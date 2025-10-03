@@ -26,7 +26,8 @@ SharedMemoryController::SharedMemoryController(QObject* parent)
     m_aimbotKeybind("LMB"),
     m_useCornerBox(false),
     m_rainbow(false),
-    m_isConnected(false)
+    m_isConnected(false),
+    m_raycastAim(false)
 {
     QString settingsPath = QCoreApplication::applicationDirPath() + "/config.ini";
     m_settings = new QSettings(settingsPath, QSettings::IniFormat, this);
@@ -91,6 +92,7 @@ void SharedMemoryController::loadSettings()
     m_aimbotKeybind = m_settings->value("aimbotKeybind", m_defaults.aimbotKeybind).toString();
     m_useCornerBox = m_settings->value("useCornerBox", m_defaults.useCornerBox).toBool();
     m_rainbow = m_settings->value("rainbow", m_defaults.rainbow).toBool();
+    m_raycastAim = m_settings->value("raycastAim", m_defaults.raycastAim).toBool();
 
     m_settings->endGroup();
 
@@ -222,6 +224,13 @@ void SharedMemoryController::saveSettings()
         m_settings->remove("rainbow");
     }
 
+    if (m_raycastAim != m_defaults.raycastAim) {
+        m_settings->setValue("raycastAim", m_raycastAim);
+    }
+    else {
+        m_settings->remove("raycastAim");
+    }
+
     m_settings->endGroup();
     m_settings->sync();
 
@@ -246,7 +255,8 @@ bool SharedMemoryController::hasValueChangedFromDefault() const
         qAbs(m_jumpPower - m_defaults.jumpPower) > 0.001f ||
         m_aimbotKeybind != m_defaults.aimbotKeybind ||
         m_useCornerBox != m_defaults.useCornerBox ||
-        m_rainbow != m_defaults.rainbow);
+        m_rainbow != m_defaults.rainbow ||
+        m_raycastAim != m_defaults.raycastAim);
 }
 
 bool SharedMemoryController::connectToPipe()
@@ -319,6 +329,8 @@ void SharedMemoryController::sendData()
     }
 
     SharedData data;
+    memset(&data, 0, sizeof(SharedData));
+    
     data.aimbot_enabled = m_aimbotEnabled ? 1 : 0;
     data.aimbot_type = (BYTE)std::clamp(m_aimbotType, 0, 2);
     data.esp_enabled = m_espEnabled ? 1 : 0;
@@ -329,8 +341,11 @@ void SharedMemoryController::sendData()
     data.esp_show_tracer = m_espShowTracer ? 1 : 0;
     data.triggerbot = m_triggerbot ? 1 : 0;
     data.esp_chams = m_espCharms ? 1 : 0;
+    data.RaycastAim = m_raycastAim ? 1 : 0;
     data.useCornerBox = m_useCornerBox ? 1 : 0;
     data.g_Rainbow = m_rainbow ? 1 : 0;
+    data.process_running = 1;
+    
     data.fov_size = m_fovSize;
     data.smooth = m_smooth;
     data.targetSpeed = m_targetSpeed;
@@ -343,13 +358,21 @@ void SharedMemoryController::sendData()
             keybindBytes.constData(), _TRUNCATE);
     }
 
-    // 바이너리 데이터 전송
+    data.last_update = GetTickCount64();
+
+    std::cout << "[SEND DEBUG] RaycastAim value: " << (int)data.RaycastAim 
+              << " at offset 9" << std::endl;
+    const BYTE* ptr = reinterpret_cast<const BYTE*>(&data);
+    std::cout << "[SEND DEBUG] Byte[9]: " << (int)ptr[9] << std::endl;
+    std::cout << "[SEND DEBUG] Byte[32] (keybind[0]): " << (int)ptr[32] 
+              << " ('" << (char)ptr[32] << "')" << std::endl;
+
     QByteArray buffer(reinterpret_cast<const char*>(&data), sizeof(SharedData));
     qint64 written = m_socket->write(buffer);
     m_socket->flush();
 
     if (written == buffer.size()) {
-        qDebug() << "[PIPE] Data sent successfully";
+        qDebug() << "[PIPE] Data sent successfully (" << written << " bytes)";
     }
     else {
         qDebug() << "[ERROR] Failed to send complete data";
@@ -364,6 +387,14 @@ void SharedMemoryController::processReceivedData(const QByteArray& data)
     }
 
     const SharedData* receivedData = reinterpret_cast<const SharedData*>(data.constData());
+
+    const BYTE* ptr = reinterpret_cast<const BYTE*>(receivedData);
+    std::cout << "[RECV DEBUG] Byte[9] (RaycastAim): " << (int)ptr[9] << std::endl;
+    std::cout << "[RECV DEBUG] Byte[32] (keybind[0]): " << (int)ptr[32] 
+              << " ('" << (char)ptr[32] << "')" << std::endl;
+    std::cout << "[RECV DEBUG] receivedData->RaycastAim: " 
+              << (int)receivedData->RaycastAim << std::endl;
+
     bool changed = false;
     auto toBool = [](BYTE v) { return v != 0; };
 
@@ -708,6 +739,20 @@ void SharedMemoryController::setRainbow(bool value)
         sendData();
         emit rainbowChanged();
         qDebug() << "[UI] Rainbow:" << (value ? "ON" : "OFF");
+
+        if (hasValueChangedFromDefault()) {
+            saveSettings();
+        }
+    }
+}
+
+void SharedMemoryController::setRaycastAim(bool value)
+{
+    if (m_raycastAim != value) {
+        m_raycastAim = value;
+        sendData();
+        emit raycastAimChanged();
+        qDebug() << "[UI] Raycast Aim:" << (value ? "ON" : "OFF");
 
         if (hasValueChangedFromDefault()) {
             saveSettings();

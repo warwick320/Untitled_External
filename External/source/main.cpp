@@ -33,18 +33,20 @@ int main(int argc, char* argv[])
     std::cout << "  Offsets:" << std::endl;
     std::cout << "    aimbot_enabled: " << offsetof(SharedData, aimbot_enabled) << std::endl;
     std::cout << "    esp_enabled: " << offsetof(SharedData, esp_enabled) << std::endl;
+    std::cout << "    esp_chams: " << offsetof(SharedData, esp_chams) << std::endl;
+    std::cout << "    RaycastAim: " << offsetof(SharedData, RaycastAim) << std::endl;
     std::cout << "    aimbot_type: " << offsetof(SharedData, aimbot_type) << std::endl;
-    std::cout << "    padding: " << offsetof(SharedData, padding) << std::endl;
+    std::cout << "    useCornerBox: " << offsetof(SharedData, useCornerBox) << std::endl;
+    std::cout << "    g_Rainbow: " << offsetof(SharedData, g_Rainbow) << std::endl;
+    std::cout << "    process_running: " << offsetof(SharedData, process_running) << std::endl;
+    std::cout << "    reserved_flags[0]: " << offsetof(SharedData, reserved_flags) << std::endl;
     std::cout << "    fov_size: " << offsetof(SharedData, fov_size) << std::endl;
     std::cout << "    smooth: " << offsetof(SharedData, smooth) << std::endl;
     std::cout << "    targetSpeed: " << offsetof(SharedData, targetSpeed) << std::endl;
     std::cout << "    jumpPower: " << offsetof(SharedData, jumpPower) << std::endl;
     std::cout << "    aimbot_keybind: " << offsetof(SharedData, aimbot_keybind) << std::endl;
-    std::cout << "    useCornerBox: " << offsetof(SharedData, useCornerBox) << std::endl;
-    std::cout << "    g_Rainbow: " << offsetof(SharedData, g_Rainbow) << std::endl;
     std::cout << "    last_update: " << offsetof(SharedData, last_update) << std::endl;
-    std::cout << "    process_running: " << offsetof(SharedData, process_running) << std::endl;
-    std::cout << "    reserved: " << offsetof(SharedData, reserved) << std::endl;
+    std::cout << "    reserved[0]: " << offsetof(SharedData, reserved) << std::endl;
 
     QGuiApplication app(argc, argv);
     QDir::setCurrent(QCoreApplication::applicationDirPath());

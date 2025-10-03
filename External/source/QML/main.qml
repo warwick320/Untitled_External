@@ -539,6 +539,17 @@ ApplicationWindow {
                                             appController.aimbotEnabled = state
                                         }
                                     }
+                                    ToggleItem {
+                                        title: "Raycast Aim"
+                                        description: "Enable raycast-based aiming"
+                                        toggleState: appController.raycastAim
+                                        accentColor: appWindow.accentColor
+
+                                        onToggled: function(state) {
+                                            console.log("Raycast Aim toggled:", state)
+                                            appController.raycastAim = state
+                                        }
+                                    }
                                     KeyBindItem {
                                         title: "Toggle Key"
                                         description: "Keybind"

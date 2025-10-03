@@ -2,31 +2,19 @@
    Qt: 6.9.2
   SharedMemoryController.cpp
   main.cpp
-C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.cpp(1,1): warning C4828: 파일에 0x429 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
-C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.cpp(1,1): warning C4828: 파일에 0x42a 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
-C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.cpp(1,1): warning C4828: 파일에 0x42c 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
-C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.cpp(1,1): warning C4828: 파일에 0x42e 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
-C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.cpp(1,1): warning C4828: 파일에 0x430 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
-C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.cpp(1,1): warning C4828: 파일에 0x431 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
-C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.cpp(1,1): warning C4828: 파일에 0xf3c 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
-C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.cpp(1,1): warning C4828: 파일에 0xf3d 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
-C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.cpp(1,1): warning C4828: 파일에 0xf74 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
-C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.cpp(1,1): warning C4828: 파일에 0xf75 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
-C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.cpp(1,1): warning C4828: 파일에 0x2b99 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
-C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.cpp(1,1): warning C4828: 파일에 0x2b9a 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
-C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.cpp(1,1): warning C4828: 파일에 0x2ba0 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
-C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.cpp(1,1): warning C4828: 파일에 0x2ba2 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
-C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.cpp(1,1): warning C4828: 파일에 0x2ba3 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
-C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.cpp(1,1): warning C4828: 파일에 0x2ba4 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
-C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.cpp(1,1): warning C4828: 파일에 0x2ba5 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
-C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.cpp(1,1): warning C4828: 파일에 0x2ba7 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
-C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.cpp(1,1): warning C4828: 파일에 0x2ba9 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
-C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.cpp(1,1): warning C4828: 파일에 0x2baa 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
-C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.cpp(1,1): warning C4828: 파일에 0x2bab 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
-C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.cpp(1,1): warning C4828: 파일에 0x2bac 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
-  moc_SharedMemoryController.cpp
+C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.cpp(1,1): warning C4828: 파일에 0x443 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.cpp(1,1): warning C4828: 파일에 0x444 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.cpp(1,1): warning C4828: 파일에 0x446 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.cpp(1,1): warning C4828: 파일에 0x448 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.cpp(1,1): warning C4828: 파일에 0x44a 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.cpp(1,1): warning C4828: 파일에 0x44b 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.cpp(1,1): warning C4828: 파일에 0xfab 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.cpp(1,1): warning C4828: 파일에 0xfac 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.cpp(1,1): warning C4828: 파일에 0xfe3 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
+C:\Users\warwick\source\repos\External\External\source\SharedMemoryController.cpp(1,1): warning C4828: 파일에 0xfe4 오프셋에서 시작하는 문자가 포함되어 있습니다. 이 문자는 현재 원본 문자 집합에서 잘못된 문자입니다(코드 페이지 65001).
   코드를 생성하고 있습니다.
-  Previous IPDB and IOBJ mismatch, fall back to full compilation.
-  All 405 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  90 of 409 functions (22.0%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    24 functions had inline decision re-evaluated but remain unchanged
   코드를 생성했습니다.
   External.vcxproj -> C:\Users\warwick\source\repos\External\build\External.exe
