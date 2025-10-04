@@ -46,6 +46,7 @@ inline str aimbot_keybind = "LMB";
 inline i32 aimbot_type = 0;
 inline bool useCornerBox = false;
 inline bool RaycastAim = false;
+
 inline void debug_print(str text, i32 lev) {
     str log = (lev == 0) ? "[+]" : (lev == 1) ? "[-]" : "[?]";
     std::cout << std::format("{} {}\n", log, text) << std::endl;

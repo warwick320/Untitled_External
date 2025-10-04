@@ -1,10 +1,130 @@
 ﻿  모듈 종속성의 소스를 검사하는 중...
+  framework.h
+  컴파일하는 중...
+  framework.h
+C:\Users\warwick\source\repos\Untitled_External\source\global.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  (소스 파일 'source/framework.h'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\Untitled_External\source\global.h(62,61): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  (소스 파일 'source/framework.h'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\Untitled_External\vender\nlohmann\json.hpp(17931,15): warning C5260: 상수 변수 'nlohmann::json_abi_v3_12_0::detail::dtoa_impl::kAlpha'에 포함된 헤더 파일 컨텍스트에는 내부 연결이 있지만 가져온 헤더 단위 컨텍스트에는 외부 연결이 있습니다. 번역 단위 간에 공유할 경우 '인라인'으로 선언하거나 이 번역 단위에 대해 로컬로 사용하려는 의도를 표현하려면 '정적'으로 선언하는 것이 좋습니다.
+  (소스 파일 'source/framework.h'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\Untitled_External\vender\nlohmann\json.hpp(17932,15): warning C5260: 상수 변수 'nlohmann::json_abi_v3_12_0::detail::dtoa_impl::kGamma'에 포함된 헤더 파일 컨텍스트에는 내부 연결이 있지만 가져온 헤더 단위 컨텍스트에는 외부 연결이 있습니다. 번역 단위 간에 공유할 경우 '인라인'으로 선언하거나 이 번역 단위에 대해 로컬로 사용하려는 의도를 표현하려면 '정적'으로 선언하는 것이 좋습니다.
+  (소스 파일 'source/framework.h'을(를) 컴파일하는 중)
+  
+  Render.cpp
+  DataModel.cpp
+  ModelInstance.cpp
+  Player.cpp
+  VisualEngine.cpp
+  Primtive.cpp
+  instance.cpp
+  communication.cpp
   main.cpp
+  imgui.cpp
+  imgui_demo.cpp
+  imgui_draw.cpp
+  imgui_impl_dx11.cpp
+  imgui_impl_win32.cpp
+  imgui_tables.cpp
+  imgui_widgets.cpp
+C:\Users\warwick\source\repos\Untitled_External\source\global.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  (소스 파일 'vender/ImGui/imgui_widgets.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\Untitled_External\source\global.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  (소스 파일 'vender/ImGui/imgui_impl_win32.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\Untitled_External\source\global.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  (소스 파일 'source/SDK/Classes/World/Primtive.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\Untitled_External\source\global.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  (소스 파일 'source/SDK/Classes/VisualEngine/VisualEngine.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\Untitled_External\source\global.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  (소스 파일 'vender/ImGui/imgui_impl_dx11.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\Untitled_External\source\global.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  (소스 파일 'source/driver/communication.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\Untitled_External\source\global.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  (소스 파일 'vender/ImGui/imgui_tables.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\Untitled_External\source\global.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  (소스 파일 'source/Render/Render.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\Untitled_External\source\global.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  (소스 파일 'vender/ImGui/imgui.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\Untitled_External\source\global.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  (소스 파일 'source/SDK/Classes/DataModel/Player.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\Untitled_External\source\global.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  (소스 파일 'vender/ImGui/imgui_demo.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\Untitled_External\source\global.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  (소스 파일 'source/SDK/Classes/instance.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\Untitled_External\source\global.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  (소스 파일 'vender/ImGui/imgui_draw.cpp'을(를) 컴파일하는 중)
+  
 C:\Users\warwick\source\repos\Untitled_External\source\global.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\Untitled_External\source\global.h(61,61): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\warwick\source\repos\Untitled_External\source\global.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  (소스 파일 'source/SDK/Classes/DataModel/DataModel.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\Untitled_External\source\global.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  (소스 파일 'source/SDK/Classes/DataModel/ModelInstance.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\Untitled_External\source\global.h(62,61): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  (소스 파일 'vender/ImGui/imgui_impl_dx11.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\Untitled_External\source\global.h(62,61): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  (소스 파일 'source/driver/communication.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\Untitled_External\source\global.h(62,61): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  (소스 파일 'vender/ImGui/imgui_impl_win32.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\Untitled_External\source\global.h(62,61): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  (소스 파일 'source/SDK/Classes/VisualEngine/VisualEngine.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\Untitled_External\source\global.h(62,61): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  (소스 파일 'source/SDK/Classes/World/Primtive.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\Untitled_External\source\global.h(62,61): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  (소스 파일 'source/Render/Render.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\Untitled_External\source\global.h(62,61): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  (소스 파일 'vender/ImGui/imgui_tables.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\Untitled_External\source\global.h(62,61): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  (소스 파일 'source/SDK/Classes/DataModel/DataModel.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\Untitled_External\source\global.h(62,61): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\Untitled_External\source\global.h(62,61): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  (소스 파일 'source/SDK/Classes/instance.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\Untitled_External\source\global.h(62,61): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  (소스 파일 'vender/ImGui/imgui_draw.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\Untitled_External\source\global.h(62,61): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  (소스 파일 'source/SDK/Classes/DataModel/Player.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\Untitled_External\source\global.h(62,61): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  (소스 파일 'vender/ImGui/imgui_widgets.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\Untitled_External\source\global.h(62,61): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  (소스 파일 'vender/ImGui/imgui.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\Untitled_External\source\global.h(62,61): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  (소스 파일 'source/SDK/Classes/DataModel/ModelInstance.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\Untitled_External\source\global.h(62,61): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  (소스 파일 'vender/ImGui/imgui_demo.cpp'을(를) 컴파일하는 중)
   
 C:\Users\warwick\source\repos\Untitled_External\source\Cheats\Aimbot.h(351,21): warning C4244: '초기화 중': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
@@ -33,70 +153,70 @@ C:\Users\warwick\source\repos\Untitled_External\source\Cheats\Visuals.h(250,18):
 C:\Users\warwick\source\repos\Untitled_External\source\Cheats\Visuals.h(762,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(376,75): warning C4566: 유니버설 문자 이름 '\u2713'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(372,75): warning C4566: 유니버설 문자 이름 '\u2713'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(376,91): warning C4566: 유니버설 문자 이름 '\u2717'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(372,91): warning C4566: 유니버설 문자 이름 '\u2717'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(379,81): warning C4566: 유니버설 문자 이름 '\u2713'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(375,81): warning C4566: 유니버설 문자 이름 '\u2713'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(379,92): warning C4566: 유니버설 문자 이름 '\u2717'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(375,92): warning C4566: 유니버설 문자 이름 '\u2717'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(380,69): warning C4566: 유니버설 문자 이름 '\u2713'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(376,69): warning C4566: 유니버설 문자 이름 '\u2713'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(380,85): warning C4566: 유니버설 문자 이름 '\u2717'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(376,85): warning C4566: 유니버설 문자 이름 '\u2717'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(383,83): warning C4566: 유니버설 문자 이름 '\u2713'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(379,83): warning C4566: 유니버설 문자 이름 '\u2713'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(383,94): warning C4566: 유니버설 문자 이름 '\u2717'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(379,94): warning C4566: 유니버설 문자 이름 '\u2717'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(384,79): warning C4566: 유니버설 문자 이름 '\u2713'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(380,79): warning C4566: 유니버설 문자 이름 '\u2713'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(384,90): warning C4566: 유니버설 문자 이름 '\u2717'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(380,90): warning C4566: 유니버설 문자 이름 '\u2717'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(385,86): warning C4566: 유니버설 문자 이름 '\u2713'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(381,86): warning C4566: 유니버설 문자 이름 '\u2713'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(385,97): warning C4566: 유니버설 문자 이름 '\u2717'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(381,97): warning C4566: 유니버설 문자 이름 '\u2717'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(386,83): warning C4566: 유니버설 문자 이름 '\u2713'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(382,83): warning C4566: 유니버설 문자 이름 '\u2713'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(386,94): warning C4566: 유니버설 문자 이름 '\u2717'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(382,94): warning C4566: 유니버설 문자 이름 '\u2717'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(387,85): warning C4566: 유니버설 문자 이름 '\u2713'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(383,85): warning C4566: 유니버설 문자 이름 '\u2713'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(387,96): warning C4566: 유니버설 문자 이름 '\u2717'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(383,96): warning C4566: 유니버설 문자 이름 '\u2717'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(388,89): warning C4566: 유니버설 문자 이름 '\u2713'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(384,89): warning C4566: 유니버설 문자 이름 '\u2713'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(388,100): warning C4566: 유니버설 문자 이름 '\u2717'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(384,100): warning C4566: 유니버설 문자 이름 '\u2717'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(389,80): warning C4566: 유니버설 문자 이름 '\u2713'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(385,80): warning C4566: 유니버설 문자 이름 '\u2713'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(389,91): warning C4566: 유니버설 문자 이름 '\u2717'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(385,91): warning C4566: 유니버설 문자 이름 '\u2717'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(392,75): warning C4566: 유니버설 문자 이름 '\u2713'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(388,75): warning C4566: 유니버설 문자 이름 '\u2713'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
-C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(392,91): warning C4566: 유니버설 문자 이름 '\u2717'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
+C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(388,91): warning C4566: 유니버설 문자 이름 '\u2717'(으)로 표현되는 문자는 현재 코드 페이지(949)에서 표현할 수 없습니다.
   (소스 파일 'source/main.cpp'을(를) 컴파일하는 중)
   
 C:\Users\warwick\source\repos\Untitled_External\source\SharedMemoryManager.h(163,40): warning C4805: '!=': 연산에 'bool' 형식과 'const BYTE' 형식을 함께 사용하는 것은 안전하지 않습니다.
@@ -139,10 +259,18 @@ C:\Users\warwick\source\repos\Untitled_External\source\main.cpp(146,12): warning
       C:\Users\warwick\source\repos\Untitled_External\source\main.cpp(146,12):
       서식 문자열에서 '%zd'을(를) 사용하는 것이 좋습니다.
   
+  base64.cpp
+C:\Users\warwick\source\repos\Untitled_External\source\global.h(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+  (소스 파일 'vender/base64.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\Untitled_External\source\global.h(62,61): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  (소스 파일 'vender/base64.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\warwick\source\repos\Untitled_External\vender\base64.cpp(1,1): warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
 LINK : warning LNK4098: 'LIBCMT' defaultlib가 다른 라이브러리와 충돌합니다. /NODEFAULTLIB:library를 사용하십시오.
   코드를 생성하고 있습니다.
-  6 of 5215 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    52 functions had inline decision re-evaluated but remain unchanged
+  514 of 5231 functions ( 9.8%) were compiled, the rest were copied from previous compilation.
+    16 functions were new in current compilation
+    345 functions had inline decision re-evaluated but remain unchanged
   코드를 생성했습니다.
   External.vcxproj -> C:\Users\warwick\source\repos\Untitled_External\build\External.exe

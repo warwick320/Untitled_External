@@ -228,9 +228,9 @@ void Render::destoryImGui() {
 }
 
 Render::~Render() {
-    destroyDevice();
-    destroyWindow();
-    destoryImGui();
+    destoryImGui();  
+    destroyDevice(); 
+    destroyWindow();  
 }
 
 void Render::setupOverlay(cstr windowName) {
@@ -240,8 +240,22 @@ void Render::setupOverlay(cstr windowName) {
 }
 
 void Render::startRender() {
+    // 디바이스 상태 체크
+    if (CheckDeviceLost()) {
+        RecreateDevice();
+        if (m_deviceLost) return;
+    }
+    
+    // 리소스 유효성 체크
+    if (!device || !deviceContext || !swapChain || !renderTargetView || !overlaywindow) {
+        return;
+    }
+
     MSG msg;
     while (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE)) {
+        if (msg.message == WM_QUIT) {
+            return;
+        }
         TranslateMessage(&msg);
         DispatchMessage(&msg);
     }
@@ -249,12 +263,6 @@ void Render::startRender() {
     ImGui_ImplDX11_NewFrame();
     ImGui_ImplWin32_NewFrame();
     ImGui::NewFrame();
-
-    //bool currentDeleteKeyState = (GetAsyncKeyState(VK_DELETE) & 0x8000) != 0;
-    //if (currentDeleteKeyState && !lastDeleteKeyState) {
-    //    isVisible = !isVisible;
-    //}
-    //lastDeleteKeyState = currentDeleteKeyState;
 
     if (isVisible) {
         SetWindowLong(overlaywindow, GWL_EXSTYLE, WS_EX_TOOLWINDOW | WS_EX_TOPMOST | WS_EX_LAYERED);
@@ -265,14 +273,65 @@ void Render::startRender() {
 }
 
 void Render::endRender() {
+    if (m_deviceLost) {
+        return; // 디바이스 손실 상태에서는 렌더링 중단
+    }
+
     ImGui::Render();
     float clearColor[4]{ 0, 0, 0, 0 };
     deviceContext->OMSetRenderTargets(1, &renderTargetView, nullptr);
     deviceContext->ClearRenderTargetView(renderTargetView, clearColor);
     ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
-    swapChain->Present(1, 0);
+    
+    HRESULT hr = swapChain->Present(1, 0);
+    
+    // Device Lost 체크 및 복구
+    if (hr == DXGI_ERROR_DEVICE_REMOVED || hr == DXGI_ERROR_DEVICE_RESET) {
+        m_deviceLost = true;
+        RecreateDevice();
+    } else if (FAILED(hr)) {
+        // 기타 Present 실패 처리
+        m_deviceLost = true;
+    }
 }
 
+
+bool Render::CheckDeviceLost() {
+    if (!device) return true;
+    
+    HRESULT hr = device->GetDeviceRemovedReason();
+    return FAILED(hr);
+}
+
+void Render::RecreateDevice() {
+    // ImGui 백엔드 정리
+    ImGui_ImplDX11_Shutdown();
+    
+    // DirectX 리소스 정리
+    if (renderTargetView) {
+        renderTargetView->Release();
+        renderTargetView = nullptr;
+    }
+    if (swapChain) {
+        swapChain->Release();
+        swapChain = nullptr;
+    }
+    if (deviceContext) {
+        deviceContext->Release();
+        deviceContext = nullptr;
+    }
+    if (device) {
+        device->Release();
+        device = nullptr;
+    }
+    
+    // 디바이스 재생성
+    if (createDevice()) {
+        if (ImGui_ImplDX11_Init(device, deviceContext)) {
+            m_deviceLost = false;
+        }
+    }
+}
 
 void ApplyModernStyle() {
     static bool done = false;
@@ -313,6 +372,11 @@ void ApplyModernStyle() {
     colors[ImGuiCol_FrameBgActive] = ImVec4(0.9f, 0.14f, 0.14f, 1.0f);
 }
 void Render::renderMenu() {
+    // 렌더링 가능 상태 체크
+    if (m_deviceLost || !device || !deviceContext) {
+        return;
+    }
+
     ApplyModernStyle();
     using namespace ImGui;
 

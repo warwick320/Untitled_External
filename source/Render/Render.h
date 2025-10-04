@@ -26,6 +26,9 @@ private:
 	void destoryImGui();
 	bool lastDeleteKeyState = false; // Ãß°¡
 public:
+	bool m_deviceLost = false;
+	bool CheckDeviceLost();
+	void RecreateDevice();
 	Render() = default;
 	~Render();
 	bool isVisible = false; //should show
