@@ -74,7 +74,7 @@ static const auto boneMapR15 = [] {
         map[bonesR15[i]] = i;
     }
     return map;
-    }();
+}();
 
 static const auto boneMapR6 = [] {
     std::unordered_map<std::string, int> map;
@@ -82,7 +82,7 @@ static const auto boneMapR6 = [] {
         map[bonesR6[i]] = i;
     }
     return map;
-    }();
+}();
 
 struct WallcheckResult {
     std::string playerName;
@@ -433,7 +433,7 @@ inline void renderChamsBox(ImDrawList* drawList, const CFrame& cframe, const CVe
             ToImVec2(vertices2D[face[3]])
         };
 
-        //back face culling
+		//back face culling
         float signedArea = (points[1].x - points[0].x) * (points[2].y - points[0].y) - (points[1].y - points[0].y) * (points[2].x - points[0].x);
         if (signedArea < 0) {
             continue;
@@ -471,7 +471,7 @@ inline void renderChamsBox(ImDrawList* drawList, const CFrame& cframe, const CVe
             r = static_cast<int>(r * 0.5f);
             g = static_cast<int>(g * 0.5f);
             b = static_cast<int>(b * 0.5f);
-            outlineColor = IM_COL32(r, g, b, a);
+            outlineColor = IM_COL32(r, g, b, a); 
         }
 
         for (int i = 0; i < 12; i++) {
@@ -495,14 +495,14 @@ inline void renderPlayerChamsWithVisibility(ImDrawList* drawList, RBX::Player& p
     if (distance3D > 400.0f) return;
 
     ImU32 chamsColor;
-    bool playerIsVisible = true;
+    bool playerIsVisible = true; 
 
     if (hasValidMyPos) {
         auto headPart = character.findFirstChild("Head");
         if (headPart.getAddress()) {
             CVector headPos3D = CVector(headPart.getPrimitive().getPartPosition());
             chamsColor = getChamsColorForPlayer(distance3D, player.getName(), myPos3D, headPos3D, hasValidMyPos);
-
+            
             WallcheckThreadPool::SubmitWallcheckTask(player.getName(), myPos3D, headPos3D);
             WallcheckThreadPool::GetWallcheckResult(player.getName(), playerIsVisible);
         }
@@ -841,14 +841,14 @@ struct PlayerRenderData {
     std::array<Vector2, R15_BoneCount> bonePos2D;
     bool isValid;
     bool isR15;
-    Vector2 boundingBoxBottomCenter;
+    Vector2 boundingBoxBottomCenter; 
 };
 
 static std::vector<std::thread> g_WorkerThreads;
 static std::atomic<bool> g_ThreadPoolActive{ false };
 static std::mutex g_RenderDataMutex;
 static std::vector<PlayerRenderData> g_RenderDataCache;
-static constexpr size_t THREAD_POOL_SIZE = 4;
+static constexpr size_t THREAD_POOL_SIZE = 8;
 
 inline void InitESPThreadPool() {
     if (g_ThreadPoolActive.load()) return;
@@ -924,7 +924,7 @@ inline PlayerRenderData ProcessPlayerData(RBX::Player& player, const CVector& my
         std::vector<RBX::Instance> children = character.getChildren();
         for (RBX::Instance& child : children) {
             try {
-                str childName = child.getName();
+                str childName = child.getName(); 
                 auto it = boneMap.find(childName);
                 if (it != boneMap.end()) {
                     int boneIndex = it->second;
@@ -1244,7 +1244,7 @@ inline void espLoopThreaded() {
     drawList->AddCircleFilled(screenBottomCenter, 5.0f, IM_COL32(255, 255, 255, 150));
 }
 inline void espLoop() {
-
+    
     static bool threadPoolInitialized = false;
     if (!threadPoolInitialized) {
         InitESPThreadPool();

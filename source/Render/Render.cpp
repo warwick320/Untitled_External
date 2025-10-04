@@ -228,9 +228,9 @@ void Render::destoryImGui() {
 }
 
 Render::~Render() {
-    destoryImGui();  
-    destroyDevice(); 
-    destroyWindow();  
+    destoryImGui();
+    destroyDevice();
+    destroyWindow();
 }
 
 void Render::setupOverlay(cstr windowName) {
@@ -245,7 +245,7 @@ void Render::startRender() {
         RecreateDevice();
         if (m_deviceLost) return;
     }
-    
+
     // 리소스 유효성 체크
     if (!device || !deviceContext || !swapChain || !renderTargetView || !overlaywindow) {
         return;
@@ -282,14 +282,15 @@ void Render::endRender() {
     deviceContext->OMSetRenderTargets(1, &renderTargetView, nullptr);
     deviceContext->ClearRenderTargetView(renderTargetView, clearColor);
     ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
-    
+
     HRESULT hr = swapChain->Present(1, 0);
-    
+
     // Device Lost 체크 및 복구
     if (hr == DXGI_ERROR_DEVICE_REMOVED || hr == DXGI_ERROR_DEVICE_RESET) {
         m_deviceLost = true;
         RecreateDevice();
-    } else if (FAILED(hr)) {
+    }
+    else if (FAILED(hr)) {
         // 기타 Present 실패 처리
         m_deviceLost = true;
     }
@@ -298,7 +299,7 @@ void Render::endRender() {
 
 bool Render::CheckDeviceLost() {
     if (!device) return true;
-    
+
     HRESULT hr = device->GetDeviceRemovedReason();
     return FAILED(hr);
 }
@@ -306,7 +307,7 @@ bool Render::CheckDeviceLost() {
 void Render::RecreateDevice() {
     // ImGui 백엔드 정리
     ImGui_ImplDX11_Shutdown();
-    
+
     // DirectX 리소스 정리
     if (renderTargetView) {
         renderTargetView->Release();
@@ -324,7 +325,7 @@ void Render::RecreateDevice() {
         device->Release();
         device = nullptr;
     }
-    
+
     // 디바이스 재생성
     if (createDevice()) {
         if (ImGui_ImplDX11_Init(device, deviceContext)) {

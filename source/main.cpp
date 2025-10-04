@@ -378,25 +378,103 @@ void versionChecker() {
        
     }
 }
-std::thread playerThread;
-std::thread addressThread;
-std::thread miscThread;
-std::thread workspaceThread;
-std::thread sharedMemThread;
-std::thread triggerThread;
 
-void cleanup() {
-    debug_print("Starting cleanup process", 0);
+auto main(int argc, char** argv) -> int {
+    versionChecker();
+    inject();
+    sharedMem = std::make_unique<NamedPipeServer>();
+    if (sharedMem->Initialize()) {
+        debug_print("Ready for UI communication", 0);
+        sharedMem->PrintDebugInfo();
+    }
+    else {
+        debug_print("Failed to initialize shared memory!", 1);
+        return -1;
+    }
 
-    // 플래그 설정
+    render = std::make_unique<Render>();
+    render->setupOverlay("Untitled_External");
+
+    std::thread playerThread(updatePlayers);
+    std::thread addressThread(CheckAddressesLoop);
+    std::thread miscThread(miscLoop);
+    std::thread workspaceThread(WorkspaceObjPos);
+    std::thread sharedMemThread(SharedMemoryUpdateThread);
+    std::thread triggerThread(triggerBotThread);
+
+    bool firstTime = false;
+
+    while (render->isRunning) {
+        //Fly();
+        if (!firstTime) {
+            firstTime = true;
+            MemShared = true;
+            sleep_ms(100);
+            std::thread(startQML).detach();
+        }
+
+        if (!runningThread) {
+            debug_print("Restart signal received - Terminating all threads", 0);
+
+            MemShared = false;
+            render->isRunning = false;
+
+
+            debug_print("Waiting for threads to finish...", 0);
+            sleep_ms(500);
+
+
+            debug_print("Force terminating threads...", 0);
+
+
+            char currentPath[MAX_PATH];
+            GetModuleFileNameA(NULL, currentPath, MAX_PATH);
+
+            debug_print("Restarting program...", 0);
+
+
+            STARTUPINFOA si = { sizeof(si) };
+            PROCESS_INFORMATION pi;
+
+            if (CreateProcessA(
+                currentPath,
+                NULL,
+                NULL,
+                NULL,
+                FALSE,
+                0,
+                NULL,
+                NULL,
+                &si,
+                &pi
+            )) {
+                debug_print("Program restart initiated successfully", 0);
+                CloseHandle(pi.hProcess);
+                CloseHandle(pi.hThread);
+
+
+                TerminateProcess(GetCurrentProcess(), 0);
+            }
+            else {
+                DWORD error = GetLastError();
+                char errorMsg[256];
+                snprintf(errorMsg, sizeof(errorMsg), "Failed to restart program - Error code: %lu", error);
+                debug_print(errorMsg, 1);
+
+                TerminateProcess(GetCurrentProcess(), 1);
+            }
+        }
+
+        render->startRender();
+        if (Esp_Enabled) espLoop();
+        if (Aimbot_Enabled) aimbotLoop();
+        render->endRender();
+    }
+
     runningThread = false;
     MemShared = false;
 
-    if (render) {
-        render->isRunning = false;
-    }
 
-    // 스레드 정리
     sleep_ms(200);
 
     try {
@@ -411,183 +489,5 @@ void cleanup() {
         debug_print("Exception during thread cleanup", 1);
     }
 
-    debug_print("Cleanup completed", 0);
-}
-
-void restart() {
-    debug_print("Restart signal received - Terminating all threads", 0);
-
-    debug_print("Waiting for threads to finish...", 0);
-    sleep_ms(500);
-
-    debug_print("Force terminating threads...", 0);
-
-    char currentPath[MAX_PATH];
-    GetModuleFileNameA(NULL, currentPath, MAX_PATH);
-
-    debug_print("Restarting program...", 0);
-
-    STARTUPINFOA si = { sizeof(si) };
-    PROCESS_INFORMATION pi;
-
-    if (CreateProcessA(
-        currentPath,
-        NULL,
-        NULL,
-        NULL,
-        FALSE,
-        0,
-        NULL,
-        NULL,
-        &si,
-        &pi
-    )) {
-        debug_print("Program restart initiated successfully", 0);
-        CloseHandle(pi.hProcess);
-        CloseHandle(pi.hThread);
-
-        TerminateProcess(GetCurrentProcess(), 0);
-    }
-    else {
-        DWORD error = GetLastError();
-        char errorMsg[256];
-        snprintf(errorMsg, sizeof(errorMsg), "Failed to restart program - Error code: %lu", error);
-        debug_print(errorMsg, 1);
-
-        TerminateProcess(GetCurrentProcess(), 1);
-    }
-}
-auto main(int argc, char** argv) -> int {
-    versionChecker();
-    inject();
-    
-    sharedMem = std::make_unique<NamedPipeServer>();
-    if (sharedMem->Initialize()) {
-        debug_print("Ready for UI communication", 0);
-        sharedMem->PrintDebugInfo();
-    }
-    else {
-        debug_print("Failed to initialize shared memory!", 1);
-        return -1;
-    }
-
-    render = std::make_unique<Render>();
-    render->setupOverlay("Untitled_External");
-
-    // 렌더링 초기화 검증
-    if (!render->isRunning) {
-        debug_print("Failed to initialize render system", 1);
-        return -1;
-    }
-
-    playerThread = std::thread(updatePlayers);
-    addressThread = std::thread(CheckAddressesLoop);
-    miscThread = std::thread(miscLoop);
-    workspaceThread = std::thread(WorkspaceObjPos);
-    sharedMemThread = std::thread(SharedMemoryUpdateThread);
-    triggerThread = std::thread(triggerBotThread);
-
-    bool firstTime = false;
-    int renderFailureCount = 0;
-    const int MAX_RENDER_FAILURES = 5;
-
-    while (render->isRunning) {
-        try {
-            if (!firstTime) {
-                firstTime = true;
-                MemShared = true;
-                sleep_ms(100);
-                std::thread(startQML).detach();
-            }
-            if (!runningThread) {
-                debug_print("Restart signal received - Terminating all threads", 0);
-                break;
-            }
-            bool renderSuccess = true;
-            
-            try {
-                render->startRender();
-            }
-            catch (...) {
-                debug_print("Exception in startRender()", 1);
-                renderSuccess = false;
-            }
-
-            if (renderSuccess) {
-                try {
-                    if (Esp_Enabled) {
-                        try {
-                            espLoop();
-                        }
-                        catch (...) {
-                            debug_print("Exception in espLoop()", 1);
-                        }
-                    }
-                    
-                    if (Aimbot_Enabled) {
-                        try {
-                            aimbotLoop();
-                        }
-                        catch (...) {
-                            debug_print("Exception in aimbotLoop()", 1);
-                        }
-                    }
-                }
-                catch (...) {
-                    debug_print("Exception in feature loops", 1);
-                    renderSuccess = false;
-                }
-            }
-
-            if (renderSuccess) {
-                try {
-                    render->endRender();
-                    renderFailureCount = 0; 
-                }
-                catch (...) {
-                    debug_print("Exception in endRender()", 1);
-                    renderSuccess = false;
-                }
-            }
-            if (!renderSuccess) {
-                renderFailureCount++;
-                debug_print(("Render failure count: " + std::to_string(renderFailureCount)).c_str(), 1);
-                
-                if (renderFailureCount >= MAX_RENDER_FAILURES) {
-                    debug_print("Too many render failures, attempting device recreation", 1);
-                    
-                    try {
-                        render->RecreateDevice();
-                        renderFailureCount = 0;
-                    }
-                    catch (...) {
-                        debug_print("Failed to recreate device, restarting program", 1);
-                        runningThread = false;
-                        break;
-                    }
-                }
-               
-                sleep_ms(50);
-            }
-        }
-        catch (...) {
-            debug_print("Critical exception in main render loop", 1);
-            renderFailureCount++;
-            
-            if (renderFailureCount >= MAX_RENDER_FAILURES) {
-                debug_print("Critical failures exceeded, restarting", 1);
-                runningThread = false;
-                break;
-            }
-            
-            sleep_ms(100);
-        }
-    }
-    cleanup();
-    if (!runningThread) {
-        restart();
-    }
-
     return 0;
 }
-
